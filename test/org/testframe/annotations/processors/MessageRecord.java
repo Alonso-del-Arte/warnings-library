@@ -42,9 +42,16 @@ import javax.tools.Diagnostic.Kind;
  */
 public class MessageRecord {
     
-    // TODO: Write tests for this
+    private final Kind diagKind;
+    
+    /**
+     * Retrieves the diagnostic kind this message record was constructed as.
+     * @return The diagnostic kind passed to the constructor. One of {@code 
+     * Kind.ERROR}, {@code Kind.MANDATORY_WARNING}, {@code Kind.NOTE} or {@code 
+     * Kind.OTHER}.
+     */
     public Kind getDiagnosticKind() {
-        return Kind.OTHER;
+        return this.diagKind;
     }
     
     // TODO: Write tests for this
@@ -146,21 +153,21 @@ public class MessageRecord {
     }
     
     public MessageRecord(Kind kind, CharSequence msg) {
-        //
+        this.diagKind = kind;
     }
     
     public MessageRecord(Kind kind, CharSequence msg, Element elem) {
-        //
+        this.diagKind = kind;
     }
     
     public MessageRecord(Kind kind, CharSequence msg, Element elem, 
             AnnotationMirror mirror) {
-        //
+        this.diagKind = kind;
     }
     
     public MessageRecord(Kind kind, CharSequence msg, Element elem, 
             AnnotationMirror mirror, AnnotationValue value) {
-        //
+        this.diagKind = kind;
     }
     
 }
