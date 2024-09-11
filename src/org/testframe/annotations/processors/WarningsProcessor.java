@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package org.testframe.warnings;
+package org.testframe.annotations.processors;
 
 import java.util.Set;
 import javax.annotation.processing.AbstractProcessor;
@@ -18,9 +18,10 @@ import javax.tools.Diagnostic.Kind;
  *
  * @author Alonso del Arte
  */
-@SupportedAnnotationTypes("warnings.NarrowingConversionWarning")
+@SupportedAnnotationTypes("org.testframe.warnings.NarrowingConversionWarning")
 public class WarningsProcessor extends AbstractProcessor {
     
+    // TODO: Write tests for this
     @Override
     public boolean process(Set<? extends TypeElement> annotations, 
             RoundEnvironment roundEnv) {
