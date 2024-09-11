@@ -153,16 +153,16 @@ public class MessageRecord {
     }
     
     public MessageRecord(Kind kind, CharSequence msg) {
-        this.diagKind = kind;
+        this(kind, msg, null);
     }
     
     public MessageRecord(Kind kind, CharSequence msg, Element elem) {
-        this.diagKind = kind;
+        this(kind, msg, elem, null);
     }
     
     public MessageRecord(Kind kind, CharSequence msg, Element elem, 
             AnnotationMirror mirror) {
-        this.diagKind = kind;
+        this(kind, msg, elem, mirror, null);
     }
     
     public MessageRecord(Kind kind, CharSequence msg, Element elem, 
