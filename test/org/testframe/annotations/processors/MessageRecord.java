@@ -44,6 +44,8 @@ public class MessageRecord {
     
     private final Kind diagKind;
     
+    private final CharSequence message;
+    
     /**
      * Retrieves the diagnostic kind this message record was constructed as.
      * @return The diagnostic kind passed to the constructor. One of {@code 
@@ -54,9 +56,12 @@ public class MessageRecord {
         return this.diagKind;
     }
     
-    // TODO: Write tests for this
+    /**
+     * Retrieves the message this message record was constructed as.
+     * @return The message that was passed to the constructor.
+     */
     public CharSequence getMessage() {
-        return "SORRY, NOT IMPLEMENTED YET";
+        return this.message;
     }
     
     // TODO: Write tests for this
@@ -168,6 +173,7 @@ public class MessageRecord {
     public MessageRecord(Kind kind, CharSequence msg, Element elem, 
             AnnotationMirror mirror, AnnotationValue value) {
         this.diagKind = kind;
+        this.message = msg;
     }
     
 }
