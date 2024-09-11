@@ -26,14 +26,21 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 /**
- *
+ * Tests of the MessageRecord class.
  * @author Alonso del Arte
  */
 public class MessageRecordTest {
     
     @Test
-    public void placeholder() {
-        fail("HAVEN'T WRITTEN TESTS YET");
+    public void testGetDiagnosticKind() {
+        System.out.println("getDiagnosticKind");
+        Kind[] kinds = Kind.values();
+        for (Kind expected : kinds) {
+            MessageRecord instance = new MessageRecord(expected, 
+                    "FOR TESTING PURPOSES");
+            Kind actual = instance.getDiagnosticKind();
+            assertEquals(expected, actual);
+        }
     }
     
 }
