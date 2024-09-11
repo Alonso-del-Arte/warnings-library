@@ -16,6 +16,8 @@
  */
 package org.testframe.annotations.processors;
 
+import java.time.LocalDateTime;
+
 import javax.annotation.processing.Messager;
 import javax.lang.model.element.AnnotationMirror;
 import javax.lang.model.element.AnnotationValue;
@@ -41,6 +43,16 @@ public class MessageRecordTest {
             Kind actual = instance.getDiagnosticKind();
             assertEquals(expected, actual);
         }
+    }
+    
+    @Test
+    public void testGetMessage() {
+        System.out.println("getMessage");
+        String expected = "For testing purposes as of " 
+                + LocalDateTime.now().toString();
+        MessageRecord instance = new MessageRecord(Kind.OTHER, expected);
+        CharSequence actual = instance.getMessage();
+        assertEquals(expected, actual);
     }
     
 }
