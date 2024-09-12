@@ -33,13 +33,15 @@ import static org.junit.Assert.*;
  */
 public class MessageRecordTest {
     
+    private static final String DEFAULT_MESSAGE = "FOR TESTING PURPOSES ONLY";
+    
     @Test
     public void testGetDiagnosticKind() {
         System.out.println("getDiagnosticKind");
         Kind[] kinds = Kind.values();
         for (Kind expected : kinds) {
             MessageRecord instance = new MessageRecord(expected, 
-                    "FOR TESTING PURPOSES");
+                    DEFAULT_MESSAGE);
             Kind actual = instance.getDiagnosticKind();
             assertEquals(expected, actual);
         }
@@ -53,6 +55,14 @@ public class MessageRecordTest {
         MessageRecord instance = new MessageRecord(Kind.OTHER, expected);
         CharSequence actual = instance.getMessage();
         assertEquals(expected, actual);
+    }
+    
+    @Test
+    public void testConstructorFillsNullElementIfUnspecified() {
+        MessageRecord instance = new MessageRecord(Kind.OTHER, DEFAULT_MESSAGE);
+        Element element = instance.getElement();
+        String message = "Since element was not specified, it should be null";
+        assertNull(message, element);
     }
     
 }
