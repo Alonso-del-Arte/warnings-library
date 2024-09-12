@@ -58,6 +58,16 @@ public class MessageRecordTest {
     }
     
     @Test
+    public void testGetElement() {
+        System.out.println("getElement");
+        Element expected = new MockElement();
+        MessageRecord instance = new MessageRecord(Kind.OTHER, DEFAULT_MESSAGE, 
+                expected);
+        Element actual = instance.getElement();
+        assertEquals(expected, actual);
+    }
+    
+    @Test
     public void testConstructorFillsNullElementIfUnspecified() {
         MessageRecord instance = new MessageRecord(Kind.OTHER, DEFAULT_MESSAGE);
         Element element = instance.getElement();
