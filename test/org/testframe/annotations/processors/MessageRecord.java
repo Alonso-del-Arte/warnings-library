@@ -46,6 +46,8 @@ public class MessageRecord {
     
     private final CharSequence message;
     
+    private final Element element;
+    
     /**
      * Retrieves the diagnostic kind this message record was constructed as.
      * @return The diagnostic kind passed to the constructor. One of {@code 
@@ -64,9 +66,12 @@ public class MessageRecord {
         return this.message;
     }
     
-    // TODO: Write tests for this
+    /**
+     * Retrieves the element this message record was constructed with.
+     * @return The element that was passed to the constructor. Might be null.
+     */
     public Element getElement() {
-        return null;
+        return this.element;
     }
     
     // TODO: Write tests for this
@@ -121,6 +126,7 @@ public class MessageRecord {
             AnnotationMirror mirror, AnnotationValue value) {
         this.diagKind = kind;
         this.message = msg;
+        this.element = elem;
     }
     
 }
