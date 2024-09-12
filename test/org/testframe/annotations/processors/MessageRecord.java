@@ -66,60 +66,7 @@ public class MessageRecord {
     
     // TODO: Write tests for this
     public Element getElement() {
-        return new Element() {
-            
-            @Override
-            public TypeMirror asType() {
-                throw new UnsupportedOperationException("Not supported yet.");
-            }
-
-            @Override
-            public ElementKind getKind() {
-                throw new UnsupportedOperationException("Not supported yet.");
-            }
-
-            @Override
-            public Set<Modifier> getModifiers() {
-                throw new UnsupportedOperationException("Not supported yet.");
-            }
-
-            @Override
-            public Name getSimpleName() {
-                throw new UnsupportedOperationException("Not supported yet.");
-            }
-
-            @Override
-            public Element getEnclosingElement() {
-                throw new UnsupportedOperationException("Not supported yet.");
-            }
-
-            @Override
-            public List<? extends Element> getEnclosedElements() {
-                throw new UnsupportedOperationException("Not supported yet.");
-            }
-
-            @Override
-            public List<? extends AnnotationMirror> getAnnotationMirrors() {
-                throw new UnsupportedOperationException("Not supported yet.");
-            }
-
-            @Override
-            public <A extends Annotation> A getAnnotation(Class<A> annotationType) {
-                throw new UnsupportedOperationException("Not supported yet.");
-            }
-
-            @Override
-            public <R, P> R accept(ElementVisitor<R, P> v, P p) {
-                throw new UnsupportedOperationException("Not supported yet.");
-            }
-
-            @Override
-            public <A extends Annotation> A[] 
-                    getAnnotationsByType(Class<A> annotationType) {
-                throw new UnsupportedOperationException("Not supported yet.");
-            }
-                    
-        };
+        return null;
     }
     
     // TODO: Write tests for this
