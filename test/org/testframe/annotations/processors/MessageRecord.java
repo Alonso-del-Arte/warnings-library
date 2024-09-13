@@ -50,6 +50,8 @@ public class MessageRecord {
     
     private final AnnotationMirror annMirror;
     
+    private final AnnotationValue annVal;
+    
     /**
      * Retrieves the diagnostic kind this message record was constructed as.
      * @return The diagnostic kind passed to the constructor. One of {@code 
@@ -85,9 +87,13 @@ public class MessageRecord {
         return this.annMirror;
     }
     
-    // TODO: Write tests for this
+    /**
+     * Retrieves the annotation value this message record was constructed with.
+     * @return The annotation value that was passed to the constructor. Might be 
+     * null.
+     */
     public AnnotationValue getValue() {
-        return null;
+        return this.annVal;
     }
     
     public MessageRecord(Kind kind, CharSequence msg) {
@@ -109,6 +115,7 @@ public class MessageRecord {
         this.message = msg;
         this.element = elem;
         this.annMirror = mirror;
+        this.annVal = value;
     }
     
 }
