@@ -48,6 +48,8 @@ public class MessageRecord {
     
     private final Element element;
     
+    private final AnnotationMirror annMirror;
+    
     /**
      * Retrieves the diagnostic kind this message record was constructed as.
      * @return The diagnostic kind passed to the constructor. One of {@code 
@@ -76,20 +78,7 @@ public class MessageRecord {
     
     // TODO: Write tests for this
     public AnnotationMirror getMirror() {
-        return new AnnotationMirror() {
-            
-            @Override
-            public DeclaredType getAnnotationType() {
-                throw new UnsupportedOperationException("Not supported yet.");
-            }
-
-            @Override
-            public Map<? extends ExecutableElement, 
-                    ? extends AnnotationValue> getElementValues() {
-                throw new UnsupportedOperationException("Not supported yet.");
-            }
-                    
-        };
+        return this.annMirror;
     }
     
     // TODO: Write tests for this
@@ -127,6 +116,7 @@ public class MessageRecord {
         this.diagKind = kind;
         this.message = msg;
         this.element = elem;
+        this.annMirror = mirror;
     }
     
 }
