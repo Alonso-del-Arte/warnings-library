@@ -78,7 +78,7 @@ public class MessageRecord {
     
     // TODO: Write tests for this
     public AnnotationMirror getMirror() {
-        return this.annMirror;
+        return null;// this.annMirror;
     }
     
     // TODO: Write tests for this
