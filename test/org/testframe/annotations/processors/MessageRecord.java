@@ -76,9 +76,13 @@ public class MessageRecord {
         return this.element;
     }
     
-    // TODO: Write tests for this
+    /**
+     * Retrieves the annotation mirror this message record was constructed with.
+     * @return The annotation mirror that was passed to the constructor. Might 
+     * be null.
+     */
     public AnnotationMirror getMirror() {
-        return null;// this.annMirror;
+        return this.annMirror;
     }
     
     // TODO: Write tests for this
