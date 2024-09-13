@@ -68,6 +68,17 @@ public class MessageRecordTest {
     }
     
     @Test
+    public void testGetMirror() {
+        System.out.println("getMirror");
+        Element elem = new MockElement();
+        AnnotationMirror expected = new MockMirror();
+        MessageRecord instance = new MessageRecord(Kind.OTHER, DEFAULT_MESSAGE, 
+                elem, expected);
+        AnnotationMirror actual = instance.getMirror();
+        assertEquals(expected, actual);
+    }
+    
+    @Test
     public void testConstructorFillsNullElementIfUnspecified() {
         MessageRecord instance = new MessageRecord(Kind.OTHER, DEFAULT_MESSAGE);
         Element element = instance.getElement();
