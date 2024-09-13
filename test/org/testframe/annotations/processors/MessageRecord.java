@@ -87,19 +87,7 @@ public class MessageRecord {
     
     // TODO: Write tests for this
     public AnnotationValue getValue() {
-        return new AnnotationValue() {
-            
-            @Override
-            public Object getValue() {
-                throw new UnsupportedOperationException("Not supported yet.");
-            }
-
-            @Override
-            public <R, P> R accept(AnnotationValueVisitor<R, P> v, P p) {
-                throw new UnsupportedOperationException("Not supported yet.");
-            }
-            
-        };
+        return null;
     }
     
     public MessageRecord(Kind kind, CharSequence msg) {
