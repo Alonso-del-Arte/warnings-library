@@ -91,8 +91,17 @@ public class MessageRecordTest {
         MessageRecord instance = new MessageRecord(Kind.OTHER, DEFAULT_MESSAGE, 
                 new MockElement());
         AnnotationMirror mirror = instance.getMirror();
-        String message = "Since element was not specified, it should be null";
+        String message = "Since mirror was not specified, it should be null";
         assertNull(message, mirror);
+    }
+    
+    @Test
+    public void testConstructorFillsNullValueIfUnspecified() {
+        MessageRecord instance = new MessageRecord(Kind.OTHER, DEFAULT_MESSAGE, 
+                new MockElement(), new MockMirror());
+        AnnotationValue value = instance.getValue();
+        String message = "Since value was not specified, it should be null";
+        assertNull(message, value);
     }
     
 }
