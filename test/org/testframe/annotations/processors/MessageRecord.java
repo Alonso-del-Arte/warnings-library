@@ -19,6 +19,7 @@ package org.testframe.annotations.processors;
 import java.lang.annotation.Annotation;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Set;
 
 import javax.annotation.processing.AbstractProcessor;
@@ -94,6 +95,16 @@ public class MessageRecord {
      */
     public AnnotationValue getValue() {
         return this.annVal;
+    }
+    
+    @Override
+    public boolean equals(Object obj) {
+        return false;
+    }
+
+    @Override
+    public int hashCode() {
+        return Integer.MIN_VALUE;
     }
     
     public MessageRecord(Kind kind, CharSequence msg) {
