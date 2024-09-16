@@ -90,6 +90,12 @@ public class MessageRecordTest {
     }
     
     @Test
+    public void testReferentialEquality() {
+        MessageRecord instance = new MessageRecord(Kind.OTHER, DEFAULT_MESSAGE);
+        assertEquals(instance, instance);
+    }
+    
+    @Test
     public void testConstructorFillsNullElementIfUnspecified() {
         MessageRecord instance = new MessageRecord(Kind.OTHER, DEFAULT_MESSAGE);
         Element element = instance.getElement();
