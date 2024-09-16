@@ -95,6 +95,18 @@ public class MessageRecordTest {
         assertEquals(instance, instance);
     }
     
+    private static Object provideNull() {
+        return null;
+    }
+    
+    @Test
+    public void testNotEqualsNull() {
+        MessageRecord instance = new MessageRecord(Kind.OTHER, DEFAULT_MESSAGE);
+        Object obj = provideNull();
+        String msg = instance.toString() + " should not equal null";
+        assert !instance.equals(obj) : msg;
+    }
+    
     @Test
     public void testConstructorFillsNullElementIfUnspecified() {
         MessageRecord instance = new MessageRecord(Kind.OTHER, DEFAULT_MESSAGE);
