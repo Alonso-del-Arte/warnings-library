@@ -98,11 +98,6 @@ public class MessageRecord {
     }
     
     @Override
-    public boolean equals(Object obj) {
-        return obj != null;
-    }
-
-    @Override
     public int hashCode() {
         return Integer.MIN_VALUE;
     }
