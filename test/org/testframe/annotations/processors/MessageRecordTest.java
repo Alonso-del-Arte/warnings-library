@@ -122,6 +122,19 @@ public class MessageRecordTest {
     }
     
     @Test
+    public void testEquals() {
+        System.out.println("equals");
+        Element elem = new MockElement();
+        AnnotationMirror mirror = new MockMirror();
+        AnnotationValue value = new MockValue();
+        MessageRecord someRecord = new MessageRecord(Kind.NOTE, DEFAULT_MESSAGE, 
+                elem, mirror, value);
+        MessageRecord sameRecord = new MessageRecord(Kind.NOTE, DEFAULT_MESSAGE, 
+                elem, mirror, value);
+        assertEquals(someRecord, sameRecord);
+    }
+    
+    @Test
     public void testConstructorRejectsNullDiagnosticKind() {
         String msg = "Null diagnostic kind should cause NPE";
         Throwable t = assertThrows(() -> {
