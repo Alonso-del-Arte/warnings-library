@@ -110,6 +110,18 @@ public class MessageRecordTest {
     }
     
     @Test
+    public void testNotEqualsDiffClass() {
+        MessageRecord instance = new MessageRecord(Kind.OTHER, DEFAULT_MESSAGE);
+        Object[] objects = {Kind.NOTE, DEFAULT_MESSAGE, new MockElement(), 
+            new MockMirror(), new MockValue()};
+        String msgPart = instance.toString() + " should not equal ";
+        for (Object obj : objects) {
+            String msg = msgPart + obj.toString();
+            assertNotEquals(msg, instance, obj);
+        }
+    }
+    
+    @Test
     public void testConstructorRejectsNullDiagnosticKind() {
         String msg = "Null diagnostic kind should cause NPE";
         Throwable t = assertThrows(() -> {
