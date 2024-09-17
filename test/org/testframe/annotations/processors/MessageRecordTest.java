@@ -124,6 +124,20 @@ public class MessageRecordTest {
     }
     
     @Test
+    public void testConstructorRejectsNullMessage() {
+        String msg = "Null message should cause NPE";
+        Throwable t = assertThrows(() -> {
+            MessageRecord badRecord = new MessageRecord(Kind.OTHER, null);
+            System.out.println(msg + ", not given instance " 
+                    + badRecord.toString());
+        }, NullPointerException.class, msg);
+        String excMsg = t.getMessage();
+        assert excMsg != null : "Exception message should not be null";
+        assert !excMsg.isEmpty() : "Exception message should not be empty";
+        System.out.println("\"" + excMsg + "\"");
+    }
+    
+    @Test
     public void testConstructorFillsNullElementIfUnspecified() {
         MessageRecord instance = new MessageRecord(Kind.OTHER, DEFAULT_MESSAGE);
         Element element = instance.getElement();
