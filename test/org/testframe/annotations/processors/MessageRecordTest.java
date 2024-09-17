@@ -26,6 +26,8 @@ import javax.tools.Diagnostic.Kind;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
+import static org.testframe.api.Asserters.assertThrows;
+
 /**
  * Tests of the MessageRecord class.
  * @author Alonso del Arte
@@ -105,6 +107,20 @@ public class MessageRecordTest {
         Object obj = provideNull();
         String msg = instance.toString() + " should not equal null";
         assert !instance.equals(obj) : msg;
+    }
+    
+    @Test
+    public void testConstructorRejectsNullDiagnosticKind() {
+        String msg = "Null diagnostic kind should cause NPE";
+        Throwable t = assertThrows(() -> {
+            MessageRecord badRecord = new MessageRecord(null, DEFAULT_MESSAGE);
+            System.out.println(msg + ", not given instance " 
+                    + badRecord.toString());
+        }, NullPointerException.class, msg);
+        String excMsg = t.getMessage();
+        assert excMsg != null : "Exception message should not be null";
+        assert !excMsg.isEmpty() : "Exception message should not be empty";
+        System.out.println("\"" + excMsg + "\"");
     }
     
     @Test
