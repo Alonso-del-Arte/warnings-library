@@ -122,8 +122,8 @@ public class MessageRecord {
     
     public MessageRecord(Kind kind, CharSequence msg, Element elem, 
             AnnotationMirror mirror, AnnotationValue value) {
-        if (kind == null) {
-            String excMsg = "Diagnostic kind should not be null";
+        if (kind == null || msg == null) {
+            String excMsg = "Diagnostic kind, message should not be null";
             throw new NullPointerException(excMsg);
         }
         this.diagKind = kind;
