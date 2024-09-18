@@ -16,29 +16,15 @@
  */
 package org.testframe.annotations.processors;
 
-import java.lang.annotation.Annotation;
-import java.util.List;
-import java.util.Map;
-import java.util.Objects;
-import java.util.Set;
-
-import javax.annotation.processing.AbstractProcessor;
-import javax.annotation.processing.Messager;
 import javax.lang.model.element.AnnotationMirror;
 import javax.lang.model.element.AnnotationValue;
-import javax.lang.model.element.AnnotationValueVisitor;
 import javax.lang.model.element.Element;
-import javax.lang.model.element.ElementKind;
-import javax.lang.model.element.ElementVisitor;
-import javax.lang.model.element.ExecutableElement;
-import javax.lang.model.element.Modifier;
-import javax.lang.model.element.Name;
-import javax.lang.model.type.DeclaredType;
-import javax.lang.model.type.TypeMirror;
 import javax.tools.Diagnostic.Kind;
 
 /**
- *
+ * Represents a message sent to a {@code javax.annotation.processing.Messager} 
+ * instance. For all or almost all testing in this project, that instance will 
+ * be a {@link MockMessager}.
  * @author Alonso del Arte
  */
 public class MessageRecord {
@@ -99,8 +85,18 @@ public class MessageRecord {
     
     @Override
     public boolean equals(Object obj) {
-        return obj instanceof MessageRecord;
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (!this.getClass().equals(obj.getClass())) {
+            return false;
+        }
+        return this.diagKind == ((MessageRecord) obj).diagKind;
     }
+    
     @Override
     public int hashCode() {
         return Integer.MIN_VALUE;
