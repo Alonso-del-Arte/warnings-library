@@ -17,6 +17,7 @@
 package org.testframe.annotations.processors;
 
 import java.time.LocalDateTime;
+import java.util.Random;
 
 import javax.lang.model.element.AnnotationMirror;
 import javax.lang.model.element.AnnotationValue;
@@ -34,7 +35,13 @@ import static org.testframe.api.Asserters.assertThrows;
  */
 public class MessageRecordTest {
     
+    private static final Kind[] DIAGNOSTIC_KINDS = Kind.values();
+    
+    private static final int NUMBER_OF_KINDS = DIAGNOSTIC_KINDS.length;
+    
     private static final String DEFAULT_MESSAGE = "FOR TESTING PURPOSES ONLY";
+    
+    private static final Random RANDOM = new Random();
     
     @Test
     public void testGetDiagnosticKind() {
@@ -132,6 +139,28 @@ public class MessageRecordTest {
         MessageRecord sameRecord = new MessageRecord(Kind.NOTE, DEFAULT_MESSAGE, 
                 elem, mirror, value);
         assertEquals(someRecord, sameRecord);
+    }
+    
+    private static Kind chooseKindOtherThan(Kind kind) {
+        Kind diffKind = kind;
+        do {
+            diffKind = DIAGNOSTIC_KINDS[RANDOM.nextInt(NUMBER_OF_KINDS)];
+        } while (diffKind == kind);
+        return diffKind;
+    }
+    
+    @Test
+    public void testNotEqualsMessageRecordWithDiffKind() {
+        for (Kind kind : DIAGNOSTIC_KINDS) {
+            MessageRecord recordA = new MessageRecord(kind, DEFAULT_MESSAGE);
+            Kind diffKind = chooseKindOtherThan(kind);
+            MessageRecord recordB = new MessageRecord(diffKind, 
+                    DEFAULT_MESSAGE);
+            String message = "Record of diagnostic kind " + kind.toString() 
+                    + " should not equal record of diagnostic kind " 
+                    + diffKind.toString();
+            assertNotEquals(message, recordA, recordB);
+        }
     }
     
     @Test
