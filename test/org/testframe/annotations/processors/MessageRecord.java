@@ -94,7 +94,11 @@ public class MessageRecord {
         if (!this.getClass().equals(obj.getClass())) {
             return false;
         }
-        return this.diagKind == ((MessageRecord) obj).diagKind;
+        MessageRecord other = (MessageRecord) obj;
+        if (this.diagKind != other.diagKind) {
+            return false;
+        }
+        return this.message.equals(other.message);
     }
     
     @Override
