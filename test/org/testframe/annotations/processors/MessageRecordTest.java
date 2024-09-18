@@ -164,6 +164,17 @@ public class MessageRecordTest {
     }
     
     @Test
+    public void testNotEqualsMessageRecordWithDifferentMessage() {
+        MessageRecord recordA = new MessageRecord(Kind.OTHER, DEFAULT_MESSAGE);
+        MessageRecord recordB = new MessageRecord(Kind.OTHER, 
+                LocalDateTime.now().toString());
+        String message = "Record with message \"" + recordA.getMessage() 
+                + "\" should not equal record with message \"" 
+                + recordB.getMessage() + "\"";
+        assertNotEquals(message, recordA, recordB);
+    }
+    
+    @Test
     public void testConstructorRejectsNullDiagnosticKind() {
         String msg = "Null diagnostic kind should cause NPE";
         Throwable t = assertThrows(() -> {
