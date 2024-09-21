@@ -104,7 +104,10 @@ public class MessageRecord {
         if (this.element == null && other.element != null) {
             return false;
         }
-        return this.element.equals(other.element);
+        if (!this.element.equals(other.element)) {
+            return false;
+        }
+        return this.annMirror.equals(other.annMirror);
     }
     
     @Override
