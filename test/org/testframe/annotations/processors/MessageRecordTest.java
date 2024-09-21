@@ -216,6 +216,18 @@ public class MessageRecordTest {
     }
     
     @Test
+    public void testEqualsWithNullMirrorDoesNotCauseNPE() {
+        MessageRecord recordA = new MessageRecord(Kind.OTHER, DEFAULT_MESSAGE, 
+                DEFAULT_ELEMENT, null);
+        MessageRecord recordB = new MessageRecord(Kind.OTHER, DEFAULT_MESSAGE, 
+                DEFAULT_ELEMENT, new MockMirror());
+        String msg = "Record A having null mirror should not cause NPE";
+        assertDoesNotThrow(() -> {
+            assert !recordA.equals(recordB);
+        }, msg);
+    }
+    
+    @Test
     public void testConstructorRejectsNullDiagnosticKind() {
         String msg = "Null diagnostic kind should cause NPE";
         Throwable t = assertThrows(() -> {
