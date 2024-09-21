@@ -44,6 +44,8 @@ public class MessageRecordTest {
     
     private static final Element DEFAULT_ELEMENT = new MockElement();
     
+    private static final AnnotationMirror DEFAULT_MIRROR = new MockMirror();
+    
     private static final Random RANDOM = new Random();
     
     @Test
@@ -226,6 +228,22 @@ public class MessageRecordTest {
             assert !recordA.equals(recordB);
         }, msg);
     }
+    
+    @Test
+    public void testNotEqualsMessageRecordWithDifferentValue() {
+        AnnotationValue valueA = new MockValue();
+        AnnotationValue valueB = new MockValue();
+        MessageRecord recordA = new MessageRecord(Kind.OTHER, DEFAULT_MESSAGE, 
+                DEFAULT_ELEMENT, DEFAULT_MIRROR, valueA);
+        MessageRecord recordB = new MessageRecord(Kind.OTHER, DEFAULT_MESSAGE, 
+                DEFAULT_ELEMENT, DEFAULT_MIRROR, valueB);
+        String message = "Record with value " + valueA.toString() 
+                + " should not equal record with value " + valueB.toString();
+        assertNotEquals(message, recordA, recordB);
+    }
+    
+    // TODO: Test in which recordA has null element, mirror, value; recordB all 
+    // non-null
     
     @Test
     public void testConstructorRejectsNullDiagnosticKind() {
