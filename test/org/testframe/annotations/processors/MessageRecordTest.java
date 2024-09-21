@@ -175,6 +175,19 @@ public class MessageRecordTest {
     }
     
     @Test
+    public void testNotEqualsMessageRecordWithDifferentElement() {
+        Element elemA = new MockElement();
+        Element elemB = new MockElement();
+        MessageRecord recordA = new MessageRecord(Kind.OTHER, DEFAULT_MESSAGE, 
+                elemA);
+        MessageRecord recordB = new MessageRecord(Kind.OTHER, DEFAULT_MESSAGE, 
+                elemB);
+        String message = "Record with element " + elemA.toString() 
+                + " should not equal record with element " + elemB.toString();
+        assertNotEquals(message, recordA, recordB);
+    }
+    
+    @Test
     public void testConstructorRejectsNullDiagnosticKind() {
         String msg = "Null diagnostic kind should cause NPE";
         Throwable t = assertThrows(() -> {
