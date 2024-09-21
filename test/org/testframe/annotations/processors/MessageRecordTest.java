@@ -42,6 +42,8 @@ public class MessageRecordTest {
     
     private static final String DEFAULT_MESSAGE = "FOR TESTING PURPOSES ONLY";
     
+    private static final Element DEFAULT_ELEMENT = new MockElement();
+    
     private static final Random RANDOM = new Random();
     
     @Test
@@ -198,6 +200,19 @@ public class MessageRecordTest {
         assertDoesNotThrow(() -> {
             assert !recordA.equals(recordB);
         }, msg);
+    }
+    
+    @Test
+    public void testNotEqualsMessageRecordWithDifferentMirror() {
+        AnnotationMirror mirrorA = new MockMirror();
+        AnnotationMirror mirrorB = new MockMirror();
+        MessageRecord recordA = new MessageRecord(Kind.OTHER, DEFAULT_MESSAGE, 
+                DEFAULT_ELEMENT, mirrorA);
+        MessageRecord recordB = new MessageRecord(Kind.OTHER, DEFAULT_MESSAGE, 
+                DEFAULT_ELEMENT, mirrorB);
+        String message = "Record with mirror " + mirrorA.toString() 
+                + " should not equal record with mirror " + mirrorB.toString();
+        assertNotEquals(message, recordA, recordB);
     }
     
     @Test
