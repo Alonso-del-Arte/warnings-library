@@ -101,6 +101,9 @@ public class MessageRecord {
         if (!this.message.equals(other.message)) {
             return false;
         }
+        if (this.element == null && other.element != null) {
+            return false;
+        }
         return this.element.equals(other.element);
     }
     
