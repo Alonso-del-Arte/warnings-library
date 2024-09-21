@@ -107,6 +107,9 @@ public class MessageRecord {
         if (!this.element.equals(other.element)) {
             return false;
         }
+        if (this.annMirror == null && other.annMirror != null) {
+            return false;
+        }
         return this.annMirror.equals(other.annMirror);
     }
     
