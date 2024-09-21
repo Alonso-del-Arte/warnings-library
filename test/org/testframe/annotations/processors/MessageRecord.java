@@ -98,7 +98,10 @@ public class MessageRecord {
         if (this.diagKind != other.diagKind) {
             return false;
         }
-        return this.message.equals(other.message);
+        if (!this.message.equals(other.message)) {
+            return false;
+        }
+        return this.element.equals(other.element);
     }
     
     @Override
