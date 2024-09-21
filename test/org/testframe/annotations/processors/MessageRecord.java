@@ -110,7 +110,10 @@ public class MessageRecord {
         if (this.annMirror == null && other.annMirror != null) {
             return false;
         }
-        return this.annMirror.equals(other.annMirror);
+        if (!this.annMirror.equals(other.annMirror)) {
+            return false;
+        }
+        return this.annVal.equals(other.annVal);
     }
     
     @Override
