@@ -27,6 +27,7 @@ import javax.tools.Diagnostic.Kind;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
+import static org.testframe.api.Asserters.assertDoesNotThrow;
 import static org.testframe.api.Asserters.assertThrows;
 
 /**
@@ -185,6 +186,18 @@ public class MessageRecordTest {
         String message = "Record with element " + elemA.toString() 
                 + " should not equal record with element " + elemB.toString();
         assertNotEquals(message, recordA, recordB);
+    }
+    
+    @Test
+    public void testEqualsWithNullElementDoesNotCauseNPE() {
+        MessageRecord recordA = new MessageRecord(Kind.OTHER, DEFAULT_MESSAGE, 
+                null);
+        MessageRecord recordB = new MessageRecord(Kind.OTHER, DEFAULT_MESSAGE, 
+                new MockElement());
+        String msg = "Record A having null element should not cause NPE";
+        assertDoesNotThrow(() -> {
+            assert !recordA.equals(recordB);
+        }, msg);
     }
     
     @Test
