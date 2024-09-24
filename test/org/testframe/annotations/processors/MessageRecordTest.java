@@ -258,8 +258,19 @@ public class MessageRecordTest {
         }, msg);
     }
     
-    // TODO: Test in which recordA has null element, mirror, value; recordB all 
-    // non-null
+    @Test
+    public void testEqualsWithBothNullValueDoesNotCauseNPE() {
+        MessageRecord someRecord = new MessageRecord(Kind.OTHER, 
+                DEFAULT_MESSAGE, DEFAULT_ELEMENT, DEFAULT_MIRROR, null);
+        MessageRecord sameRecord = new MessageRecord(Kind.OTHER, 
+                DEFAULT_MESSAGE, DEFAULT_ELEMENT, DEFAULT_MIRROR, null);
+        String msg = "Both records having null value should not cause NPE";
+        assertDoesNotThrow(() -> {
+            assert someRecord.equals(sameRecord);
+        }, msg);
+    }
+    
+    // TODO: Test various both null scenarios
     
     @Test
     public void testConstructorRejectsNullDiagnosticKind() {
