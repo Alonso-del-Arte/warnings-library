@@ -114,8 +114,8 @@ public class MessageRecord {
         if (!this.annMirror.equals(other.annMirror)) {
             return false;
         }
-        if (this.annVal == null && other.annVal != null) {
-            return false;
+        if (this.annVal == null) {
+            return other.annVal == null;
         }
         return this.annVal.equals(other.annVal);
     }
