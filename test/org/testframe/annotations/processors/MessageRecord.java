@@ -83,6 +83,7 @@ public class MessageRecord {
         return this.annVal;
     }
     
+    // TODO: Refactor to fewer lines
     @Override
     public boolean equals(Object obj) {
         if (this == obj) {
@@ -111,6 +112,9 @@ public class MessageRecord {
             return false;
         }
         if (!this.annMirror.equals(other.annMirror)) {
+            return false;
+        }
+        if (this.annVal == null && other.annVal != null) {
             return false;
         }
         return this.annVal.equals(other.annVal);
