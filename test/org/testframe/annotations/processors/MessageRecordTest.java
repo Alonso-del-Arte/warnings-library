@@ -17,7 +17,9 @@
 package org.testframe.annotations.processors;
 
 import java.time.LocalDateTime;
+import java.util.HashSet;
 import java.util.Random;
+import java.util.Set;
 
 import javax.lang.model.element.AnnotationMirror;
 import javax.lang.model.element.AnnotationValue;
@@ -45,6 +47,8 @@ public class MessageRecordTest {
     private static final Element DEFAULT_ELEMENT = new MockElement();
     
     private static final AnnotationMirror DEFAULT_MIRROR = new MockMirror();
+    
+    private static final AnnotationValue DEFAULT_VALUE = new MockValue();
     
     private static final Random RANDOM = new Random();
     
@@ -240,6 +244,18 @@ public class MessageRecordTest {
         String message = "Record with value " + valueA.toString() 
                 + " should not equal record with value " + valueB.toString();
         assertNotEquals(message, recordA, recordB);
+    }
+    
+    @Test
+    public void testEqualsWithNullValueDoesNotCauseNPE() {
+        MessageRecord recordA = new MessageRecord(Kind.OTHER, DEFAULT_MESSAGE, 
+                DEFAULT_ELEMENT, DEFAULT_MIRROR, null);
+        MessageRecord recordB = new MessageRecord(Kind.OTHER, DEFAULT_MESSAGE, 
+                DEFAULT_ELEMENT, DEFAULT_MIRROR, new MockValue());
+        String msg = "Record A having null value should not cause NPE";
+        assertDoesNotThrow(() -> {
+            assert !recordA.equals(recordB);
+        }, msg);
     }
     
     // TODO: Test in which recordA has null element, mirror, value; recordB all 
