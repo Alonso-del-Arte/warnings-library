@@ -102,11 +102,14 @@ public class MessageRecord {
         if (!this.message.equals(other.message)) {
             return false;
         }
-        if (this.element == null && other.element != null) {
-            return false;
-        }
-        if (!this.element.equals(other.element)) {
-            return false;
+        if (this.element == null) {
+            if (other.element != null) {
+                return false;
+            }
+        } else {
+            if (!this.element.equals(other.element)) {
+                return false;
+            }
         }
         if (this.annMirror == null) {
             if (other.annMirror != null) {
