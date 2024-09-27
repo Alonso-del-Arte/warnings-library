@@ -294,6 +294,33 @@ public class MessageRecordTest {
         }, msg);
     }
     
+    private static MessageRecord makeRecord() {
+        Kind kind = DIAGNOSTIC_KINDS[RANDOM.nextInt(NUMBER_OF_KINDS)];
+        String message = DEFAULT_MESSAGE + ' ' 
+                + Integer.toString(RANDOM.nextInt());
+        Element element = RANDOM.nextBoolean() ? DEFAULT_ELEMENT : null;
+        AnnotationMirror mirror = RANDOM.nextBoolean() ? DEFAULT_MIRROR : null;
+        AnnotationValue value = RANDOM.nextBoolean() ? DEFAULT_VALUE : null;
+        return new MessageRecord(kind, message, element, mirror, value);
+    }
+    
+    @Test
+    public void testHashCode() {
+        System.out.println("hashCode");
+        int capacity = RANDOM.nextInt(16) + 4;
+        Set<MessageRecord> records = new HashSet<>(capacity);
+        Set<Integer> hashes = new HashSet<>(capacity);
+        for (int i = 0; i < capacity; i++) {
+            MessageRecord record = makeRecord();
+            records.add(record);
+            hashes.add(record.hashCode());
+        }
+        int expected = records.size();
+        int actual = hashes.size();
+        String message = "Given " + expected 
+                + " records, there should be as many hashes";
+        assertEquals(message, expected, actual);
+    }
     
     @Test
     public void testConstructorRejectsNullDiagnosticKind() {
