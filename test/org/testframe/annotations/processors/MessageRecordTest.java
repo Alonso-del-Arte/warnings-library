@@ -282,7 +282,18 @@ public class MessageRecordTest {
         }, msg);
     }
     
-    // TODO: Test various both null scenarios
+    @Test
+    public void testEqualsWithBothNullElementDoesNotCauseNPE() {
+        MessageRecord someRecord = new MessageRecord(Kind.OTHER, 
+                DEFAULT_MESSAGE, null, null, null);
+        MessageRecord sameRecord = new MessageRecord(Kind.OTHER, 
+                DEFAULT_MESSAGE, null, null, null);
+        String msg = "Both records having null element should not cause NPE";
+        assertDoesNotThrow(() -> {
+            assert someRecord.equals(sameRecord);
+        }, msg);
+    }
+    
     
     @Test
     public void testConstructorRejectsNullDiagnosticKind() {
