@@ -128,7 +128,21 @@ public class MessageRecord {
     
     @Override
     public int hashCode() {
-        return Integer.MIN_VALUE;
+        int hash = this.diagKind.hashCode() << 3;
+        hash += this.message.hashCode();
+        if (this.element != null) {
+            hash <<= 13;
+            hash += this.element.hashCode();
+        }
+        if (this.annMirror != null) {
+            hash <<= 8;
+            hash += this.annMirror.hashCode();
+        }
+        if (this.annVal != null) {
+            hash <<= 8;
+            hash += this.annVal.hashCode();
+        }
+        return hash;
     }
     
     public MessageRecord(Kind kind, CharSequence msg) {
