@@ -39,21 +39,18 @@ public class MockMessager implements Messager {
 
     @Override
     public void printMessage(Kind kind, CharSequence msg) {
-        MessageRecord record = new MessageRecord(kind, msg);
-        this.mostRecentMessage = record;
+        this.printMessage(kind, msg, null, null, null);
     }
 
     @Override
     public void printMessage(Kind kind, CharSequence msg, Element elem) {
-        MessageRecord record = new MessageRecord(kind, msg, elem);
-        this.mostRecentMessage = record;
+        this.printMessage(kind, msg, elem, null, null);
     }
 
     @Override
     public void printMessage(Kind kind, CharSequence msg, Element elem, 
             AnnotationMirror mirror) {
-        MessageRecord record = new MessageRecord(kind, msg, elem, mirror);
-        this.mostRecentMessage = record;
+        this.printMessage(kind, msg, elem, mirror, null);
     }
 
     @Override
