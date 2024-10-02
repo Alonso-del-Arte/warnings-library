@@ -45,7 +45,8 @@ public class MockMessager implements Messager {
 
     @Override
     public void printMessage(Kind kind, CharSequence msg, Element elem) {
-        // TODO: Write tests for this
+        MessageRecord record = new MessageRecord(kind, msg, elem);
+        this.mostRecentMessage = record;
     }
 
     @Override
