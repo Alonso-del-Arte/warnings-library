@@ -25,15 +25,38 @@ import javax.tools.Diagnostic.Kind;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
+import static org.testframe.annotations.processors.MessageRecordTest.RANDOM;
+
 /**
  * Tests of the MockMessager class.
  * @author Alonso del Arte
  */
 public class MockMessagerTest {
     
+    private static final Kind[] DIAGNOSTIC_KINDS = Kind.values();
+    
+    private static final int NUMBER_OF_KINDS = DIAGNOSTIC_KINDS.length;    
+    
+    private static Kind chooseKind() {
+        return DIAGNOSTIC_KINDS[RANDOM.nextInt(NUMBER_OF_KINDS)];
+    }
+    
+    private static String makeMessageText() {
+        return "FOR TESTING PURPOSES ONLY " + RANDOM.nextInt();
+    }
+    
     @Test
-    public void placeholder() {
-        fail("HAVEN'T WRITTEN TESTS YET");
+    public void testPrintMessage() {
+        System.out.println("printMessage");
+        Kind kind = chooseKind();
+        String msg = makeMessageText();
+        MessageRecord expected = new MessageRecord(kind, msg);
+        MockMessager messager = new MockMessager();
+        messager.printMessage(kind, msg);
+        MessageRecord actual = messager.getLatestMessage();
+        String message = "Printed message \"" + msg + "\" of kind " 
+                + kind.toString();
+        assertEquals(message, expected, actual);
     }
     
 }
