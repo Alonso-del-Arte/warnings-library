@@ -73,4 +73,20 @@ public class MockMessagerTest {
         assertEquals(message, expected, actual);
     }
     
+    @Test
+    public void testPrintMessageForElementWithMirror() {
+        Kind kind = chooseKind();
+        String msg = makeMessageText();
+        Element elem = new MockElement();
+        AnnotationMirror mirror = new MockMirror();
+        MessageRecord expected = new MessageRecord(kind, msg, elem, mirror);
+        MockMessager messager = new MockMessager();
+        messager.printMessage(kind, msg, elem, mirror);
+        MessageRecord actual = messager.getLatestMessage();
+        String message = "Printed message \"" + msg + "\" of kind " 
+                + kind.toString() + " for element " + elem.toString() 
+                + " with mirror " + mirror.toString();
+        assertEquals(message, expected, actual);
+    }
+    
 }
