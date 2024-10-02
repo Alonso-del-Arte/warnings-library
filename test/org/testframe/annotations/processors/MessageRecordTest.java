@@ -50,7 +50,7 @@ public class MessageRecordTest {
     
     private static final AnnotationValue DEFAULT_VALUE = new MockValue();
     
-    private static final Random RANDOM = new Random();
+    static final Random RANDOM = new Random();
     
     @Test
     public void testGetDiagnosticKind() {
