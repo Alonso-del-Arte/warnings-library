@@ -59,4 +59,18 @@ public class MockMessagerTest {
         assertEquals(message, expected, actual);
     }
     
+    @Test
+    public void testPrintMessageForElement() {
+        Kind kind = chooseKind();
+        String msg = makeMessageText();
+        Element elem = new MockElement();
+        MessageRecord expected = new MessageRecord(kind, msg, elem);
+        MockMessager messager = new MockMessager();
+        messager.printMessage(kind, msg, elem);
+        MessageRecord actual = messager.getLatestMessage();
+        String message = "Printed message \"" + msg + "\" of kind " 
+                + kind.toString() + " for element " + elem.toString();
+        assertEquals(message, expected, actual);
+    }
+    
 }
