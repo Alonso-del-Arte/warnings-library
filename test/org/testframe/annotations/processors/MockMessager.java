@@ -24,10 +24,18 @@ import javax.lang.model.element.Element;
 import javax.tools.Diagnostic.Kind;
 
 /**
- *
+ * Provides a way to test messages are correctly assembled in annotation 
+ * processing. This is a mock messager only in the sense that it's not meant for 
+ * use in a production context. It should only be used for testing.
  * @author Alonso del Arte
  */
 public class MockMessager implements Messager {
+    
+    private MessageRecord mostRecentMessage = null;
+    
+    MessageRecord getLatestMessage() {
+        return this.mostRecentMessage;
+    }
 
     @Override
     public void printMessage(Kind kind, CharSequence msg) {
