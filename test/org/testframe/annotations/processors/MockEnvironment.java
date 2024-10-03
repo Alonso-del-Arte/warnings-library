@@ -29,6 +29,14 @@ import javax.lang.model.element.TypeElement;
  * @author Alonso del Arte
  */
 public class MockEnvironment implements RoundEnvironment {
+    
+    void raiseError() {
+        // TODO: Write tests for this
+    }
+
+    void endProcessing() {
+        // TODO: Write tests for this
+    }
 
     // TODO: Write tests for this
     @Override
@@ -56,8 +64,12 @@ public class MockEnvironment implements RoundEnvironment {
 
     // TODO: Write tests for this
     @Override
-    public Set<? extends Element> getElementsAnnotatedWith(Class<? extends Annotation> a) {
+    public Set<? extends Element> getElementsAnnotatedWith(Class<? 
+            extends Annotation> a) {
         return new HashSet<>();
+    }
+    
+    public MockEnvironment(Set<? extends Element> elements) {
     }
     
 }
