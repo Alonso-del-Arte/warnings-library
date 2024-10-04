@@ -50,4 +50,13 @@ public class MockEnvironmentTest {
         assert !instance.errorRaised() : msg;
     }
     
+    @Test
+    public void testErrorRaised() {
+        System.out.println("errorRaised");
+        MockEnvironment instance = new MockEnvironment(DEFAULT_ELEMENT_SET);
+        instance.raiseError();
+        String msg = "Instance should have error raised after raise call";
+        assert instance.errorRaised() : msg;
+    }
+    
 }
