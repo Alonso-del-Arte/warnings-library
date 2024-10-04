@@ -30,8 +30,10 @@ import javax.lang.model.element.TypeElement;
  */
 public class MockEnvironment implements RoundEnvironment {
     
+    private boolean hasErrors = false;
+    
     void raiseError() {
-        // TODO: Write tests for this
+        this.hasErrors = true;
     }
 
     void endProcessing() {
@@ -44,10 +46,9 @@ public class MockEnvironment implements RoundEnvironment {
         return true;
     }
 
-    // TODO: Write tests for this
     @Override
     public boolean errorRaised() {
-        return false;
+        return this.hasErrors;
     }
 
     // TODO: Write tests for this
