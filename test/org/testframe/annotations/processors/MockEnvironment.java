@@ -43,7 +43,7 @@ public class MockEnvironment implements RoundEnvironment {
     // TODO: Write tests for this
     @Override
     public boolean processingOver() {
-        return true;
+        return false;
     }
 
     @Override
