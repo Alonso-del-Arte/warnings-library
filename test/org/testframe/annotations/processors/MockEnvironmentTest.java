@@ -16,6 +16,10 @@
  */
 package org.testframe.annotations.processors;
 
+import java.lang.annotation.Annotation;
+import java.util.HashSet;
+import java.util.Set;
+
 import javax.annotation.processing.Messager;
 import javax.lang.model.element.AnnotationMirror;
 import javax.lang.model.element.AnnotationValue;
@@ -33,9 +37,17 @@ import static org.testframe.annotations.processors.MessageRecordTest.RANDOM;
  */
 public class MockEnvironmentTest {
     
+    private static final Set<Element> DEFAULT_ELEMENT_SET = new HashSet<>();
+    
+    static {
+        DEFAULT_ELEMENT_SET.add(new MockElement());
+    }
+    
     @Test
-    public void placeholder() {
-        fail("HAVEN'T WRITTEN ANY TESTS YET");
+    public void testNoErrorRaisedAtBeginning() {
+        MockEnvironment instance = new MockEnvironment(DEFAULT_ELEMENT_SET);
+        String msg = "Instance should not have error raised from the beginning";
+        assert !instance.errorRaised() : msg;
     }
     
 }
