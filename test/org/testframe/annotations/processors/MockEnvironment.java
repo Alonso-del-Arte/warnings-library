@@ -47,7 +47,7 @@ public class MockEnvironment implements RoundEnvironment {
     // TODO: Write tests for this
     @Override
     public boolean errorRaised() {
-        return true;
+        return false;
     }
 
     // TODO: Write tests for this
