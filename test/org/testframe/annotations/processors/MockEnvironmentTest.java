@@ -59,4 +59,11 @@ public class MockEnvironmentTest {
         assert instance.errorRaised() : msg;
     }
     
+    @Test
+    public void testProcessingNotOverAtTheBeginning() {
+        MockEnvironment instance = new MockEnvironment(DEFAULT_ELEMENT_SET);
+        String msg = "Processing should not be over from the beginning";
+        assert !instance.processingOver() : msg;
+    }
+    
 }
