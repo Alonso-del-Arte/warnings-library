@@ -32,18 +32,19 @@ public class MockEnvironment implements RoundEnvironment {
     
     private boolean hasErrors = false;
     
+    private boolean processingDone = false;
+    
     void raiseError() {
         this.hasErrors = true;
     }
 
     void endProcessing() {
-        // TODO: Write tests for this
+        this.processingDone = true;
     }
 
-    // TODO: Write tests for this
     @Override
     public boolean processingOver() {
-        return false;
+        return this.processingDone;
     }
 
     @Override
