@@ -66,4 +66,13 @@ public class MockEnvironmentTest {
         assert !instance.processingOver() : msg;
     }
     
+    @Test
+    public void testProcessingOver() {
+        System.out.println("processingOver");
+        MockEnvironment instance = new MockEnvironment(DEFAULT_ELEMENT_SET);
+        instance.endProcessing();
+        String msg = "Processing should be over after call to end processing";
+        assert instance.processingOver() : msg;
+    }
+    
 }
