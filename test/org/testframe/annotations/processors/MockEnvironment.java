@@ -34,6 +34,8 @@ public class MockEnvironment implements RoundEnvironment {
     
     private boolean processingDone = false;
     
+    private final Set<? extends Element> rootElems;
+    
     void raiseError() {
         this.hasErrors = true;
     }
@@ -52,10 +54,9 @@ public class MockEnvironment implements RoundEnvironment {
         return this.hasErrors;
     }
 
-    // TODO: Write tests for this
     @Override
     public Set<? extends Element> getRootElements() {
-        return new HashSet<>();
+        return this.rootElems;
     }
 
     // TODO: Write tests for this
@@ -72,6 +73,7 @@ public class MockEnvironment implements RoundEnvironment {
     }
     
     public MockEnvironment(Set<? extends Element> elements) {
+        this.rootElems = elements;
     }
     
 }
