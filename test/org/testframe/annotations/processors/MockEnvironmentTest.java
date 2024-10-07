@@ -20,11 +20,8 @@ import java.lang.annotation.Annotation;
 import java.util.HashSet;
 import java.util.Set;
 
-import javax.annotation.processing.Messager;
-import javax.lang.model.element.AnnotationMirror;
-import javax.lang.model.element.AnnotationValue;
+import javax.annotation.processing.RoundEnvironment;
 import javax.lang.model.element.Element;
-import javax.tools.Diagnostic.Kind;
 
 import org.junit.Test;
 import static org.junit.Assert.*;
@@ -45,7 +42,7 @@ public class MockEnvironmentTest {
     
     @Test
     public void testNoErrorRaisedAtBeginning() {
-        MockEnvironment instance = new MockEnvironment(DEFAULT_ELEMENT_SET);
+        RoundEnvironment instance = new MockEnvironment(DEFAULT_ELEMENT_SET);
         String msg = "Instance should not have error raised from the beginning";
         assert !instance.errorRaised() : msg;
     }
@@ -61,7 +58,7 @@ public class MockEnvironmentTest {
     
     @Test
     public void testProcessingNotOverAtTheBeginning() {
-        MockEnvironment instance = new MockEnvironment(DEFAULT_ELEMENT_SET);
+        RoundEnvironment instance = new MockEnvironment(DEFAULT_ELEMENT_SET);
         String msg = "Processing should not be over from the beginning";
         assert !instance.processingOver() : msg;
     }
@@ -73,6 +70,21 @@ public class MockEnvironmentTest {
         instance.endProcessing();
         String msg = "Processing should be over after call to end processing";
         assert instance.processingOver() : msg;
+    }
+    
+    @Test
+    public void testGetRootElements() {
+        System.out.println("getRootElements");
+        int capacity = RANDOM.nextInt(8) + 2;
+        Set<Element> elements = new HashSet<>(capacity);
+        for (int i = 0; i < capacity; i++) {
+            elements.add(new MockElement());
+        }
+        RoundEnvironment instance = new MockEnvironment(elements);
+        Set<? extends Element>  intermediate = instance.getRootElements();
+        Set<Element> expected = new HashSet<>(elements);
+        Set<Element> actual = new HashSet<>(intermediate);
+        assertEquals(expected, actual);
     }
     
 }
