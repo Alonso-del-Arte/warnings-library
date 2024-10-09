@@ -13,6 +13,10 @@ going to use JUnit 4 rather than Test Frame for most of the unit testing. The
 reason for this is that I'm thinking I want to submit this to Maven, and it's my 
 understanding that Maven requires reverse domain name naming.
 
+For the integrated development environment (IDE), I'm using Apache NetBeans 11.2 
+running on Java 8, even though the computer I'm using has Java 21 (both the Java 
+Development Kit and the Java Runtime Environment).
+
 Note that this warnings library is going to be a source dependency, not a test 
 dependency like the Test Frame testing framework.
 
