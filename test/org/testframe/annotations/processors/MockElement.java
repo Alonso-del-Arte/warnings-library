@@ -17,24 +17,19 @@
 package org.testframe.annotations.processors;
 
 import java.lang.annotation.Annotation;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 import java.util.Set;
 
-import javax.annotation.processing.AbstractProcessor;
-import javax.annotation.processing.Messager;
 import javax.lang.model.element.AnnotationMirror;
-import javax.lang.model.element.AnnotationValue;
-import javax.lang.model.element.AnnotationValueVisitor;
 import javax.lang.model.element.Element;
 import javax.lang.model.element.ElementKind;
 import javax.lang.model.element.ElementVisitor;
-import javax.lang.model.element.ExecutableElement;
 import javax.lang.model.element.Modifier;
 import javax.lang.model.element.Name;
-import javax.lang.model.type.DeclaredType;
 import javax.lang.model.type.TypeMirror;
-import javax.tools.Diagnostic.Kind;
+
+import org.testframe.annotations.MockAnnotation;
 
 /**
  * Provides a mock {@code Element} for use in tests.
@@ -72,14 +67,16 @@ public class MockElement implements Element {
         throw new UnsupportedOperationException("FOR TESTING PURPOSES");
     }
 
+    // TODO: Write tests for this
     @Override
     public List<? extends AnnotationMirror> getAnnotationMirrors() {
-        throw new UnsupportedOperationException("FOR TESTING PURPOSES");
+        return new ArrayList<>();
     }
 
+    // TODO: Write tests for this
     @Override
     public <A extends Annotation> A getAnnotation(Class<A> annotationType) {
-        throw new UnsupportedOperationException("FOR TESTING PURPOSES");
+        return null;
     }
 
     @Override
@@ -91,6 +88,13 @@ public class MockElement implements Element {
     public <A extends Annotation> A[] 
             getAnnotationsByType(Class<A> annotationType) {
         throw new UnsupportedOperationException("FOR TESTING PURPOSES");
+    }
+    
+    public MockElement() {
+        this(null);
+    }
+            
+    public MockElement(Annotation annotation) {
     }
             
 }
