@@ -37,6 +37,8 @@ import org.testframe.annotations.MockAnnotation;
  */
 public class MockElement implements Element {
     
+    private final Annotation[] heldAnnotations;
+    
     @Override
     public TypeMirror asType() {
         throw new UnsupportedOperationException("FOR TESTING PURPOSES");
@@ -76,7 +78,7 @@ public class MockElement implements Element {
     // TODO: Write tests for this
     @Override
     public <A extends Annotation> A getAnnotation(Class<A> annotationType) {
-        return null;
+        return (A) this.heldAnnotations[0];
     }
 
     @Override
@@ -95,6 +97,7 @@ public class MockElement implements Element {
     }
             
     public MockElement(Annotation[] annotations) {
+        this.heldAnnotations = annotations;
     }
             
 }
