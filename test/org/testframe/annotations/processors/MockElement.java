@@ -94,7 +94,7 @@ public class MockElement implements Element {
         this(new Annotation[0]);
     }
             
-    public MockElement(Annotation[] annotation) {
+    public MockElement(Annotation[] annotations) {
     }
             
 }
