@@ -41,4 +41,27 @@ import static org.testframe.annotations.processors.MessageRecordTest.RANDOM;
  */
 public class MockElementTest {
     
+    @Test
+    public void testGetAnnotation() {
+        System.out.println("getAnnotation");
+        int mockID = RANDOM.nextInt();
+        Annotation expected = new MockAnnotation() {
+            
+            @Override
+            public int id() {
+                return mockID;
+            }
+
+            @Override
+            public Class<? extends Annotation> annotationType() {
+                return MockAnnotation.class;
+            }
+            
+        };
+        Annotation[] annotations = {expected};
+        Element instance = new MockElement(annotations);
+        Annotation actual = instance.getAnnotation(MockAnnotation.class);
+        assertEquals(expected, actual);
+    }
+    
 }
