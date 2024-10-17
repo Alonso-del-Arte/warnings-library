@@ -17,23 +17,15 @@
 package org.testframe.annotations.processors;
 
 import java.lang.annotation.Annotation;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Set;
 
-import javax.lang.model.element.AnnotationMirror;
 import javax.lang.model.element.Element;
-import javax.lang.model.element.ElementKind;
-import javax.lang.model.element.ElementVisitor;
-import javax.lang.model.element.Modifier;
-import javax.lang.model.element.Name;
-import javax.lang.model.type.TypeMirror;
 
 import org.junit.Test;
 import static org.junit.Assert.*;
 
 import org.testframe.annotations.MockAnnotation;
 import static org.testframe.annotations.processors.MessageRecordTest.RANDOM;
+import static org.testframe.api.Asserters.assertDoesNotThrow;
 
 /**
  * Tests of the MockElement class.
@@ -102,6 +94,45 @@ public class MockElementTest {
         Element instance = new MockElement(annotations);
         Annotation actual = instance.getAnnotation(MockAnnotation.class);
         assertEquals(expected, actual);
+    }
+    
+    @Test
+    public void testGetAnnotationReturnsNullIfDesiredTypeAbsent() {
+        int mockID = RANDOM.nextInt();
+        Annotation mockA = new MockAnnotation() {
+            
+            @Override
+            public int id() {
+                return mockID;
+            }
+
+            @Override
+            public Class<? extends Annotation> annotationType() {
+                return MockAnnotation.class;
+            }
+            
+        };
+        Annotation mockB = new MockAnnotation() {
+            
+            @Override
+            public int id() {
+                return mockID;
+            }
+
+            @Override
+            public Class<? extends Annotation> annotationType() {
+                return MockAnnotation.class;
+            }
+            
+        };
+        Annotation[] annotations = {mockA, mockB};
+        Element instance = new MockElement(annotations);
+        String msgPart = "Asking for absent annotation type should return null";
+        String msg = msgPart + ", not cause exception";
+        assertDoesNotThrow(() -> {
+            Annotation actual = instance.getAnnotation(Test.class);
+            assert actual == null : msgPart;
+        }, msg);
     }
     
 }
