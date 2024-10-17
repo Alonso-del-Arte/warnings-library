@@ -64,4 +64,44 @@ public class MockElementTest {
         assertEquals(expected, actual);
     }
     
+    @Test
+    public void testChooseAnnotationOfRightType() {
+        int mockID = RANDOM.nextInt();
+        Annotation expected = new MockAnnotation() {
+            
+            @Override
+            public int id() {
+                return mockID;
+            }
+
+            @Override
+            public Class<? extends Annotation> annotationType() {
+                return MockAnnotation.class;
+            }
+            
+        };
+        Annotation other = new Test() {
+            
+            @Override
+            public Class<? extends Throwable> expected() {
+                throw new UnsupportedOperationException("TEST PURPOSES");
+            }
+
+            @Override
+            public long timeout() {
+                throw new UnsupportedOperationException("TEST PURPOSES");
+            }
+
+            @Override
+            public Class<? extends Annotation> annotationType() {
+                return Test.class;
+            }
+
+        };
+        Annotation[] annotations = {other, expected};
+        Element instance = new MockElement(annotations);
+        Annotation actual = instance.getAnnotation(MockAnnotation.class);
+        assertEquals(expected, actual);
+    }
+    
 }
