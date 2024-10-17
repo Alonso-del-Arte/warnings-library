@@ -77,8 +77,8 @@ public class MockElement implements Element {
     public <A extends Annotation> A getAnnotation(Class<A> annotationType) {
         int index = 0;
         while (index < this.heldAnnotations.length) {
-            if (annotationType.isAssignableFrom(this.heldAnnotations[index]
-                    .getClass())) {
+            if (annotationType.equals(this.heldAnnotations[index]
+                    .annotationType())) {
                 return (A) this.heldAnnotations[index];
             } else {
                 index++;
