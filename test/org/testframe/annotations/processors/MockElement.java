@@ -78,7 +78,12 @@ public class MockElement implements Element {
     // TODO: Write tests for this
     @Override
     public <A extends Annotation> A getAnnotation(Class<A> annotationType) {
-        return (A) this.heldAnnotations[0];
+        int index = 0;
+        while (!annotationType.isAssignableFrom(this.heldAnnotations[index]
+                .getClass()) && index < this.heldAnnotations.length) {
+            index++;
+        }
+        return (A) this.heldAnnotations[index];
     }
 
     @Override
