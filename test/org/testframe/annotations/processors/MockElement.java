@@ -29,8 +29,6 @@ import javax.lang.model.element.Modifier;
 import javax.lang.model.element.Name;
 import javax.lang.model.type.TypeMirror;
 
-import org.testframe.annotations.MockAnnotation;
-
 /**
  * Provides a mock {@code Element} for use in tests.
  * @author Alonso del Arte
@@ -78,12 +76,21 @@ public class MockElement implements Element {
     // TODO: Write tests for this
     @Override
     public <A extends Annotation> A getAnnotation(Class<A> annotationType) {
+        boolean found = false;
         int index = 0;
-        while (!annotationType.isAssignableFrom(this.heldAnnotations[index]
-                .getClass()) && index < this.heldAnnotations.length) {
-            index++;
+        while (!found && index < this.heldAnnotations.length) {
+            if (annotationType.isAssignableFrom(this.heldAnnotations[index]
+                    .getClass())) {
+                found = true;
+            } else {
+                index++;
+            }
         }
-        return (A) this.heldAnnotations[index];
+        if (found) {
+            return (A) this.heldAnnotations[index];
+        } else {
+            return null;
+        }
     }
 
     @Override
