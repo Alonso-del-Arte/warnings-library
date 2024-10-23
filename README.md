@@ -20,4 +20,14 @@ Development Kit and the Java Runtime Environment).
 Note that this warnings library is going to be a source dependency, not a test 
 dependency like the Test Frame testing framework.
 
+## Available warnings
+
+* **Narrowing conversion warning** &mdash; For when a conversion requires a loss 
+of precision due to narrowing, e.g., 256-bit floating point to 16-bit floating 
+point.
+* **Custom warning** &mdash; A warning with a custom message, similar to the one 
+in Xcode.
+
+----
+
 **Note for Hacktoberfest:** This project is closed off to Hacktoberfest.
