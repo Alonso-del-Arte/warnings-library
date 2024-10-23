@@ -20,6 +20,14 @@ Development Kit and the Java Runtime Environment).
 Note that this warnings library is going to be a source dependency, not a test 
 dependency like the Test Frame testing framework.
 
+It is my understanding that it is also necessary to add the warnings processor 
+to your IDE for the warnings to actually show as expected. I will include 
+instructions on how to do that for the three major IDEs (Eclipse, JetBrains 
+IntelliJ IDEA and Apache NetBeans, though maybe starting with Eclipse and then 
+the other two later on).
+
+TODO: Check if two consecutive dashes -- become em dash &mdash; ?
+
 ## Available warnings
 
 * **Narrowing conversion warning** &mdash; For when a conversion requires a loss 
