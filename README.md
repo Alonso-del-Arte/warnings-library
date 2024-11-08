@@ -26,9 +26,11 @@ instructions on how to do that for the three major IDEs (Eclipse, JetBrains
 IntelliJ IDEA and Apache NetBeans, though maybe starting with Eclipse and then 
 the other two later on).
 
-TODO: Check if two consecutive dashes -- become em dash &mdash; ?
-
 ## Available warnings
+
+These warnings will be provided as annotations. It will not be enough to import 
+the annotations, one also needs to install the annotation processor, as 
+mentioned earlier.
 
 * **Narrowing conversion warning** &mdash; For when a conversion requires a loss 
 of precision due to narrowing, e.g., 256-bit floating point to 16-bit floating 
