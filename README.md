@@ -22,9 +22,21 @@ dependency like the Test Frame testing framework.
 
 It is my understanding that it is also necessary to add the warnings processor 
 to your IDE for the warnings to actually show as expected. I will include 
-instructions on how to do that for the three major IDEs (Eclipse, JetBrains 
-IntelliJ IDEA and Apache NetBeans, though maybe starting with Eclipse and then 
-the other two later on).
+instructions on how to do that for the three major IDEs (Eclipse, Apache 
+NetBeans, JetBrains IntelliJ IDEA and though maybe starting with Eclipse and 
+then the other two later on).
+
+### Eclipse
+
+PLACEHOLDER FOR INSTRUCTIONS
+
+### Apache NetBeans
+
+PLACEHOLDER FOR INSTRUCTIONS
+
+### JetBrains IntelliJ IDEA
+
+PLACEHOLDER FOR INSTRUCTIONS
 
 ## Available warnings
 
