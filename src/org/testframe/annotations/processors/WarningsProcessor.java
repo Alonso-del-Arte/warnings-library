@@ -29,7 +29,8 @@ import javax.tools.Diagnostic.Kind;
  * Processes warnings from the {@code org.testframe.warnings} package.
  * @author Alonso del Arte
  */
-@SupportedAnnotationTypes("org.testframe.warnings.NarrowingConversionWarning")
+@SupportedAnnotationTypes({"org.testframe.warnings.CustomWarning", 
+    "org.testframe.warnings.NarrowingConversionWarning"})
 public class WarningsProcessor extends AbstractProcessor {
     
     // TODO: Write tests for this
