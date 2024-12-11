@@ -28,7 +28,12 @@ then the other two later on).
 
 ### Eclipse
 
-PLACEHOLDER FOR INSTRUCTIONS
+Annotation processing can be enabled on a per-project basis.
+
+In the Package Explorer (TODO: Doublecheck that's what it's called), right-click 
+on the project for which you want to enable annotation processing.
+
+FINISH WRITING
 
 ### Apache NetBeans
 
