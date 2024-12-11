@@ -41,11 +41,19 @@ As with Eclipse, annotation processing in NetBeans can be enabled on a
 per-project basis. In the Projects pane, right-click on the project, then click 
 on Properties in the contextual menu. From the dialog box, FINISH WRITING
 
-PLACEHOLDER FOR INSTRUCTIONS
+FINISH WRITING
 
 ### JetBrains IntelliJ IDEA
 
-PLACEHOLDER FOR INSTRUCTIONS
+As with Eclipse and NetBeans, annotation processing in NetBeans can be enabled 
+on a per-project basis. 
+
+FINISH WRITING
+
+It is also possible to configure IntelliJ so that new projects have annotation 
+processing enabled by default.
+
+FINISH WRITING
 
 ## Available warnings
 
