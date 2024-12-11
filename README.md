@@ -37,9 +37,9 @@ FINISH WRITING
 
 ### Apache NetBeans
 
-Annotations can be enabled on a per-project basis. In the Projects pane, 
-right-click on the project, then click on Properties in the contextual menu. 
-From the dialog box, FINISH WRITING
+As with Eclipse, annotation processing in NetBeans can be enabled on a 
+per-project basis. In the Projects pane, right-click on the project, then click 
+on Properties in the contextual menu. From the dialog box, FINISH WRITING
 
 PLACEHOLDER FOR INSTRUCTIONS
 
