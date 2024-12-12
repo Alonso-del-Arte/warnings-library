@@ -26,6 +26,20 @@ instructions on how to do that for the three major IDEs (Eclipse, Apache
 NetBeans, JetBrains IntelliJ IDEA and though maybe starting with Eclipse and 
 then the other two later on).
 
+## Available warnings
+
+These warnings will be provided as annotations. It will not be enough to import 
+the annotations, one also needs to install the annotation processor, as 
+mentioned earlier.
+
+* **Narrowing conversion warning** &mdash; For when a conversion requires a loss 
+of precision due to narrowing, e.g., 256-bit floating point to 16-bit floating 
+point.
+* **Custom warning** &mdash; A warning with a custom message, similar to the one 
+in Xcode.
+
+## Instructions for enabling annotation processing
+
 ### Eclipse
 
 Annotation processing can be enabled on a per-project basis.
@@ -54,18 +68,6 @@ It is also possible to configure IntelliJ so that new projects have annotation
 processing enabled by default.
 
 FINISH WRITING
-
-## Available warnings
-
-These warnings will be provided as annotations. It will not be enough to import 
-the annotations, one also needs to install the annotation processor, as 
-mentioned earlier.
-
-* **Narrowing conversion warning** &mdash; For when a conversion requires a loss 
-of precision due to narrowing, e.g., 256-bit floating point to 16-bit floating 
-point.
-* **Custom warning** &mdash; A warning with a custom message, similar to the one 
-in Xcode.
 
 ----
 
