@@ -11,7 +11,8 @@ the value of a `double` (64-bit floating point) to a `float` (32-bit).
 Early on I decided to put this in the `org.testframe` namespace even though I'm 
 going to use JUnit 4 rather than Test Frame for most of the unit testing. The 
 reason for this is that I'm thinking I want to submit this to Maven, and it's my 
-understanding that Maven requires reverse domain name naming.
+understanding that Maven requires reverse domain name naming with a domain name 
+owned by the submitter.
 
 For the integrated development environment (IDE), I'm using Apache NetBeans 11.2 
 running on Java 8, even though the computer I'm using has Java 21 (both the Java 
