@@ -28,7 +28,7 @@ import javax.lang.model.element.TypeElement;
  *
  * @author Alonso del Arte
  */
-public class MockEnvironment implements RoundEnvironment {
+public class MockRoundEnv implements RoundEnvironment {
     
     private boolean hasErrors = false;
     
@@ -72,7 +72,7 @@ public class MockEnvironment implements RoundEnvironment {
         return new HashSet<>();
     }
     
-    public MockEnvironment(Set<? extends Element> elements) {
+    public MockRoundEnv(Set<? extends Element> elements) {
         this.rootElems = elements;
     }
     

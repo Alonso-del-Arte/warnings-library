@@ -29,10 +29,10 @@ import static org.junit.Assert.*;
 import static org.testframe.annotations.processors.MessageRecordTest.RANDOM;
 
 /**
- * Tests of the MockEnvironment class.
+ * Tests of the MockRoundEnv class.
  * @author Alonso del Arte
  */
-public class MockEnvironmentTest {
+public class MockRoundEnvTest {
     
     private static final Set<Element> DEFAULT_ELEMENT_SET = new HashSet<>();
     
@@ -42,7 +42,7 @@ public class MockEnvironmentTest {
     
     @Test
     public void testNoErrorRaisedAtBeginning() {
-        RoundEnvironment instance = new MockEnvironment(DEFAULT_ELEMENT_SET);
+        RoundEnvironment instance = new MockRoundEnv(DEFAULT_ELEMENT_SET);
         String msg = "Instance should not have error raised from the beginning";
         assert !instance.errorRaised() : msg;
     }
@@ -50,7 +50,7 @@ public class MockEnvironmentTest {
     @Test
     public void testErrorRaised() {
         System.out.println("errorRaised");
-        MockEnvironment instance = new MockEnvironment(DEFAULT_ELEMENT_SET);
+        MockRoundEnv instance = new MockRoundEnv(DEFAULT_ELEMENT_SET);
         instance.raiseError();
         String msg = "Instance should have error raised after raise call";
         assert instance.errorRaised() : msg;
@@ -58,7 +58,7 @@ public class MockEnvironmentTest {
     
     @Test
     public void testProcessingNotOverAtTheBeginning() {
-        RoundEnvironment instance = new MockEnvironment(DEFAULT_ELEMENT_SET);
+        RoundEnvironment instance = new MockRoundEnv(DEFAULT_ELEMENT_SET);
         String msg = "Processing should not be over from the beginning";
         assert !instance.processingOver() : msg;
     }
@@ -66,7 +66,7 @@ public class MockEnvironmentTest {
     @Test
     public void testProcessingOver() {
         System.out.println("processingOver");
-        MockEnvironment instance = new MockEnvironment(DEFAULT_ELEMENT_SET);
+        MockRoundEnv instance = new MockRoundEnv(DEFAULT_ELEMENT_SET);
         instance.endProcessing();
         String msg = "Processing should be over after call to end processing";
         assert instance.processingOver() : msg;
@@ -80,7 +80,7 @@ public class MockEnvironmentTest {
         for (int i = 0; i < capacity; i++) {
             elements.add(new MockElement());
         }
-        RoundEnvironment instance = new MockEnvironment(elements);
+        RoundEnvironment instance = new MockRoundEnv(elements);
         Set<? extends Element>  intermediate = instance.getRootElements();
         Set<Element> expected = new HashSet<>(elements);
         Set<Element> actual = new HashSet<>(intermediate);
