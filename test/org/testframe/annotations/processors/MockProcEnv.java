@@ -40,6 +40,8 @@ import javax.lang.model.util.Types;
  */
 public class MockProcEnv implements ProcessingEnvironment {
     
+    private final Messager procMsgr;
+    
     // TODO: Determine need to make MockElements
     @Override
     public Elements getElementUtils() {
@@ -57,10 +59,9 @@ public class MockProcEnv implements ProcessingEnvironment {
         return null;
     }
     
-    // TODO: Write tests for this
     @Override
     public Messager getMessager() {
-        return new MockMessager();
+        return this.procMsgr;
     }
     
     // TODO: Determine need for this
@@ -84,7 +85,7 @@ public class MockProcEnv implements ProcessingEnvironment {
     }
     
     public MockProcEnv(Messager messager) {
-        // TODO: Write tests for this
+        this.procMsgr = messager;
     }
         
 }
