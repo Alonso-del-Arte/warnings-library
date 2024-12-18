@@ -17,20 +17,75 @@
 package org.testframe.annotations.processors;
 
 import java.lang.annotation.Annotation;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Locale;
+import java.util.Map;
 import java.util.Set;
 
 import javax.annotation.processing.Filer;
+import javax.annotation.processing.Messager;
 import javax.annotation.processing.ProcessingEnvironment;
 import javax.annotation.processing.RoundEnvironment;
+import javax.lang.model.SourceVersion;
 import javax.lang.model.element.Element;
 import javax.lang.model.element.TypeElement;
 import javax.lang.model.util.Elements;
+import javax.lang.model.util.Types;
+
 /**
- *
+ * Mocks a {@code ProcessingEnvironment}. This is to be used for the testing of 
+ * {@link WarningsProcessor}.
  * @author Alonso del Arte
  */
-public class MockProcEnv {
+public class MockProcEnv implements ProcessingEnvironment {
     
+    // TODO: Determine need to make MockElements
+    @Override
+    public Elements getElementUtils() {
+        return null;
+    }
+    
+    // TODO: Determine need to make MockFiler
+    @Override
+    public Filer getFiler() {
+        return null;
+    }
+    
+    // TODO: Write tests for this
+    @Override
+    public Locale getLocale() {
+        return Locale.CANADA_FRENCH;
+    }
+    
+    // TODO: Write tests for this
+    @Override
+    public Messager getMessager() {
+        return new MockMessager();
+    }
+    
+    // TODO: Determine need for this
+    @Override
+    public Map<String, String> getOptions() {
+        Map<String, String> map = new HashMap<>();
+        map.put("HUH?", "IS THIS NECESSARY?");
+        return map;
+    }
+    
+    // TODO: Write tests for this
+    @Override
+    public SourceVersion getSourceVersion() {
+        return SourceVersion.RELEASE_0;
+    }
+    
+    // TODO: Determine need to make MockTypes
+    @Override
+    public Types getTypeUtils() {
+        return null;
+    }
+    
+    public MockProcEnv(Messager messager) {
+        // TODO: Write tests for this
+    }
+        
 }
