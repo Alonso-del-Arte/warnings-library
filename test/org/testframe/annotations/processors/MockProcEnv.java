@@ -72,10 +72,9 @@ public class MockProcEnv implements ProcessingEnvironment {
         return map;
     }
     
-    // TODO: Write tests for this
     @Override
     public SourceVersion getSourceVersion() {
-        return SourceVersion.RELEASE_0;
+        return SourceVersion.RELEASE_8;
     }
     
     // TODO: Determine need to make MockTypes
