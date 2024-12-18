@@ -52,10 +52,9 @@ public class MockProcEnv implements ProcessingEnvironment {
         return null;
     }
     
-    // TODO: Write tests for this
     @Override
     public Locale getLocale() {
-        return Locale.CANADA_FRENCH;
+        return null;
     }
     
     // TODO: Write tests for this
