@@ -59,4 +59,13 @@ public class MockProcEnvTest {
         assertEquals(expected, actual);
     }
     
+    @Test
+    public void testGetSourceVersion() {
+        System.out.println("getSourceVersion");
+        ProcessingEnvironment instance = new MockProcEnv(new MockMessager());
+        SourceVersion expected = SourceVersion.RELEASE_8;
+        SourceVersion actual = instance.getSourceVersion();
+        assertEquals(expected, actual);
+    }
+    
 }
