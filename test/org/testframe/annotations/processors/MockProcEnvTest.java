@@ -50,4 +50,13 @@ public class MockProcEnvTest {
         assertNull(message, locale);
     }
     
+    @Test
+    public void testGetMessager() {
+        System.out.println("getMessager");
+        Messager expected = new MockMessager();
+        ProcessingEnvironment instance = new MockProcEnv(expected);
+        Messager actual = instance.getMessager();
+        assertEquals(expected, actual);
+    }
+    
 }
