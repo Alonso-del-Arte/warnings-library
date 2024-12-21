@@ -38,6 +38,8 @@ of precision due to narrowing, e.g., 256-bit floating point to 16-bit floating
 point.
 * **Custom warning** &mdash; A warning with a custom message, similar to the one 
 in Xcode.
+* **Untested annotation** &mdash; Warns that a function or procedure (or 
+"method"), or a constructor, has not been tested.
 
 ## Instructions for enabling annotation processing
 
