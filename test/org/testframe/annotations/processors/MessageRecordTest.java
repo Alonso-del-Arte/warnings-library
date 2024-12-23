@@ -31,6 +31,9 @@ import static org.junit.Assert.*;
 
 import static org.testframe.api.Asserters.assertDoesNotThrow;
 import static org.testframe.api.Asserters.assertThrows;
+import org.testframe.model.MockElement;
+import org.testframe.model.MockMirror;
+import org.testframe.model.MockValue;
 
 /**
  * Tests of the MessageRecord class.

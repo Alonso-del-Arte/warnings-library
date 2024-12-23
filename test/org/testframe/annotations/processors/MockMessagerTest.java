@@ -25,6 +25,9 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 import static org.testframe.annotations.processors.MessageRecordTest.RANDOM;
+import org.testframe.model.MockElement;
+import org.testframe.model.MockMirror;
+import org.testframe.model.MockValue;
 
 /**
  * Tests of the MockMessager class.

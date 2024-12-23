@@ -14,9 +14,10 @@
  * You should have received a copy of the GNU General Public License along with 
  * this program. If not, see <http://www.gnu.org/licenses/>.
  */
-package org.testframe.annotations.processors;
+package org.testframe.model;
 
 import java.lang.annotation.Annotation;
+import java.util.Random;
 
 import javax.lang.model.element.Element;
 
@@ -24,7 +25,6 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 import org.testframe.annotations.MockAnnotation;
-import static org.testframe.annotations.processors.MessageRecordTest.RANDOM;
 import static org.testframe.api.Asserters.assertDoesNotThrow;
 
 /**
@@ -32,6 +32,8 @@ import static org.testframe.api.Asserters.assertDoesNotThrow;
  * @author Alonso del Arte
  */
 public class MockElementTest {
+    
+    static final Random RANDOM = new Random();
     
     @Test
     public void testGetAnnotation() {

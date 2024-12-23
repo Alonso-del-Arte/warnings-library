@@ -14,7 +14,7 @@
  * You should have received a copy of the GNU General Public License along with 
  * this program. If not, see <http://www.gnu.org/licenses/>.
  */
-package org.testframe.annotations.processors;
+package org.testframe.model;
 
 import java.lang.annotation.Annotation;
 import java.util.ArrayList;
