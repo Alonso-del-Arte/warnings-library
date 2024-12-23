@@ -54,7 +54,8 @@ public class WarningsProcessorTest {
         String customWarnName = "org.testframe.warnings.CustomWarning";
         String narConvWarnName 
                 = "org.testframe.warnings.NarrowingConversionWarning";
-        String[] expected = {customWarnName, narConvWarnName};
+        String untestedWarnName = "org.testframe.warnings.Untested";
+        String[] expected = {customWarnName, narConvWarnName, untestedWarnName};
         String[] actual = annotation.value();
         assertContainsSame(expected, actual);
     }
