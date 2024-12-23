@@ -40,6 +40,34 @@ import javax.tools.Diagnostic.Kind;
  *
  * @author Alonso del Arte
  */
-public class MockName {
+public class MockName implements Name {
     
+    // TODO: Write tests for this
+    @Override
+    public int length() {
+        return -1;
+    }
+
+    // TODO: Write tests for this
+    @Override
+    public char charAt(int index) {
+        return '?';
+    }
+
+    // TODO: Write tests for this
+    @Override
+    public String subSequence(int start, int end) {
+        return "NOT IMPLEMENTED YET";
+    }
+    
+    // TODO: Write tests for this
+    @Override
+    public boolean contentEquals(CharSequence cs) {
+        return false;
+    }
+    
+    public MockName(Class<?> type) {
+        // TODO: Write tests for this
+    }
+
 }
