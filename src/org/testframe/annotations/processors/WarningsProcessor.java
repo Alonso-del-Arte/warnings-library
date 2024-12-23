@@ -30,7 +30,8 @@ import javax.tools.Diagnostic.Kind;
  * @author Alonso del Arte
  */
 @SupportedAnnotationTypes({"org.testframe.warnings.CustomWarning", 
-    "org.testframe.warnings.NarrowingConversionWarning"})
+    "org.testframe.warnings.NarrowingConversionWarning", 
+    "org.testframe.warnings.Untested"})
 public class WarningsProcessor extends AbstractProcessor {
     
     // TODO: Write tests for this
