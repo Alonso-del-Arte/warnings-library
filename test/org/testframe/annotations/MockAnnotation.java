@@ -22,7 +22,12 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
- * Mock annotation for testing purposes.
+ * Mock annotation for testing purposes. Although the {@code 
+ * SupportedAnnotationTypes} annotation on the processor is supposed to keep 
+ * the processor from receiving unsupported annotations, it might still be 
+ * necessary to test that the processor can receive and gracefully handle 
+ * unsupported annotations. This annotation, which is supposed to only exist in 
+ * Test Packages, not Source Packages, may be used for that purpose.
  * @author Alonso del Arte
  */
 @Retention(RetentionPolicy.SOURCE)

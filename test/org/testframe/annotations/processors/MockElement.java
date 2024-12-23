@@ -98,10 +98,18 @@ public class MockElement implements Element {
         throw new UnsupportedOperationException("FOR TESTING PURPOSES");
     }
     
+    /**
+     * Represents a mock element with no annotations.
+     */
     public MockElement() {
         this(new Annotation[0]);
     }
-            
+    
+    /**
+     * Represents a mock element with a number of annotations.
+     * @param annotations The annotations. For example, {@code @Override} and 
+     * {@code SuppressWarnings}. May be an empty array.
+     */
     public MockElement(Annotation[] annotations) {
         this.heldAnnotations = annotations;
     }
