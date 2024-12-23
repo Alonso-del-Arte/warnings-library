@@ -33,10 +33,10 @@ import javax.lang.model.element.TypeParameterElement;
 import javax.lang.model.type.TypeMirror;
 
 /**
- *
+ * Represents a mock type element. This is to be used in the testing of the 
+ * {@code process()} function in {@link WarningsProcessor}.
  * @author Alonso del Arte
  */
-//TODO: Determine if this class is necessary for testing
 public class MockTypeElement extends MockElement implements TypeElement {
 
     @Override
@@ -62,6 +62,10 @@ public class MockTypeElement extends MockElement implements TypeElement {
     @Override
     public List<? extends TypeParameterElement> getTypeParameters() {
         throw new UnsupportedOperationException("FOR TESTING PURPOSES ONLY");
+    }
+    
+    public MockTypeElement(Class<?> type) {
+        // TODO: Write tests for this
     }
     
 }
