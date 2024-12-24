@@ -76,4 +76,17 @@ public class MockNameTest {
         assertEquals(message, expected, actual);
     }
     
+    @Test
+    public void testCharAt() {
+        System.out.println("charAt");
+        String s = "EXAMPLE " + RANDOM.nextInt();
+        Name instance = new MockName(s);
+        int index = RANDOM.nextInt(s.length());
+        char expected = s.charAt(index);
+        char actual = instance.charAt(index);
+        String message = "Querying for character at position " + index 
+                + " in \"" + s + "\", which is '" + expected + "'";
+        assertEquals(message, expected, actual);
+    }
+    
 }
