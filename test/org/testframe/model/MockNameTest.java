@@ -36,10 +36,24 @@ import javax.lang.model.type.DeclaredType;
 import javax.lang.model.type.TypeMirror;
 import javax.tools.Diagnostic.Kind;
 
+import org.junit.Test;
+import static org.junit.Assert.*;
+
+import static org.testframe.model.MockElementTest.RANDOM;
+
 /**
- *
+ * Tests of the MockName class.
  * @author Alonso del Arte
  */
 public class MockNameTest {
+    
+    @Test
+    public void testToString() {
+        System.out.println("toString");
+        String expected = "EXAMPLE " + RANDOM.nextInt();
+        Name instance = new MockName(expected);
+        String actual = instance.toString();
+        assertEquals(expected, actual);
+    }
     
 }
