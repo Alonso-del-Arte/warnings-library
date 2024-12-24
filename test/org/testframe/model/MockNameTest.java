@@ -56,4 +56,13 @@ public class MockNameTest {
         assertEquals(expected, actual);
     }
     
+    @Test
+    public void testNameFromClassName() {
+        Class<?> type = this.getClass();
+        Name instance = new MockName(type);
+        String expected = type.getName();
+        String actual = instance.toString();
+        assertEquals(expected, actual);
+    }
+    
 }
