@@ -50,10 +50,9 @@ public class MockName implements Name {
         return this.charSeq.length();
     }
 
-    // TODO: Write tests for this
     @Override
     public char charAt(int index) {
-        return '?';
+        return this.charSeq.charAt(index);
     }
 
     // TODO: Write tests for this
