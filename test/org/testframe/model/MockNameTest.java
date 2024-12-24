@@ -89,4 +89,20 @@ public class MockNameTest {
         assertEquals(message, expected, actual);
     }
     
+    @Test
+    public void testSubSequence() {
+        System.out.println("subSequence");
+        String s = "EXAMPLE " + RANDOM.nextInt() + " EXAMPLE " 
+                + RANDOM.nextInt() + " EXAMPLE";
+        Name instance = new MockName(s);
+        int len = s.length();
+        int start = RANDOM.nextInt(len - 2);
+        int end = start + RANDOM.nextInt(len - start - 1) + 1;
+        CharSequence expected = s.subSequence(start, end);
+        CharSequence actual = instance.subSequence(start, end);
+        String message = "Querying subsequence from " + start + " to " + end 
+                + " of \"" + s + "\"";
+        assertEquals(message, expected, actual);
+    }
+    
 }
