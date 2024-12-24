@@ -45,10 +45,9 @@ public class MockName implements Name {
     
     private final String charSeq;
     
-    // TODO: Write tests for this
     @Override
     public int length() {
-        return -1;
+        return this.charSeq.length();
     }
 
     // TODO: Write tests for this
