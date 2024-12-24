@@ -37,7 +37,8 @@ import javax.lang.model.type.TypeMirror;
 import javax.tools.Diagnostic.Kind;
 
 /**
- *
+ * This class is necessary as the return type of {@link 
+ * MockElement#getSimpleName()} and {@link MockTypeElement#getQualifiedName()}.
  * @author Alonso del Arte
  */
 public class MockName implements Name {
@@ -57,7 +58,7 @@ public class MockName implements Name {
     // TODO: Write tests for this
     @Override
     public String subSequence(int start, int end) {
-        return "NOT IMPLEMENTED YET";
+        return "NOT IMPLEMENTED YET -- SORRY";
     }
     
     // TODO: Write tests for this
@@ -67,6 +68,10 @@ public class MockName implements Name {
     }
     
     public MockName(Class<?> type) {
+        // TODO: Write tests for this
+    }
+
+    public MockName(String s) {
         // TODO: Write tests for this
     }
 
