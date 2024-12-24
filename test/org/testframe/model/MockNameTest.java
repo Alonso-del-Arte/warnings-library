@@ -65,4 +65,15 @@ public class MockNameTest {
         assertEquals(expected, actual);
     }
     
+    @Test
+    public void testLength() {
+        System.out.println("length");
+        String s = RANDOM.nextInt() + " EXAMPLE";
+        Name instance = new MockName(s);
+        int expected = s.length();
+        int actual = instance.length();
+        String message = "Reckoning length of \"" + s + "\"";
+        assertEquals(message, expected, actual);
+    }
+    
 }
