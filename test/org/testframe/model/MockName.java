@@ -75,8 +75,7 @@ public class MockName implements Name {
     }
     
     public MockName(Class<?> type) {
-        // TODO: Write tests for this
-        this.charSeq = "SORRY, NOT IMPLEMENTED YET";
+        this.charSeq = type.getName();
     }
 
     public MockName(String s) {
