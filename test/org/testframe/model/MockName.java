@@ -55,10 +55,9 @@ public class MockName implements Name {
         return this.charSeq.charAt(index);
     }
 
-    // TODO: Write tests for this
     @Override
     public String subSequence(int start, int end) {
-        return "NOT IMPLEMENTED YET -- SORRY";
+        return this.charSeq.substring(start, end);
     }
     
     // TODO: Write tests for this
