@@ -43,6 +43,8 @@ import javax.tools.Diagnostic.Kind;
  */
 public class MockName implements Name {
     
+    private final String charSeq;
+    
     // TODO: Write tests for this
     @Override
     public int length() {
@@ -67,12 +69,18 @@ public class MockName implements Name {
         return false;
     }
     
+    @Override
+    public String toString() {
+        return this.charSeq;
+    }
+    
     public MockName(Class<?> type) {
         // TODO: Write tests for this
+        this.charSeq = "SORRY, NOT IMPLEMENTED YET";
     }
 
     public MockName(String s) {
-        // TODO: Write tests for this
+        this.charSeq = s;
     }
 
 }
