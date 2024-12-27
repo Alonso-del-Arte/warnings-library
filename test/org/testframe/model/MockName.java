@@ -66,6 +66,19 @@ public class MockName implements Name {
         return false;
     }
     
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (!this.getClass().equals(obj.getClass())) {
+            return false;
+        }
+        return this.charSeq.equals(((MockName) obj).charSeq);
+    }
+    
     // TODO: Write tests for this
     @Override
     public int hashCode() {
