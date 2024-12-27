@@ -69,7 +69,7 @@ public class MockName implements Name {
     // TODO: Write tests for this
     @Override
     public boolean equals(Object obj) {
-        return obj != null;
+        return obj instanceof MockName;
     }
     
     // TODO: Write tests for this
