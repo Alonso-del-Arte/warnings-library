@@ -102,6 +102,18 @@ public class MockNameTest {
     }
     
     @Test
+    public void testEquals() {
+        System.out.println("equals");
+        String s = "EXAMPLE " + RANDOM.nextInt();
+        Name someName = new MockName(s);
+        Name sameName = new MockName(s);
+        String msg = "Mock name \"" + someName.toString() 
+                + "\" and mock name \"" + sameName.toString() 
+                + "\" should be equal";
+        assert someName.equals(sameName) : msg;
+    }
+    
+    @Test
     public void testNameFromClassName() {
         Class<?> type = this.getClass();
         Name instance = new MockName(type);
