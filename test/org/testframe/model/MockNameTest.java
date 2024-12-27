@@ -58,11 +58,21 @@ public class MockNameTest {
     
     @Test
     public void testReferentialEquality() {
-        String expected = RANDOM.nextInt() + " EXAMPLE";
-        Name instance = new MockName(expected);
+        String s = RANDOM.nextInt() + " EXAMPLE";
+        Name instance = new MockName(s);
         String msg = "Name \"" + instance.toString() 
                 + "\" should be equal to itself";
         assert instance.equals(instance) : msg;
+    }
+    
+    @Test
+    public void testNotEqualsNull() {
+        String s = "EXAMPLE " + RANDOM.nextInt();
+        Name instance = new MockName(s);
+        String msg = "Name \"" + instance.toString() 
+                + "\" should not equal null";
+        Object obj = null;
+        assert !instance.equals(obj) : msg;
     }
     
     @Test
