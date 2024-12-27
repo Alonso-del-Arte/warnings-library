@@ -22,18 +22,26 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
- * WORK IN PROGRESS...
  * Gives a customized warning. Should only be used when there is no suitable 
  * specific warning in the Java Development Kit (e.g., {@code Deprecated} from 
  * the {@code java.lang} package), the integrated development environment (e.g., 
  * not null annotation in JetBrains IntelliJ IDEA), your project, this library 
  * (e.g., {@link NarrowingConversionWarning}), or any available third party 
- * library or framework.
+ * library or framework. Consider also whether or not the message of the custom 
+ * warning would make more sense as a To Do comment.
  * @author Alonso del Arte
  */
 @Retention(RetentionPolicy.SOURCE)
 @Target({ElementType.CONSTRUCTOR, ElementType.FIELD, ElementType.METHOD, 
     ElementType.TYPE})
 public @interface CustomWarning {
+    
+    /**
+     * Gives the custom warning message. This will be passed along to the 
+     * processor.
+     * @return The custom warning message to pass along to the warnings 
+     * processor.
+     */
+    String value();
     
 }
