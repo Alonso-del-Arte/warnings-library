@@ -50,7 +50,7 @@ public class WarningsProcessor extends AbstractProcessor {
                 });
             });
 //        }
-        return true;
+        return false;
     }
     
 }
