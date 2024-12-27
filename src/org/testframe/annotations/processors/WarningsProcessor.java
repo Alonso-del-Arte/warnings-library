@@ -38,7 +38,7 @@ public class WarningsProcessor extends AbstractProcessor {
     @Override
     public boolean process(Set<? extends TypeElement> annotations, 
             RoundEnvironment roundEnv) {
-        if (!roundEnv.processingOver()) {
+//        if (!roundEnv.processingOver()) {
             annotations.stream().map((typeElem) 
                     -> roundEnv.getElementsAnnotatedWith(typeElem))
                     .forEachOrdered((elements) -> {
@@ -49,7 +49,7 @@ public class WarningsProcessor extends AbstractProcessor {
                             element);
                 });
             });
-        }
+//        }
         return true;
     }
     
