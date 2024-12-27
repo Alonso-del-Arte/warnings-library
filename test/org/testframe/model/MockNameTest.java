@@ -57,6 +57,15 @@ public class MockNameTest {
     }
     
     @Test
+    public void testReferentialEquality() {
+        String expected = RANDOM.nextInt() + " EXAMPLE";
+        Name instance = new MockName(expected);
+        String msg = "Name \"" + instance.toString() 
+                + "\" should be equal to itself";
+        assert instance.equals(instance) : msg;
+    }
+    
+    @Test
     public void testNameFromClassName() {
         Class<?> type = this.getClass();
         Name instance = new MockName(type);
