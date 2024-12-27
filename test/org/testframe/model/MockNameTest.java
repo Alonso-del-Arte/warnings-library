@@ -75,6 +75,10 @@ public class MockNameTest {
         assert !instance.equals(obj) : msg;
     }
     
+    private static Object passThrough(Object obj) {
+        return obj;
+    }
+    
     @Test
     public void testNotEqualsDiffClass() {
         String s = RANDOM.nextInt() + " EXAMPLE";
@@ -82,7 +86,19 @@ public class MockNameTest {
         String msg = "Although both instances of CharSequence, String \"" + s 
                 + "\" and MockName \"" + instance.toString() 
                 + "\" should not be equal";
-        assert !instance.equals(s) : msg;
+        Object obj = passThrough(s);
+        assert !instance.equals(obj) : msg;
+    }
+    
+    @Test
+    public void testNotEqualsDiffParamS() {
+        String s1 = "EXAMPLE " + RANDOM.nextInt();
+        String s2 = s1.toLowerCase();
+        Name instanceA = new MockName(s1);
+        Name instanceB = new MockName(s2);
+        String msg = "Name \"" + instanceA.toString() + "\" should not equal \"" 
+                + instanceB.toString() + "\"";
+        assert !instanceA.equals(instanceB) : msg;
     }
     
     @Test
