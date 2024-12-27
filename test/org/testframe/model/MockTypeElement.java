@@ -44,9 +44,10 @@ public class MockTypeElement extends MockElement implements TypeElement {
         throw new UnsupportedOperationException("FOR TESTING PURPOSES ONLY");
     }
 
+    // TODO: Write test for this
     @Override
     public Name getQualifiedName() {
-        throw new UnsupportedOperationException("FOR TESTING PURPOSES ONLY");
+        return new MockName("FOR TESTING PURPOSES ONLY");
     }
 
     @Override
