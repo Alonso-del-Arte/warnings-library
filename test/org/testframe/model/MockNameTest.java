@@ -76,6 +76,16 @@ public class MockNameTest {
     }
     
     @Test
+    public void testNotEqualsDiffClass() {
+        String s = RANDOM.nextInt() + " EXAMPLE";
+        Name instance = new MockName(s);
+        String msg = "Although both instances of CharSequence, String \"" + s 
+                + "\" and MockName \"" + instance.toString() 
+                + "\" should not be equal";
+        assert !instance.equals(s) : msg;
+    }
+    
+    @Test
     public void testNameFromClassName() {
         Class<?> type = this.getClass();
         Name instance = new MockName(type);
