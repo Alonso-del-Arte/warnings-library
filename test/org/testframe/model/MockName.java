@@ -66,6 +66,18 @@ public class MockName implements Name {
         return false;
     }
     
+    // TODO: Write tests for this
+    @Override
+    public boolean equals(Object obj) {
+        return false;
+    }
+    
+    // TODO: Write tests for this
+    @Override
+    public int hashCode() {
+        return 0;
+    }
+    
     @Override
     public String toString() {
         return this.charSeq;
