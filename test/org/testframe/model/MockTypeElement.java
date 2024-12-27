@@ -38,16 +38,17 @@ import javax.lang.model.type.TypeMirror;
  * @author Alonso del Arte
  */
 public class MockTypeElement extends MockElement implements TypeElement {
+    
+    private final String name;
 
     @Override
     public NestingKind getNestingKind() {
         throw new UnsupportedOperationException("FOR TESTING PURPOSES ONLY");
     }
 
-    // TODO: Write test for this
     @Override
     public Name getQualifiedName() {
-        return new MockName("FOR TESTING PURPOSES ONLY");
+        return new MockName(this.name);
     }
 
     @Override
@@ -66,7 +67,7 @@ public class MockTypeElement extends MockElement implements TypeElement {
     }
     
     public MockTypeElement(Class<?> type) {
-        // TODO: Write tests for this
+        this.name = type.getName();
     }
     
 }
