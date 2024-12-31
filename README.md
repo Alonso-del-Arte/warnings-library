@@ -35,11 +35,21 @@ mentioned earlier.
 
 * **Narrowing conversion warning** &mdash; For when a conversion requires a loss 
 of precision due to narrowing, e.g., 256-bit floating point to 16-bit floating 
-point.
+point. You will specify the wide class and the narrow class, but the annotation 
+processor will not check whether or not the two specified classes have any 
+superclasses in common besides `java.lang.Object` nor whether or not they both 
+implement the same interface.
 * **Custom warning** &mdash; A warning with a custom message, similar to the one 
-in Xcode.
+in Xcode (which is an IDE for Swift). This should not be used for warnings that 
+already have annotations defined in the Java Development Kit or available third 
+party libraries, such as `@Deprecated` or `@NarrowingConversionWarning`.
 * **Untested annotation** &mdash; Warns that a function or procedure (or 
-"method"), or a constructor, has not been tested.
+"method"), or a constructor, has not been tested. The annotation processor will 
+not try to detect the `@Test` annotation from the `org.testframe` namespace or 
+any other namespace. This is to say that it is up to you to decide when to 
+remove the `@Untested` annotation: the annotation processor will not cause an 
+error if the annotation meets the criterion for removal, because the criterion 
+for removal is up to you.
 
 ## Instructions for enabling annotation processing
 
