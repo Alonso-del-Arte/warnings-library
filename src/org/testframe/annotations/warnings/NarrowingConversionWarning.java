@@ -22,15 +22,30 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
- * Warns that a conversion is a narrowing conversion.
+ * Warns that a conversion is a narrowing conversion. The conversion can occur 
+ * either in a function having the narrower type as a return type, or maybe a 
+ * constructor for the narrower type that takes an instance of the wider type as 
+ * a parameter.
  * @author Alonso del Arte
  */
 @Retention(RetentionPolicy.SOURCE)
-@Target(ElementType.METHOD)
+@Target({ElementType.CONSTRUCTOR, ElementType.METHOD})
 public @interface NarrowingConversionWarning {
     
+    /**
+     * The source type, which ought to be the wider type. The annotation 
+     * processor will not check whether or not this type is in fact wider.
+     * @return The source type. For example, {@code Float128}, a hypothetical 
+     * 128-bit floating point type.
+     */
     Class<?> sourceType();
     
+    /**
+     * The target type, which ought to be the narrower type. The annotation 
+     * processor will not check whether or not this type is in fact narrower.
+     * @return The target type. For example, {@code Float8}, a hypothetical 
+     * 8-bit floating point type.
+     */
     Class<?> targetType();
     
 }
