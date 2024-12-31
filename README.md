@@ -4,9 +4,9 @@ WORK IN PROGRESS
 
 A library with some compiler warnings. I started this project because I want a 
 narrowing conversion compiler warning for a floating point library I'm working 
-on, for the floating point reference types to somewhat mirror with warnings the 
-errors you get with Java's floating point primitives, such as trying to assign 
-the value of a `double` (64-bit floating point) to a `float` (32-bit).
+on, so that the floating point reference types to somewhat mirror with warnings 
+the errors you get with Java's floating point primitives, such as trying to 
+assign the value of a `double` (64-bit floating point) to a `float` (32-bit).
 
 Early on I decided to put this in the `org.testframe` namespace even though I'm 
 going to use JUnit 4 rather than Test Frame for most of the unit testing. The 
