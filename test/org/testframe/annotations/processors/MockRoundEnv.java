@@ -60,6 +60,7 @@ public class MockRoundEnv implements RoundEnvironment {
     }
 
     // TODO: Write tests for this
+    @org.testframe.annotations.warnings.Untested
     @Override
     public Set<? extends Element> getElementsAnnotatedWith(TypeElement a) {
         return new HashSet<>();
