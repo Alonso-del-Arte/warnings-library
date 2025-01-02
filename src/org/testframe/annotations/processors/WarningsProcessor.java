@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2024 Alonso del Arte
+ * Copyright (C) 2025 Alonso del Arte
  *
  * This program is free software: you can redistribute it and/or modify it under 
  * the terms of the GNU General Public License as published by the Free Software 
@@ -35,6 +35,7 @@ import javax.tools.Diagnostic.Kind;
 public class WarningsProcessor extends AbstractProcessor {
     
     // TODO: Write tests for this
+    @org.testframe.annotations.warnings.Untested
     @Override
     public boolean process(Set<? extends TypeElement> annotations, 
             RoundEnvironment roundEnv) {
