@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2024 Alonso del Arte
+ * Copyright (C) 2025 Alonso del Arte
  *
  * This program is free software: you can redistribute it and/or modify it under 
  * the terms of the GNU General Public License as published by the Free Software 
@@ -37,37 +37,44 @@ public class MockElement implements Element {
     
     private final Annotation[] heldAnnotations;
     
+    @org.testframe.annotations.warnings.Untested
     @Override
     public TypeMirror asType() {
         throw new UnsupportedOperationException("FOR TESTING PURPOSES");
     }
 
+    @org.testframe.annotations.warnings.Untested
     @Override
     public ElementKind getKind() {
         throw new UnsupportedOperationException("FOR TESTING PURPOSES");
     }
 
+    @org.testframe.annotations.warnings.Untested
     @Override
     public Set<Modifier> getModifiers() {
         throw new UnsupportedOperationException("FOR TESTING PURPOSES");
     }
 
+    @org.testframe.annotations.warnings.Untested
     @Override
     public Name getSimpleName() {
         throw new UnsupportedOperationException("FOR TESTING PURPOSES");
     }
 
+    @org.testframe.annotations.warnings.Untested
     @Override
     public Element getEnclosingElement() {
         throw new UnsupportedOperationException("FOR TESTING PURPOSES");
     }
 
+    @org.testframe.annotations.warnings.Untested
     @Override
     public List<? extends Element> getEnclosedElements() {
         throw new UnsupportedOperationException("FOR TESTING PURPOSES");
     }
 
     // TODO: Write tests for this
+    @org.testframe.annotations.warnings.Untested
     @Override
     public List<? extends AnnotationMirror> getAnnotationMirrors() {
         return new ArrayList<>();
@@ -87,11 +94,13 @@ public class MockElement implements Element {
         return null;
     }
 
+    @org.testframe.annotations.warnings.Untested
     @Override
     public <R, P> R accept(ElementVisitor<R, P> v, P p) {
         throw new UnsupportedOperationException("FOR TESTING PURPOSES");
     }
 
+    @org.testframe.annotations.warnings.Untested
     @Override
     public <A extends Annotation> A[] 
             getAnnotationsByType(Class<A> annotationType) {
