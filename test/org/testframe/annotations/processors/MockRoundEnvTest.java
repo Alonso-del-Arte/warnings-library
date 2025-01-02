@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2024 Alonso del Arte
+ * Copyright (C) 2025 Alonso del Arte
  *
  * This program is free software: you can redistribute it and/or modify it under 
  * the terms of the GNU General Public License as published by the Free Software 
@@ -27,6 +27,9 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 import static org.testframe.annotations.processors.MessageRecordTest.RANDOM;
+import org.testframe.annotations.warnings.CustomWarning;
+import org.testframe.annotations.warnings.NarrowingConversionWarning;
+import org.testframe.annotations.warnings.Untested;
 import org.testframe.model.MockElement;
 
 /**
@@ -86,6 +89,91 @@ public class MockRoundEnvTest {
         Set<Element> expected = new HashSet<>(elements);
         Set<Element> actual = new HashSet<>(intermediate);
         assertEquals(expected, actual);
+    }
+    
+    private static CustomWarning makeCustomWarning(int i) {
+        return new CustomWarning() {
+            
+            @Override
+            public String value() {
+                return "EXAMPLE FOR TESTING PURPOSES " + i;
+            }
+
+            @Override
+            public Class<? extends Annotation> annotationType() {
+                return CustomWarning.class;
+            }
+            
+        };
+    }
+    
+    private static NarrowingConversionWarning makeNarrowingWarning() {
+        return new NarrowingConversionWarning() {
+            
+            @Override
+            public Class<?> sourceType() {
+                return WideType.class;
+            }
+
+            @Override
+            public Class<?> targetType() {
+                return NarrowType.class;
+            }
+            
+            @Override
+            public Class<? extends Annotation> annotationType() {
+                return NarrowingConversionWarning.class;
+            }
+
+        };
+    }
+    
+    private static Untested makeUntestedWarning(int i) {
+        return new Untested() {
+            
+            @Override
+            public Class<? extends Annotation> annotationType() {
+                return Untested.class;
+            }
+            
+        };
+    }
+    
+    private static Annotation[] makeAnnotations(int i) {
+        int mod = (RANDOM.nextInt(Short.MAX_VALUE) + i) % 3;
+        Annotation[] array = new Annotation[mod + 1];
+        switch (mod) {
+            case 2:
+                array[2] = makeUntestedWarning(i);
+            case 1:
+                array[1] = makeNarrowingWarning();
+            default:
+                array[0] = makeCustomWarning(i);
+        }
+        return array;
+    }
+    
+    private static Set<Element> makeElemSet() {
+        int capacity = RANDOM.nextInt(16) + 4;
+        Set<Element> set = new HashSet<>();
+        for (int i = 0; i < capacity; i++) {
+            Annotation[] annotations = makeAnnotations(i);
+            Element element = new MockElement(annotations);
+            set.add(element);
+        }
+        return set;
+    }
+    
+    private static class NarrowType {
+        
+        //
+        
+    }
+    
+    private static class WideType {
+        
+        //
+        
     }
     
 }
