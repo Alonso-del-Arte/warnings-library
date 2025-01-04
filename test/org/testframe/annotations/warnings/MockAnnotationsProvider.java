@@ -16,16 +16,31 @@
  */
 package org.testframe.annotations.warnings;
 
+import java.lang.annotation.Annotation;
+import java.util.Random;
+
 /**
  *
  * @author Alonso del Arte
  */
 public class MockAnnotationsProvider {
     
-    // TODO: Write tests for this
-    @Untested
+    private static final Random RANDOM = new Random();
+    
     static CustomWarning makeCustomWarning() {
-        return null;
+        return new CustomWarning() {
+            
+            @Override
+            public String value() {
+                return "EXAMPLE FOR TESTING PURPOSES " + RANDOM.nextInt();
+            }
+
+            @Override
+            public Class<? extends Annotation> annotationType() {
+                return CustomWarning.class;
+            }
+            
+        };
     }
     
     // TODO: Write tests for this
