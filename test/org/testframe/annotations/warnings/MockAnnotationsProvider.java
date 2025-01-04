@@ -43,10 +43,20 @@ public class MockAnnotationsProvider {
         };
     }
     
-    // TODO: Write tests for this
-    @Untested
     static MockAnnotation makeMockAnnotation() {
-        return null;
+        return new MockAnnotation() {
+                        
+            @Override
+            public String key() {
+                return "EXAMPLE FOR TESTING PURPOSES " + RANDOM.nextInt();
+            }
+
+            @Override
+            public Class<? extends Annotation> annotationType() {
+                return org.testframe.annotations.MockAnnotation.class;
+            }
+            
+        };
     }
     
     // TODO: Write tests for this
