@@ -35,4 +35,14 @@ public class MockAnnotationsProviderTest {
         System.out.println("\"" + value + "\"");
     }
     
+    @Test
+    public void testMakeMockAnnotation() {
+        System.out.println("makeMockAnnotation");
+        MockAnnotation actual = MockAnnotationsProvider.makeMockAnnotation();
+        assert actual != null : "Returned object should not be null";
+        String key = actual.key();
+        assert key != null : "Custom warning value should not be null";
+        System.out.println("\"" + key + "\"");
+    }
+    
 }
