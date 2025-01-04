@@ -20,14 +20,19 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 /**
- *
+ * Tests of the MockAnnotationsProvider class.
  * @author Alonso del Arte
  */
 public class MockAnnotationsProviderTest {
     
     @Test
-    public void placeholder() {
-        fail("JUST A PLACEHOLDER FOR TESTS");
+    public void testMakeCustomWarning() {
+        System.out.println("makeCustomWarning");
+        CustomWarning actual = MockAnnotationsProvider.makeCustomWarning();
+        assert actual != null : "Returned object should not be null";
+        String value = actual.value();
+        assert value != null : "Custom warning value should not be null";
+        System.out.println("\"" + value + "\"");
     }
     
 }
