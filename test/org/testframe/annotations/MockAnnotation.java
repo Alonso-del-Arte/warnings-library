@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2024 Alonso del Arte
+ * Copyright (C) 2025 Alonso del Arte
  *
  * This program is free software: you can redistribute it and/or modify it under 
  * the terms of the GNU General Public License as published by the Free Software 
@@ -35,9 +35,9 @@ import java.lang.annotation.Target;
 public @interface MockAnnotation {
     
     /**
-     * Specify an identification number for an annotated function or procedure.
-     * @return Some integer. May be pseudorandom.
+     * A key for the annotation.
+     * @return The key. By default "MOCK".
      */
-    int id();
+    String key() default "MOCK";
     
 }

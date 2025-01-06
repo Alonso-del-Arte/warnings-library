@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2024 Alonso del Arte
+ * Copyright (C) 2025 Alonso del Arte
  *
  * This program is free software: you can redistribute it and/or modify it under 
  * the terms of the GNU General Public License as published by the Free Software 
@@ -42,8 +42,8 @@ public class MockElementTest {
         Annotation expected = new MockAnnotation() {
             
             @Override
-            public int id() {
-                return mockID;
+            public String key() {
+                return Integer.toString(mockID);
             }
 
             @Override
@@ -64,8 +64,8 @@ public class MockElementTest {
         Annotation expected = new MockAnnotation() {
             
             @Override
-            public int id() {
-                return mockID;
+            public String key() {
+                return Integer.toString(mockID);
             }
 
             @Override
@@ -104,8 +104,8 @@ public class MockElementTest {
         Annotation mockA = new MockAnnotation() {
             
             @Override
-            public int id() {
-                return mockID;
+            public String key() {
+                return Integer.toString(mockID);
             }
 
             @Override
@@ -117,8 +117,8 @@ public class MockElementTest {
         Annotation mockB = new MockAnnotation() {
             
             @Override
-            public int id() {
-                return mockID;
+            public String key() {
+                return Integer.toString(mockID << 1);
             }
 
             @Override
