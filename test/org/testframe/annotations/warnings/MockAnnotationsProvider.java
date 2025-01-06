@@ -101,4 +101,20 @@ public class MockAnnotationsProvider {
         return null;
     }
     
+    public static class NarrowType {
+        
+        private NarrowType() {
+            //
+        }
+        
+    }
+    
+    public static class WideType {
+        
+        private WideType() {
+            //
+        }
+        
+    }
+    
 }
