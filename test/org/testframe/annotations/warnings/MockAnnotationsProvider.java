@@ -39,7 +39,7 @@ public class MockAnnotationsProvider {
 
             @Override
             public Class<? extends Annotation> annotationType() {
-                return NarrowingConversionWarning.class;
+                return CustomWarning.class;
             }
             
         };
@@ -55,7 +55,7 @@ public class MockAnnotationsProvider {
 
             @Override
             public Class<? extends Annotation> annotationType() {
-                return CustomWarning.class;
+                return MockAnnotation.class;
             }
             
         };
@@ -78,7 +78,7 @@ public class MockAnnotationsProvider {
             
             @Override
             public Class<? extends Annotation> annotationType() {
-                return org.testframe.annotations.MockAnnotation.class;
+                return NarrowingConversionWarning.class;
             }
             
         };
