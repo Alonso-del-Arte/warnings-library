@@ -66,12 +66,12 @@ public class MockAnnotationsProvider {
             
             @Override
             public Class<?> sourceType() {
-                return NarrowType.class;
+                return WideType.class;
             }
             
             @Override
             public Class<?> targetType() {
-                return WideType.class;
+                return NarrowType.class;
             }
             
             @Override
