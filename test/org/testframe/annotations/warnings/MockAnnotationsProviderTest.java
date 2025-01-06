@@ -33,6 +33,7 @@ public class MockAnnotationsProviderTest {
         String value = actual.value();
         assert value != null : "Custom warning value should not be null";
         System.out.println("\"" + value + "\"");
+        assertEquals(CustomWarning.class, actual.annotationType());
     }
     
     @Test
@@ -41,8 +42,9 @@ public class MockAnnotationsProviderTest {
         MockAnnotation actual = MockAnnotationsProvider.makeMockAnnotation();
         assert actual != null : "Returned object should not be null";
         String key = actual.key();
-        assert key != null : "Custom warning value should not be null";
+        assert key != null : "Mock value key should not be null";
         System.out.println("\"" + key + "\"");
+        assertEquals(MockAnnotation.class, actual.annotationType());
     }
     
     @Test
@@ -55,6 +57,7 @@ public class MockAnnotationsProviderTest {
                 MockAnnotationsProvider.WideType.class, actual.sourceType());
         assertEquals("Querying target type", 
                 MockAnnotationsProvider.NarrowType.class, actual.targetType());
+        assertEquals(NarrowingConversionWarning.class, actual.annotationType());
     }
     
 }
