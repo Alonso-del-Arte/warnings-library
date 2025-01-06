@@ -62,7 +62,24 @@ public class MockAnnotationsProvider {
     // TODO: Write tests for this
     @Untested
     static NarrowingConversionWarning makeNarrowingWarning() {
-        return null;
+        return new NarrowingConversionWarning() {
+            
+            @Override
+            public Class<?> sourceType() {
+                return NarrowType.class;
+            }
+            
+            @Override
+            public Class<?> targetType() {
+                return WideType.class;
+            }
+            
+            @Override
+            public Class<? extends Annotation> annotationType() {
+                return org.testframe.annotations.MockAnnotation.class;
+            }
+            
+        };
     }
     
     // TODO: Write tests for this
