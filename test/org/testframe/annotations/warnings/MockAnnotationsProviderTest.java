@@ -45,4 +45,16 @@ public class MockAnnotationsProviderTest {
         System.out.println("\"" + key + "\"");
     }
     
+    @Test
+    public void testMakeNarrowingWarning() {
+        System.out.println("makeNarrowingWarning");
+        NarrowingConversionWarning actual 
+                = MockAnnotationsProvider.makeNarrowingWarning();
+        assert actual != null : "Returned object should not be null";
+        assertEquals("Querying source type", 
+                MockAnnotationsProvider.WideType.class, actual.sourceType());
+        assertEquals("Querying target type", 
+                MockAnnotationsProvider.NarrowType.class, actual.targetType());
+    }
+    
 }
