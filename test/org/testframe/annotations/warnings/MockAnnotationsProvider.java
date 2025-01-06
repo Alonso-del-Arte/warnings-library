@@ -19,6 +19,8 @@ package org.testframe.annotations.warnings;
 import java.lang.annotation.Annotation;
 import java.util.Random;
 
+import org.testframe.annotations.MockAnnotation;
+
 /**
  *
  * @author Alonso del Arte

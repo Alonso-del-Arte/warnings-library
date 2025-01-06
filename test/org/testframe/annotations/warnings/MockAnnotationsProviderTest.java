@@ -19,6 +19,8 @@ package org.testframe.annotations.warnings;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
+import org.testframe.annotations.MockAnnotation;
+
 /**
  * Tests of the MockAnnotationsProvider class.
  * @author Alonso del Arte
