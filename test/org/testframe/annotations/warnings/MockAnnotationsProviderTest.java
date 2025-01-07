@@ -78,4 +78,13 @@ public class MockAnnotationsProviderTest {
         assertEquals(Deprecated.class, actual.annotationType());
     }
     
+    @Test
+    public void testMakeFunctionalInterfaceAnnotation() {
+        System.out.println("makeFunctionalInterfaceAnnotation");
+        FunctionalInterface actual 
+                = MockAnnotationsProvider.makeFunctionalInterfaceAnnotation();
+        assert actual != null : "Returned object should not be null";
+        assertEquals(FunctionalInterface.class, actual.annotationType());
+    }
+    
 }
