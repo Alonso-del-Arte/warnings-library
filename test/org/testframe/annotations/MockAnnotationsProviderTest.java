@@ -89,4 +89,12 @@ public class MockAnnotationsProviderTest {
         assertEquals(FunctionalInterface.class, actual.annotationType());
     }
     
+    @Test
+    public void testMakeOverrideAnnotation() {
+        System.out.println("makeOverrideAnnotation");
+        Override actual = MockAnnotationsProvider.makeOverrideAnnotation();
+        assert actual != null : "Returned object should not be null";
+        assertEquals(Override.class, actual.annotationType());
+    }
+    
 }
