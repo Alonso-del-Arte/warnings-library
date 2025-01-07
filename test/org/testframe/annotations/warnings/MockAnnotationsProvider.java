@@ -93,10 +93,15 @@ public class MockAnnotationsProvider {
         };
     }
     
-    // TODO: Write tests for this
-    @Untested
     static Deprecated makeDeprecatedWarning() {
-        return null;
+        return new Deprecated() {
+            
+            @Override
+            public Class<? extends Annotation> annotationType() {
+                return Deprecated.class;
+            }
+            
+        };
     }
     
     // TODO: Write tests for this
