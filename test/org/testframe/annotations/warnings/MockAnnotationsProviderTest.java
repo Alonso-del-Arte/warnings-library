@@ -70,4 +70,12 @@ public class MockAnnotationsProviderTest {
         assertEquals(Untested.class, actual.annotationType());
     }
     
+    @Test
+    public void testMakeDeprecatedWarning() {
+        System.out.println("makeDeprecatedWarning");
+        Deprecated actual = MockAnnotationsProvider.makeDeprecatedWarning();
+        assert actual != null : "Returned object should not be null";
+        assertEquals(Deprecated.class, actual.annotationType());
+    }
+    
 }
