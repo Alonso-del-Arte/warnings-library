@@ -31,6 +31,18 @@ public class MockAnnotationsProvider {
     
     private static final Random RANDOM = new Random();
     
+    private static final String[] STANDARD_WARNING_NAMES = {"all", "boxing", 
+        "cast", "dep-ann", "deprecation", "fallthrough", "finally", "hiding", 
+        "incomplete-switch", "javadoc", "nls", "null", "rawtypes", "resource", 
+        "restriction", "serial", "static-access", "super", "sync-override", 
+        "synthetic-access", "unchecked", "unqualified-field-access", "unused"};
+    
+    private static final int NUMBER_OF_WARNING_NAMES 
+            = STANDARD_WARNING_NAMES.length;
+    
+    private static final int HALF_NUMBER_OF_WARNING_NAMES 
+            = NUMBER_OF_WARNING_NAMES / 2;
+    
     static CustomWarning makeCustomWarning() {
         return new CustomWarning() {
             
@@ -139,10 +151,32 @@ public class MockAnnotationsProvider {
         };
     }
     
-    // TODO: Write tests for this
-    @Untested
+    private static String[] chooseNames() {
+        int len = RANDOM.nextInt(HALF_NUMBER_OF_WARNING_NAMES) + 1;
+        String[] array = new String[len];
+        for (int i = 0; i < len; i++) {
+            array[i] = STANDARD_WARNING_NAMES[RANDOM
+                    .nextInt(NUMBER_OF_WARNING_NAMES)];
+        }
+        return array;
+    }
+    
     static SuppressWarnings makeSuppressWarningsAnnotation() {
-        return null;
+        return new SuppressWarnings() {
+            
+            private final String[] warningNames = chooseNames();
+            
+            @Override
+            public String[] value() {
+                return this.warningNames;
+            }
+            
+            @Override
+            public Class<? extends Annotation> annotationType() {
+                return SuppressWarnings.class;
+            }
+            
+        };
     }
     
     public static class NarrowType {
