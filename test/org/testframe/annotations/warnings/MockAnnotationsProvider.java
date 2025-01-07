@@ -104,10 +104,15 @@ public class MockAnnotationsProvider {
         };
     }
     
-    // TODO: Write tests for this
-    @Untested
     static FunctionalInterface makeFunctionalInterfaceAnnotation() {
-        return null;
+        return new FunctionalInterface() {
+            
+            @Override
+            public Class<? extends Annotation> annotationType() {
+                return FunctionalInterface.class;
+            }
+            
+        };
     }
     
     // TODO: Write tests for this
