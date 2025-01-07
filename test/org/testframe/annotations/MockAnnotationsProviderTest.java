@@ -16,6 +16,8 @@
  */
 package org.testframe.annotations;
 
+import java.util.Arrays;
+
 import org.junit.Test;
 import static org.junit.Assert.*;
 
@@ -104,6 +106,22 @@ public class MockAnnotationsProviderTest {
                 = MockAnnotationsProvider.makeSafeVarargsAnnotation();
         assert actual != null : "Returned object should not be null";
         assertEquals(SafeVarargs.class, actual.annotationType());
+    }
+    
+    @Test
+    public void testMakeSuppressWarningsAnnotation() {
+        System.out.println("makeSuppressWarningsAnnotation");
+        SuppressWarnings actual 
+                = MockAnnotationsProvider.makeSuppressWarningsAnnotation();
+        assert actual != null : "Returned object should not be null";
+        assertEquals(SuppressWarnings.class, actual.annotationType());
+        String[] value = actual.value();
+        assert value != null : "Value array should not be null";
+        int len = value.length;
+        String msg = "Value array should have at least one element, found " 
+                + len;
+        assert len > 0 : msg;
+        System.out.println(Arrays.toString(value));
     }
     
 }
