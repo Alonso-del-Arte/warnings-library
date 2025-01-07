@@ -14,12 +14,14 @@
  * You should have received a copy of the GNU General Public License along with 
  * this program. If not, see <http://www.gnu.org/licenses/>.
  */
-package org.testframe.annotations.warnings;
+package org.testframe.annotations;
 
 import org.junit.Test;
 import static org.junit.Assert.*;
 
-import org.testframe.annotations.MockAnnotation;
+import org.testframe.annotations.warnings.CustomWarning;
+import org.testframe.annotations.warnings.NarrowingConversionWarning;
+import org.testframe.annotations.warnings.Untested;
 
 /**
  * Tests of the MockAnnotationsProvider class.
