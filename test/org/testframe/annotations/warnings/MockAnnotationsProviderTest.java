@@ -62,4 +62,12 @@ public class MockAnnotationsProviderTest {
         assertEquals(NarrowingConversionWarning.class, actual.annotationType());
     }
     
+    @Test
+    public void testMakeUntestedWarning() {
+        System.out.println("makeUntestedWarning");
+        Untested actual = MockAnnotationsProvider.makeUntestedWarning();
+        assert actual != null : "Returned object should not be null";
+        assertEquals(Untested.class, actual.annotationType());
+    }
+    
 }
