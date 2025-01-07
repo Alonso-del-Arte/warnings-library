@@ -128,10 +128,15 @@ public class MockAnnotationsProvider {
         };
     }
     
-    // TODO: Write tests for this
-    @Untested
     static SafeVarargs makeSafeVarargsAnnotation() {
-        return null;
+        return new SafeVarargs() {
+            
+            @Override
+            public Class<? extends Annotation> annotationType() {
+                return SafeVarargs.class;
+            }
+            
+        };
     }
     
     // TODO: Write tests for this
