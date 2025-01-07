@@ -117,10 +117,15 @@ public class MockAnnotationsProvider {
         };
     }
     
-    // TODO: Write tests for this
-    @Untested
     static Override makeOverrideAnnotation() {
-        return null;
+        return new Override() {
+            
+            @Override
+            public Class<? extends Annotation> annotationType() {
+                return Override.class;
+            }
+            
+        };
     }
     
     // TODO: Write tests for this
