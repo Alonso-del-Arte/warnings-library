@@ -97,4 +97,13 @@ public class MockAnnotationsProviderTest {
         assertEquals(Override.class, actual.annotationType());
     }
     
+    @Test
+    public void testMakeSafeVarargsAnnotation() {
+        System.out.println("makeSafeVarargsAnnotation");
+        SafeVarargs actual 
+                = MockAnnotationsProvider.makeSafeVarargsAnnotation();
+        assert actual != null : "Returned object should not be null";
+        assertEquals(SafeVarargs.class, actual.annotationType());
+    }
+    
 }
