@@ -61,8 +61,6 @@ public class MockAnnotationsProvider {
         };
     }
     
-    // TODO: Write tests for this
-    @Untested
     static NarrowingConversionWarning makeNarrowingWarning() {
         return new NarrowingConversionWarning() {
             
@@ -84,10 +82,15 @@ public class MockAnnotationsProvider {
         };
     }
     
-    // TODO: Write tests for this
-    @Untested
     static Untested makeUntestedWarning() {
-        return null;
+        return new Untested() {
+            
+            @Override
+            public Class<? extends Annotation> annotationType() {
+                return Untested.class;
+            }
+            
+        };
     }
     
     // TODO: Write tests for this
