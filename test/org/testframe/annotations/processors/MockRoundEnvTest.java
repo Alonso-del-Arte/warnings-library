@@ -26,6 +26,8 @@ import javax.lang.model.element.Element;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
+import org.testframe.annotations.MockAnnotation;
+import org.testframe.annotations.MockAnnotationsProvider;
 import static org.testframe.annotations.processors.MessageRecordTest.RANDOM;
 import org.testframe.annotations.warnings.CustomWarning;
 import org.testframe.annotations.warnings.NarrowingConversionWarning;
@@ -91,64 +93,18 @@ public class MockRoundEnvTest {
         assertEquals(expected, actual);
     }
     
-    private static CustomWarning makeCustomWarning(int i) {
-        return new CustomWarning() {
-            
-            @Override
-            public String value() {
-                return "EXAMPLE FOR TESTING PURPOSES " + i;
-            }
-
-            @Override
-            public Class<? extends Annotation> annotationType() {
-                return CustomWarning.class;
-            }
-            
-        };
-    }
-    
-    private static NarrowingConversionWarning makeNarrowingWarning() {
-        return new NarrowingConversionWarning() {
-            
-            @Override
-            public Class<?> sourceType() {
-                return WideType.class;
-            }
-
-            @Override
-            public Class<?> targetType() {
-                return NarrowType.class;
-            }
-            
-            @Override
-            public Class<? extends Annotation> annotationType() {
-                return NarrowingConversionWarning.class;
-            }
-
-        };
-    }
-    
-    private static Untested makeUntestedWarning(int i) {
-        return new Untested() {
-            
-            @Override
-            public Class<? extends Annotation> annotationType() {
-                return Untested.class;
-            }
-            
-        };
-    }
-    
     private static Annotation[] makeAnnotations(int i) {
-        int mod = (RANDOM.nextInt(Short.MAX_VALUE) + i) % 3;
+        int mod = (RANDOM.nextInt(Short.MAX_VALUE) + i) % 4;
         Annotation[] array = new Annotation[mod + 1];
         switch (mod) {
+            case 3:
+                array[3] = MockAnnotationsProvider.makeMockAnnotation();
             case 2:
-                array[2] = makeUntestedWarning(i);
+                array[2] = MockAnnotationsProvider.makeUntestedWarning();
             case 1:
-                array[1] = makeNarrowingWarning();
+                array[1] = MockAnnotationsProvider.makeNarrowingWarning();
             default:
-                array[0] = makeCustomWarning(i);
+                array[0] = MockAnnotationsProvider.makeCustomWarning();
         }
         return array;
     }
@@ -164,16 +120,10 @@ public class MockRoundEnvTest {
         return set;
     }
     
-    private static class NarrowType {
-        
-        //
-        
-    }
-    
-    private static class WideType {
-        
-        //
-        
+    @Test
+    public void testGetElementsAnnotatedWith() {
+        System.out.println("getElementsAnnotatedWith");
+        fail("FINISH WRITING THIS TEST");
     }
     
 }
