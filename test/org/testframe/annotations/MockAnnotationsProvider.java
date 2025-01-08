@@ -43,7 +43,7 @@ public class MockAnnotationsProvider {
     private static final int HALF_NUMBER_OF_WARNING_NAMES 
             = NUMBER_OF_WARNING_NAMES / 2;
     
-    static CustomWarning makeCustomWarning() {
+    public static CustomWarning makeCustomWarning() {
         return new CustomWarning() {
             
             @Override
@@ -59,7 +59,7 @@ public class MockAnnotationsProvider {
         };
     }
     
-    static MockAnnotation makeMockAnnotation() {
+    public static MockAnnotation makeMockAnnotation() {
         return new MockAnnotation() {
                         
             @Override
@@ -75,7 +75,7 @@ public class MockAnnotationsProvider {
         };
     }
     
-    static NarrowingConversionWarning makeNarrowingWarning() {
+    public static NarrowingConversionWarning makeNarrowingWarning() {
         return new NarrowingConversionWarning() {
             
             @Override
@@ -96,7 +96,7 @@ public class MockAnnotationsProvider {
         };
     }
     
-    static Untested makeUntestedWarning() {
+    public static Untested makeUntestedWarning() {
         return new Untested() {
             
             @Override
