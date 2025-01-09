@@ -25,6 +25,7 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 import org.testframe.annotations.MockAnnotation;
+import org.testframe.annotations.MockAnnotationsProvider;
 import static org.testframe.api.Asserters.assertDoesNotThrow;
 
 /**
@@ -38,20 +39,7 @@ public class MockElementTest {
     @Test
     public void testGetAnnotation() {
         System.out.println("getAnnotation");
-        int mockID = RANDOM.nextInt();
-        Annotation expected = new MockAnnotation() {
-            
-            @Override
-            public String key() {
-                return Integer.toString(mockID);
-            }
-
-            @Override
-            public Class<? extends Annotation> annotationType() {
-                return MockAnnotation.class;
-            }
-            
-        };
+        Annotation expected = MockAnnotationsProvider.makeMockAnnotation();
         Annotation[] annotations = {expected};
         Element instance = new MockElement(annotations);
         Annotation actual = instance.getAnnotation(MockAnnotation.class);
@@ -60,20 +48,7 @@ public class MockElementTest {
     
     @Test
     public void testChooseAnnotationOfRightType() {
-        int mockID = RANDOM.nextInt();
-        Annotation expected = new MockAnnotation() {
-            
-            @Override
-            public String key() {
-                return Integer.toString(mockID);
-            }
-
-            @Override
-            public Class<? extends Annotation> annotationType() {
-                return MockAnnotation.class;
-            }
-            
-        };
+        Annotation expected = MockAnnotationsProvider.makeMockAnnotation();
         Annotation other = new Test() {
             
             @Override
@@ -100,33 +75,8 @@ public class MockElementTest {
     
     @Test
     public void testGetAnnotationReturnsNullIfDesiredTypeAbsent() {
-        int mockID = RANDOM.nextInt();
-        Annotation mockA = new MockAnnotation() {
-            
-            @Override
-            public String key() {
-                return Integer.toString(mockID);
-            }
-
-            @Override
-            public Class<? extends Annotation> annotationType() {
-                return MockAnnotation.class;
-            }
-            
-        };
-        Annotation mockB = new MockAnnotation() {
-            
-            @Override
-            public String key() {
-                return Integer.toString(mockID << 1);
-            }
-
-            @Override
-            public Class<? extends Annotation> annotationType() {
-                return MockAnnotation.class;
-            }
-            
-        };
+        Annotation mockA = MockAnnotationsProvider.makeMockAnnotation();
+        Annotation mockB = MockAnnotationsProvider.makeMockAnnotation();
         Annotation[] annotations = {mockA, mockB};
         Element instance = new MockElement(annotations);
         String msgPart = "Asking for absent annotation type should return null";
