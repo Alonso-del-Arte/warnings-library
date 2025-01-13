@@ -16,7 +16,10 @@
  */
 package org.testframe.annotations;
 
+import java.lang.annotation.Annotation;
 import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Set;
 
 import org.junit.Test;
 import static org.junit.Assert.*;
@@ -24,6 +27,7 @@ import static org.junit.Assert.*;
 import org.testframe.annotations.warnings.CustomWarning;
 import org.testframe.annotations.warnings.NarrowingConversionWarning;
 import org.testframe.annotations.warnings.Untested;
+import static org.testframe.api.Asserters.assertContainsSame;
 
 /**
  * Tests of the MockAnnotationsProvider class.
@@ -154,6 +158,30 @@ public class MockAnnotationsProviderTest {
                 + len;
         assert len > 0 : msg;
         System.out.println(Arrays.toString(value));
+    }
+    
+    @Test
+    public void testChooseAnnotation() {
+        System.out.println("chooseAnnotation");
+        int totalNumberOfCalls 
+                = MockAnnotationsProvider.NUMBER_OF_AVAILABLE_ANNOTATION_TYPES 
+                * MockAnnotationsProvider.NUMBER_OF_AVAILABLE_ANNOTATION_TYPES;
+        Set<Class<? extends Annotation>> expected = new HashSet<>();
+        expected.add(CustomWarning.class);
+        expected.add(Deprecated.class);
+        expected.add(FunctionalInterface.class);
+        expected.add(MockAnnotation.class);
+        expected.add(NarrowingConversionWarning.class);
+        expected.add(Override.class);
+        expected.add(SafeVarargs.class);
+        expected.add(SuppressWarnings.class);
+        expected.add(Untested.class);
+        Set<Class<? extends Annotation>> actual = new HashSet<>();
+        for (int i = 0; i < totalNumberOfCalls; i++) {
+            Annotation annotation = MockAnnotationsProvider.chooseAnnotation();
+            actual.add(annotation.annotationType());
+        }
+        assertContainsSame(expected, actual);
     }
     
 }
