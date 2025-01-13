@@ -19,6 +19,7 @@ package org.testframe.annotations;
 import java.lang.annotation.Annotation;
 import java.util.Arrays;
 import java.util.HashSet;
+import java.util.Random;
 import java.util.Set;
 
 import org.junit.Test;
@@ -28,12 +29,15 @@ import org.testframe.annotations.warnings.CustomWarning;
 import org.testframe.annotations.warnings.NarrowingConversionWarning;
 import org.testframe.annotations.warnings.Untested;
 import static org.testframe.api.Asserters.assertContainsSame;
+import static org.testframe.api.Asserters.assertThrows;
 
 /**
  * Tests of the MockAnnotationsProvider class.
  * @author Alonso del Arte
  */
 public class MockAnnotationsProviderTest {
+    
+    private static final Random RANDOM = new Random(System.currentTimeMillis());
     
     /**
      * The total number of distinct available annotation types from the provider  
@@ -182,6 +186,23 @@ public class MockAnnotationsProviderTest {
             actual.add(annotation.annotationType());
         }
         assertContainsSame(expected, actual);
+    }
+    
+    @Test
+    public void testChooseAnnotationsRejectsNegativeSize() {
+        int badLen = RANDOM.nextInt() | Integer.MIN_VALUE;
+        String msg = "Bad length parameter " + badLen 
+                + " should cause an exception";
+        Throwable t = assertThrows(() -> {
+            Annotation[] badResult 
+                    = MockAnnotationsProvider.chooseAnnotations(badLen);
+            System.out.println(msg + ", not given result " 
+                    + Arrays.toString(badResult));
+        }, NegativeArraySizeException.class, msg);
+        String excMsg = t.getMessage();
+        assert excMsg != null : "Exception message should not be null";
+        assert !excMsg.isEmpty() : "Exception message should not be empty";
+        System.out.println("\"" + excMsg + "\"");
     }
     
 }
