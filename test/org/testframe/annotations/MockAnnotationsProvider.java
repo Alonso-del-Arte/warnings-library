@@ -43,8 +43,26 @@ public class MockAnnotationsProvider {
     private static final int HALF_NUMBER_OF_WARNING_NAMES 
             = NUMBER_OF_WARNING_NAMES / 2;
     
-    // TODO: Write test for this
-    public static final int NUMBER_OF_AVAILABLE_ANNOTATION_TYPES = 0;
+    /**
+     * The total number of distinct available annotation types from this 
+     * provider. They are:
+     * <ol>
+     * <li>{@code CustomWarning.class}, use {@link #makeCustomWarning()}</li>
+     * <li>{@code Deprecated.class}, use {@link #makeDeprecatedWarning()}</li>
+     * <li>{@code FunctionalInterface.class}, use {@link 
+     * #makeFunctionalInterfaceAnnotation()}</li>
+     * <li>{@code MockAnnotation.class}, use {@link #makeMockAnnotation()}</li>
+     * <li>{@code NarrowingConversionWarning.class}, use {@link 
+     * #makeNarrowingWarning()}</li>
+     * <li>{@code Override.class}, use {@link #makeOverrideAnnotation()}</li>
+     * <li>{@code SafeVarargs.class}, use {@link 
+     * #makeSafeVarargsAnnotation()}</li>
+     * <li>{@code SuppressWarnings.class}, use {@link 
+     * #makeSuppressWarningsAnnotation()}</li>
+     * <li>{@code Untested.class}, use {@link #makeUntestedWarning()}</li>
+     * </ol>
+     */
+    public static final int NUMBER_OF_AVAILABLE_ANNOTATION_TYPES = 9;
     
     public static CustomWarning makeCustomWarning() {
         return new CustomWarning() {
