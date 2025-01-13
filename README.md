@@ -51,6 +51,9 @@ remove the `@Untested` annotation: the annotation processor will not cause an
 error if the annotation meets the criterion for removal, because the criterion 
 for removal is up to you.
 
+I thought about an annotation for `String` literals that are not supposed to be 
+internationalized, but that's really more for an IDE to deal with.
+
 ## Instructions for enabling annotation processing
 
 ### Eclipse
