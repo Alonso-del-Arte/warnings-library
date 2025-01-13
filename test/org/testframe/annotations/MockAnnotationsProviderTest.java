@@ -31,6 +31,38 @@ import org.testframe.annotations.warnings.Untested;
  */
 public class MockAnnotationsProviderTest {
     
+    /**
+     * The total number of distinct available annotation types from the provider  
+     * should be 9. Namely:
+     * <ol>
+     * <li>{@code CustomWarning.class}, use {@link 
+     * MockAnnotationsProvider#makeCustomWarning()}</li>
+     * <li>{@code Deprecated.class}, use {@link 
+     * MockAnnotationsProvider#makeDeprecatedWarning()}</li>
+     * <li>{@code FunctionalInterface.class}, use {@link 
+     * MockAnnotationsProvider#makeFunctionalInterfaceAnnotation()}</li>
+     * <li>{@code MockAnnotation.class}, use {@link 
+     * MockAnnotationsProvider#makeMockAnnotation()}</li>
+     * <li>{@code NarrowingConversionWarning.class}, use {@link 
+     * MockAnnotationsProvider#makeNarrowingWarning()}</li>
+     * <li>{@code Override.class}, use {@link 
+     * MockAnnotationsProvider#makeOverrideAnnotation()}</li>
+     * <li>{@code SafeVarargs.class}, use {@link 
+     * MockAnnotationsProvider#makeSafeVarargsAnnotation()}</li>
+     * <li>{@code SuppressWarnings.class}, use {@link 
+     * MockAnnotationsProvider#makeSuppressWarningsAnnotation()}</li>
+     * <li>{@code Untested.class}, use {@link 
+     * MockAnnotationsProvider#makeUntestedWarning()}</li>
+     * </ol>
+     */
+    @Test
+    public void testNumberOfAvailableWarnings() {
+        int expected = 9;
+        int actual = MockAnnotationsProvider
+                .NUMBER_OF_AVAILABLE_ANNOTATION_TYPES;
+        assertEquals(expected, actual);
+    }
+    
     @Test
     public void testMakeCustomWarning() {
         System.out.println("makeCustomWarning");
