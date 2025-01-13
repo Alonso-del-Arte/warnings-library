@@ -56,7 +56,7 @@ public class MockAnnotationsProviderTest {
      * </ol>
      */
     @Test
-    public void testNumberOfAvailableWarnings() {
+    public void testNumberOfAvailableAnnotationTypes() {
         int expected = 9;
         int actual = MockAnnotationsProvider
                 .NUMBER_OF_AVAILABLE_ANNOTATION_TYPES;
