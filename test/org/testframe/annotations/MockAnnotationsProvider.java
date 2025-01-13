@@ -179,6 +179,17 @@ public class MockAnnotationsProvider {
         };
     }
     
+    // TODO: Write tests for this
+    static Annotation chooseAnnotation() {
+        return makeCustomWarning();
+    }
+    
+    // TODO: Write tests for this
+    public static Annotation[] chooseAnnotations() {
+        Annotation[] array = {makeCustomWarning()};
+        return array;
+    }
+    
     public static class NarrowType {
         
         private NarrowType() {
