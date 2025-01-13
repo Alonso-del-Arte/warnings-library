@@ -202,7 +202,27 @@ public class MockAnnotationsProvider {
     
     // TODO: Write tests for this
     static Annotation chooseAnnotation() {
-        return makeCustomWarning();
+        int index = RANDOM.nextInt(NUMBER_OF_AVAILABLE_ANNOTATION_TYPES);
+        switch (index) {
+            case 0:
+                return makeCustomWarning();
+            case 1:
+                return makeDeprecatedWarning();
+            case 2:
+                return makeFunctionalInterfaceAnnotation();
+            case 3:
+                return makeMockAnnotation();
+            case 4:
+                return makeNarrowingWarning();
+            case 5:
+                return makeOverrideAnnotation();
+            case 6:
+                return makeSafeVarargsAnnotation();
+            case 7:
+                return makeSuppressWarningsAnnotation();
+            default:
+                return makeUntestedWarning();
+        }
     }
     
     // TODO: Write tests for this
