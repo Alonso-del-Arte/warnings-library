@@ -43,6 +43,9 @@ public class MockAnnotationsProvider {
     private static final int HALF_NUMBER_OF_WARNING_NAMES 
             = NUMBER_OF_WARNING_NAMES / 2;
     
+    // TODO: Write test for this
+    public static final int NUMBER_OF_AVAILABLE_ANNOTATION_TYPES = 0;
+    
     public static CustomWarning makeCustomWarning() {
         return new CustomWarning() {
             
