@@ -226,7 +226,7 @@ public class MockAnnotationsProvider {
     }
     
     // TODO: Write tests for this
-    public static Annotation[] chooseAnnotations() {
+    public static Annotation[] chooseAnnotations(int len) {
         Annotation[] array = {makeCustomWarning()};
         return array;
     }
