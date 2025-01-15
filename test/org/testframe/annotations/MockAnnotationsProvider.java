@@ -17,7 +17,10 @@
 package org.testframe.annotations;
 
 import java.lang.annotation.Annotation;
+import java.util.HashSet;
+import java.util.Iterator;
 import java.util.Random;
+import java.util.Set;
 
 import org.testframe.annotations.warnings.CustomWarning;
 import org.testframe.annotations.warnings.NarrowingConversionWarning;
@@ -200,9 +203,7 @@ public class MockAnnotationsProvider {
         };
     }
     
-    // TODO: Write tests for this
-    static Annotation chooseAnnotation() {
-        int index = RANDOM.nextInt(NUMBER_OF_AVAILABLE_ANNOTATION_TYPES);
+    private static Annotation giveAnnotationByIndex(int index) {
         switch (index) {
             case 0:
                 return makeCustomWarning();
@@ -225,32 +226,28 @@ public class MockAnnotationsProvider {
         }
     }
     
-    // TODO: Write tests for this
+    static Annotation chooseAnnotation() {
+        int index = RANDOM.nextInt(NUMBER_OF_AVAILABLE_ANNOTATION_TYPES);
+        return giveAnnotationByIndex(index);
+    }
+    
     public static Annotation[] chooseAnnotations(int len) {
         if (len < 0 || len > NUMBER_OF_AVAILABLE_ANNOTATION_TYPES) {
             String excMsg = "Length " + len + " is not valid";
             throw new NegativeArraySizeException(excMsg);
         }
+        int stop = len;
+        Set<Integer> indices = new HashSet<>(len);
+        while (indices.size() < stop) {
+            indices.add(RANDOM.nextInt(NUMBER_OF_AVAILABLE_ANNOTATION_TYPES));
+        }
         Annotation[] array = new Annotation[len];
-        switch (len) {
-            case 9:
-                array[8] = makeUntestedWarning();
-            case 8:
-                array[7] = makeSuppressWarningsAnnotation();
-            case 7:
-                array[6] = makeSafeVarargsAnnotation();
-            case 6:
-                array[5] = makeOverrideAnnotation();
-            case 5:
-                array[4] = makeNarrowingWarning();
-            case 4:
-                array[3] = makeMockAnnotation();
-            case 3:
-                array[2] = makeFunctionalInterfaceAnnotation();
-            case 2:
-                array[1] = makeDeprecatedWarning();
-            default:
-                array[0] = makeCustomWarning();
+        Iterator<Integer> iterator = indices.iterator();
+        int count = 0;
+        while (iterator.hasNext()) {
+            int index = iterator.next();
+            array[count] = giveAnnotationByIndex(index);
+            count++;
         }
         return array;
     }
