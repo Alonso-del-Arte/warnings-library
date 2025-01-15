@@ -286,7 +286,7 @@ public class MockAnnotationsProviderTest {
                     = MockAnnotationsProvider.chooseAnnotations(badLen);
             System.out.println(msg + ", not given result " 
                     + Arrays.toString(badResult));
-        }, NegativeArraySizeException.class, msg);
+        }, IllegalArgumentException.class, msg);
         String excMsg = t.getMessage();
         assert excMsg != null : "Exception message should not be null";
         assert !excMsg.isEmpty() : "Exception message should not be empty";
