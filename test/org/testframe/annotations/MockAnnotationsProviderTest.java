@@ -189,6 +189,18 @@ public class MockAnnotationsProviderTest {
     }
     
     @Test
+    public void testChooseAnnotationsGivesArrayOfSpecifiedLength() {
+        for (int expected = 1; 
+                expected < MockAnnotationsProvider
+                .NUMBER_OF_AVAILABLE_ANNOTATION_TYPES; expected++) {
+            Annotation[] annotations 
+                    = MockAnnotationsProvider.chooseAnnotations(expected);
+            int actual = annotations.length;
+            assertEquals(expected, actual);
+        }
+    }
+    
+    @Test
     public void testChooseAnnotations() {
         System.out.println("chooseAnnotations");
         Set<Class<? extends Annotation>> expected = new HashSet<>();
