@@ -205,4 +205,25 @@ public class MockAnnotationsProviderTest {
         System.out.println("\"" + excMsg + "\"");
     }
     
+    @Test
+    public void testChooseAnnotationsRejectsExcessiveSize() {
+        int badLen 
+                = MockAnnotationsProvider.NUMBER_OF_AVAILABLE_ANNOTATION_TYPES 
+                + RANDOM.nextInt(128) + 1;
+        String msg = "Bad length parameter " + badLen 
+                + " which is greater than NUMBER_OF_AVAILABLE_ANNOTATION_TYPES " 
+                + MockAnnotationsProvider.NUMBER_OF_AVAILABLE_ANNOTATION_TYPES
+                + " should cause an exception";
+        Throwable t = assertThrows(() -> {
+            Annotation[] badResult 
+                    = MockAnnotationsProvider.chooseAnnotations(badLen);
+            System.out.println(msg + ", not given result " 
+                    + Arrays.toString(badResult));
+        }, NegativeArraySizeException.class, msg);
+        String excMsg = t.getMessage();
+        assert excMsg != null : "Exception message should not be null";
+        assert !excMsg.isEmpty() : "Exception message should not be empty";
+        System.out.println("\"" + excMsg + "\"");
+    }
+    
 }
