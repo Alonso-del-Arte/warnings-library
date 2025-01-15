@@ -211,6 +211,28 @@ public class MockAnnotationsProviderTest {
     }
     
     @Test
+    public void testChooseAnnotationsRandomlyEnough() {
+        int sampleLength = RANDOM.nextInt(MockAnnotationsProvider
+                .NUMBER_OF_AVAILABLE_ANNOTATION_TYPES - 1) + 1;
+        Class<? extends Annotation>[] example 
+                = annotationTypes(MockAnnotationsProvider
+                        .chooseAnnotations(sampleLength));
+        int numberOfAttempts = sampleLength * sampleLength;
+        boolean diffComboFound = false;
+        String msg = "Asking for " + sampleLength 
+                + " annotations should not always give " 
+                + Arrays.toString(example);
+        for (int i = 0; i < numberOfAttempts; i++) {
+            Class<? extends Annotation>[] assortment 
+                    = annotationTypes(MockAnnotationsProvider
+                            .chooseAnnotations(sampleLength));
+            diffComboFound = diffComboFound 
+                    || !Arrays.equals(example, assortment);
+        }
+        assert diffComboFound : msg;
+    }
+    
+    @Test
     public void testChooseAnnotations() {
         System.out.println("chooseAnnotations");
         Set<Class<? extends Annotation>> expected = new HashSet<>();
