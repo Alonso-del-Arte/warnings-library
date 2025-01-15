@@ -200,6 +200,16 @@ public class MockAnnotationsProviderTest {
         }
     }
     
+    private static Class<? extends Annotation>[] 
+            annotationTypes(Annotation[] annotations) {
+        int len = annotations.length;
+        Class<? extends Annotation>[] array = new Class[len];
+        for (int i = 0; i < len; i++) {
+            array[i] = annotations[i].annotationType();
+        }
+        return array;
+    }
+    
     @Test
     public void testChooseAnnotations() {
         System.out.println("chooseAnnotations");
