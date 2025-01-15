@@ -232,9 +232,16 @@ public class MockAnnotationsProvider {
     }
     
     public static Annotation[] chooseAnnotations(int len) {
-        if (len < 0 || len > NUMBER_OF_AVAILABLE_ANNOTATION_TYPES) {
-            String excMsg = "Length " + len + " is not valid";
+        if (len < 0) {
+            String excMsg = "Length " + len 
+                    + " is not valid, should be positive";
             throw new NegativeArraySizeException(excMsg);
+        }
+        if (len > NUMBER_OF_AVAILABLE_ANNOTATION_TYPES) {
+            String excMsg = "Length " + len 
+                    + " is not valid, as it is greater than maximum " 
+                    + NUMBER_OF_AVAILABLE_ANNOTATION_TYPES;
+            throw new IllegalArgumentException(excMsg);
         }
         Set<Integer> indices = new HashSet<>(len);
         while (indices.size() < len) {
