@@ -18,6 +18,7 @@ package org.testframe.model;
 
 import java.lang.annotation.Annotation;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Set;
 
@@ -105,6 +106,22 @@ public class MockElement implements Element {
     public <A extends Annotation> A[] 
             getAnnotationsByType(Class<A> annotationType) {
         throw new UnsupportedOperationException("FOR TESTING PURPOSES");
+    }
+    
+    public static Class<? extends Annotation>[] 
+            annotationTypes(Annotation[] annotations) {
+        int len = annotations.length;
+        Class<? extends Annotation>[] array = new Class[len];
+        for (int i = 0; i < len; i++) {
+            array[i] = annotations[i].annotationType();
+        }
+        return array;
+    }
+            
+    @Override
+    public String toString() {
+        return "Mock element annotated with " 
+                + Arrays.toString(annotationTypes(this.heldAnnotations));
     }
     
     /**
