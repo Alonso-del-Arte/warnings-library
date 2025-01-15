@@ -189,6 +189,29 @@ public class MockAnnotationsProviderTest {
     }
     
     @Test
+    public void testChooseAnnotations() {
+        System.out.println("chooseAnnotations");
+        Set<Class<? extends Annotation>> expected = new HashSet<>();
+        expected.add(CustomWarning.class);
+        expected.add(Deprecated.class);
+        expected.add(FunctionalInterface.class);
+        expected.add(MockAnnotation.class);
+        expected.add(NarrowingConversionWarning.class);
+        expected.add(Override.class);
+        expected.add(SafeVarargs.class);
+        expected.add(SuppressWarnings.class);
+        expected.add(Untested.class);
+        Set<Class<? extends Annotation>> actual = new HashSet<>();
+        Annotation[] annotations = MockAnnotationsProvider
+                .chooseAnnotations(MockAnnotationsProvider
+                        .NUMBER_OF_AVAILABLE_ANNOTATION_TYPES);
+        for (Annotation annotation : annotations) {
+            actual.add(annotation.annotationType());
+        }
+        assertContainsSame(expected, actual);
+    }
+    
+    @Test
     public void testChooseAnnotationsRejectsNegativeSize() {
         int badLen = RANDOM.nextInt() | Integer.MIN_VALUE;
         String msg = "Bad length parameter " + badLen 
