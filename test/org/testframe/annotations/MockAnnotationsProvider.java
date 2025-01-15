@@ -231,17 +231,27 @@ public class MockAnnotationsProvider {
             String excMsg = "Length " + len + " is not valid";
             throw new NegativeArraySizeException(excMsg);
         }
-        Annotation[] array 
-                = new Annotation[NUMBER_OF_AVAILABLE_ANNOTATION_TYPES];
-        array[8] = makeUntestedWarning();
-        array[7] = makeSuppressWarningsAnnotation();
-        array[6] = makeSafeVarargsAnnotation();
-        array[5] = makeOverrideAnnotation();
-        array[4] = makeNarrowingWarning();
-        array[3] = makeMockAnnotation();
-        array[2] = makeFunctionalInterfaceAnnotation();
-        array[1] = makeDeprecatedWarning();
-        array[0] = makeCustomWarning();
+        Annotation[] array = new Annotation[len];
+        switch (len) {
+            case 9:
+                array[8] = makeUntestedWarning();
+            case 8:
+                array[7] = makeSuppressWarningsAnnotation();
+            case 7:
+                array[6] = makeSafeVarargsAnnotation();
+            case 6:
+                array[5] = makeOverrideAnnotation();
+            case 5:
+                array[4] = makeNarrowingWarning();
+            case 4:
+                array[3] = makeMockAnnotation();
+            case 3:
+                array[2] = makeFunctionalInterfaceAnnotation();
+            case 2:
+                array[1] = makeDeprecatedWarning();
+            default:
+                array[0] = makeCustomWarning();
+        }
         return array;
     }
     
