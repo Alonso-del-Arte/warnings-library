@@ -200,7 +200,7 @@ public class MockAnnotationsProviderTest {
         }
     }
     
-    private static Class<? extends Annotation>[] 
+    public static Class<? extends Annotation>[] 
             annotationTypes(Annotation[] annotations) {
         int len = annotations.length;
         Class<? extends Annotation>[] array = new Class[len];
