@@ -236,9 +236,8 @@ public class MockAnnotationsProvider {
             String excMsg = "Length " + len + " is not valid";
             throw new NegativeArraySizeException(excMsg);
         }
-        int stop = len;
         Set<Integer> indices = new HashSet<>(len);
-        while (indices.size() < stop) {
+        while (indices.size() < len) {
             indices.add(RANDOM.nextInt(NUMBER_OF_AVAILABLE_ANNOTATION_TYPES));
         }
         Annotation[] array = new Annotation[len];
