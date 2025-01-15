@@ -227,7 +227,7 @@ public class MockAnnotationsProvider {
     
     // TODO: Write tests for this
     public static Annotation[] chooseAnnotations(int len) {
-        if (len < 0) {
+        if (len < 0 || len > NUMBER_OF_AVAILABLE_ANNOTATION_TYPES) {
             String excMsg = "Length " + len + " is not valid";
             throw new NegativeArraySizeException(excMsg);
         }
