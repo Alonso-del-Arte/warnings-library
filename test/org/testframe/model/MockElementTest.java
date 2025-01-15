@@ -17,6 +17,7 @@
 package org.testframe.model;
 
 import java.lang.annotation.Annotation;
+import java.util.Arrays;
 import java.util.Random;
 
 import javax.lang.model.element.Element;
@@ -26,6 +27,7 @@ import static org.junit.Assert.*;
 
 import org.testframe.annotations.MockAnnotation;
 import org.testframe.annotations.MockAnnotationsProvider;
+import org.testframe.annotations.MockAnnotationsProviderTest;
 import static org.testframe.api.Asserters.assertDoesNotThrow;
 
 /**
@@ -35,6 +37,22 @@ import static org.testframe.api.Asserters.assertDoesNotThrow;
 public class MockElementTest {
     
     static final Random RANDOM = new Random();
+    
+    @Test
+    public void testToString() {
+        System.out.println("toString");
+        int len = RANDOM.nextInt(MockAnnotationsProvider
+                .NUMBER_OF_AVAILABLE_ANNOTATION_TYPES);
+        Annotation[] annotations 
+                = MockAnnotationsProvider.chooseAnnotations(len);
+        MockElement instance = new MockElement(annotations);
+        Class<? extends Annotation>[] types 
+                = MockAnnotationsProviderTest.annotationTypes(annotations);
+        String expected = "Mock element annotated with " 
+                + Arrays.toString(types);
+        String actual = instance.toString();
+        assertEquals(expected, actual);
+    }
     
     @Test
     public void testGetAnnotation() {
