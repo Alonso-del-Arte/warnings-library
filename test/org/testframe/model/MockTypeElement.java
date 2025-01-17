@@ -70,4 +70,9 @@ public class MockTypeElement extends MockElement implements TypeElement {
         this.name = type.getName();
     }
     
+    public MockTypeElement(Class<?> type, Annotation[] annotations) {
+        super(annotations);
+        this.name = type.getName();
+    }
+    
 }
