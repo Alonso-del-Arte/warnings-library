@@ -19,9 +19,11 @@ package org.testframe.annotations.processors;
 import java.lang.annotation.Annotation;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 import javax.annotation.processing.RoundEnvironment;
 import javax.lang.model.element.Element;
+import javax.lang.model.element.TypeElement;
 
 import org.junit.Test;
 import static org.junit.Assert.*;
@@ -33,6 +35,7 @@ import org.testframe.annotations.warnings.CustomWarning;
 import org.testframe.annotations.warnings.NarrowingConversionWarning;
 import org.testframe.annotations.warnings.Untested;
 import org.testframe.model.MockElement;
+import org.testframe.model.MockTypeElement;
 
 /**
  * Tests of the MockRoundEnv class.
@@ -113,17 +116,43 @@ public class MockRoundEnvTest {
         int capacity = RANDOM.nextInt(16) + 4;
         Set<Element> set = new HashSet<>();
         for (int i = 0; i < capacity; i++) {
-            Annotation[] annotations = makeAnnotations(i);
+            Annotation[] annotations 
+                    = MockAnnotationsProvider.chooseAnnotations(RANDOM
+                            .nextInt(MockAnnotationsProvider
+                                    .NUMBER_OF_AVAILABLE_ANNOTATION_TYPES));
             Element element = new MockElement(annotations);
             set.add(element);
         }
         return set;
     }
     
+    private static <A extends Annotation> Set<Element> 
+            pickOutFrom(Set<Element> elems, Class<A> annotationType) {
+        return elems.stream().filter(
+                elem -> elem.getAnnotation(annotationType) != null
+        ).collect(Collectors.toSet());
+    }
+    
     @Test
     public void testGetElementsAnnotatedWith() {
         System.out.println("getElementsAnnotatedWith");
-        fail("FINISH WRITING THIS TEST");
+        Set<Element> elements = makeElemSet();
+        RoundEnvironment instance = new MockRoundEnv(elements);
+        Set<Class<? extends Annotation>> annotationTypes = new HashSet<>(4);
+        annotationTypes.add(CustomWarning.class);
+        annotationTypes.add(MockAnnotation.class);
+        annotationTypes.add(NarrowingConversionWarning.class);
+        annotationTypes.add(Untested.class);
+        annotationTypes.forEach((annotationType) -> {
+            Set<? extends Element> expected 
+                    = pickOutFrom(elements, annotationType);
+            TypeElement typeElem = new MockTypeElement(annotationType);
+            Set<? extends Element> actual 
+                    = instance.getElementsAnnotatedWith(typeElem);
+            String message = "Gathering elements annotated with " 
+                    + annotationType.getName();
+            assertEquals(message, expected, actual);
+        });
     }
     
 }
