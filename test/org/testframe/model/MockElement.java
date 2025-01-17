@@ -36,7 +36,7 @@ import javax.lang.model.type.TypeMirror;
  */
 public class MockElement implements Element {
     
-    private final Annotation[] heldAnnotations;
+    final Annotation[] heldAnnotations;
     
     @org.testframe.annotations.warnings.Untested
     @Override
