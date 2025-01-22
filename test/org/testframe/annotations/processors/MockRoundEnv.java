@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2024 Alonso del Arte
+ * Copyright (C) 2025 Alonso del Arte
  *
  * This program is free software: you can redistribute it and/or modify it under 
  * the terms of the GNU General Public License as published by the Free Software 
@@ -19,6 +19,7 @@ package org.testframe.annotations.processors;
 import java.lang.annotation.Annotation;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 import javax.annotation.processing.RoundEnvironment;
 import javax.lang.model.element.Element;
@@ -59,17 +60,19 @@ public class MockRoundEnv implements RoundEnvironment {
         return this.rootElems;
     }
 
-    // TODO: Write tests for this
-    @org.testframe.annotations.warnings.Untested
     @Override
-    public Set<? extends Element> getElementsAnnotatedWith(TypeElement a) {
-        return new HashSet<>();
+    public Set<? extends Element> getElementsAnnotatedWith(TypeElement elem) {
+        String qualName = elem.getQualifiedName().toString();
+        return this.rootElems.stream().filter((e) -> 
+            e.toString().contains(qualName)
+        ).collect(Collectors.toSet());
     }
 
     // TODO: Write tests for this
+    @org.testframe.annotations.warnings.Untested
     @Override
     public Set<? extends Element> getElementsAnnotatedWith(Class<? 
-            extends Annotation> a) {
+            extends Annotation> ann) {
         return new HashSet<>();
     }
     
