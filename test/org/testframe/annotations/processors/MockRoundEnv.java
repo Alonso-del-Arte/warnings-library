@@ -37,6 +37,8 @@ public class MockRoundEnv implements RoundEnvironment {
     
     private final Set<? extends Element> rootElems;
     
+    private int callCount = 0;
+    
     void raiseError() {
         this.hasErrors = true;
     }
@@ -46,7 +48,7 @@ public class MockRoundEnv implements RoundEnvironment {
     }
     
     public int overriddenCallCount() {
-        return 0;
+        return this.callCount;
     }
 
     @Override
@@ -61,11 +63,13 @@ public class MockRoundEnv implements RoundEnvironment {
 
     @Override
     public Set<? extends Element> getRootElements() {
+        this.callCount++;
         return this.rootElems;
     }
 
     @Override
     public Set<? extends Element> getElementsAnnotatedWith(TypeElement elem) {
+        this.callCount++;
         String qualName = elem.getQualifiedName().toString();
         return this.rootElems.stream().filter((e) -> 
             e.toString().contains(qualName)
@@ -77,6 +81,7 @@ public class MockRoundEnv implements RoundEnvironment {
     @Override
     public Set<? extends Element> getElementsAnnotatedWith(Class<? 
             extends Annotation> ann) {
+        this.callCount++;
         return new HashSet<>();
     }
     
