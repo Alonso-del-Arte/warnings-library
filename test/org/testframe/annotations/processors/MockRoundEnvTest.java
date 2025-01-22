@@ -96,7 +96,7 @@ public class MockRoundEnvTest {
         assertEquals(expected, actual);
     }
     
-    private static Set<Element> makeElemSet() {
+    static Set<Element> makeElemSet() {
         int capacity = RANDOM.nextInt(16) + 4;
         Set<Element> set = new HashSet<>();
         for (int i = 0; i < capacity; i++) {
