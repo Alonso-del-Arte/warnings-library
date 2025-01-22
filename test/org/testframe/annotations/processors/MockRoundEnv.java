@@ -44,6 +44,11 @@ public class MockRoundEnv implements RoundEnvironment {
     void endProcessing() {
         this.processingDone = true;
     }
+    
+    // TODO: Write tests for this
+    public int overriddenCallCount() {
+        return -1;
+    }
 
     @Override
     public boolean processingOver() {
