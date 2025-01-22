@@ -96,22 +96,6 @@ public class MockRoundEnvTest {
         assertEquals(expected, actual);
     }
     
-    private static Annotation[] makeAnnotations(int i) {
-        int mod = (RANDOM.nextInt(Short.MAX_VALUE) + i) % 4;
-        Annotation[] array = new Annotation[mod + 1];
-        switch (mod) {
-            case 3:
-                array[3] = MockAnnotationsProvider.makeMockAnnotation();
-            case 2:
-                array[2] = MockAnnotationsProvider.makeUntestedWarning();
-            case 1:
-                array[1] = MockAnnotationsProvider.makeNarrowingWarning();
-            default:
-                array[0] = MockAnnotationsProvider.makeCustomWarning();
-        }
-        return array;
-    }
-    
     private static Set<Element> makeElemSet() {
         int capacity = RANDOM.nextInt(16) + 4;
         Set<Element> set = new HashSet<>();
@@ -153,6 +137,19 @@ public class MockRoundEnvTest {
                     + annotationType.getName();
             assertEquals(message, expected, actual);
         });
+    }
+    
+    @Test
+    public void testOverriddenCallCountZeroAtFirst() {
+        Set<Element> elements = makeElemSet();
+        String message = "Overridden call count should be 0 at first";
+        MockRoundEnv instance = new MockRoundEnv(elements);
+        assertEquals(message, 0, instance.overriddenCallCount());
+    }
+    
+    public void testOverriddenCallCount() {
+        System.out.println("overriddenCallCount");
+        fail("RESUME WORK HERE");
     }
     
 }
