@@ -47,7 +47,16 @@ public class MockRoundEnv implements RoundEnvironment {
         this.processingDone = true;
     }
     
-    public int overriddenCallCount() {
+    /**
+     * Tallies up the number of times overridden functions that don't return 
+     * Booleans have been called. Any call to {@link 
+     * #getElementsAnnotatedWith(java.lang.Class)}, {@link 
+     * #getElementsAnnotatedWith(javax.lang.model.element.TypeElement)} or 
+     * {@link #getRootElements()} will increase this count.
+     * @return 0 in the case of a fresh instance, 1 or more for an instance in 
+     * which any of the specified functions have been called at least once.
+     */
+    int overriddenCallCount() {
         return this.callCount;
     }
 
