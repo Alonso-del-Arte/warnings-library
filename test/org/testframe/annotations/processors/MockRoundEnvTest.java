@@ -147,9 +147,40 @@ public class MockRoundEnvTest {
         assertEquals(message, 0, instance.overriddenCallCount());
     }
     
+    private static Runnable makeMockRoundEnvCall(MockRoundEnv roundEnv) {
+        int selector = RANDOM.nextInt(Short.MAX_VALUE) % 3;
+        switch (selector) {
+            case 0:
+                return () -> {
+                    roundEnv.getRootElements();
+                };
+            case 1:
+                return () -> {
+                    TypeElement elem = new MockTypeElement(roundEnv.getClass());
+                    roundEnv.getElementsAnnotatedWith(elem);
+                };
+            default:
+                return () -> {
+                    Class<? extends Annotation> ann 
+                            = MockAnnotationsProvider.chooseAnnotations(3)[0]
+                                    .getClass();
+                    roundEnv.getElementsAnnotatedWith(ann);
+                };
+        }
+    }
+    
+    @Test
     public void testOverriddenCallCount() {
         System.out.println("overriddenCallCount");
-        fail("RESUME WORK HERE");
+        Set<Element> elements = makeElemSet();
+        MockRoundEnv instance = new MockRoundEnv(elements);
+        int numberOfCalls = RANDOM.nextInt(8) + 2;
+        String message = "Number of times instance has been called so far";
+        for (int expected = 1; expected <= numberOfCalls; expected++) {
+            makeMockRoundEnvCall(instance).run();
+            int actual = instance.overriddenCallCount();
+            assertEquals(message, expected, actual);
+        }
     }
     
 }
