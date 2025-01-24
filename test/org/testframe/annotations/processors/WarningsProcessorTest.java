@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2024 Alonso del Arte
+ * Copyright (C) 2025 Alonso del Arte
  *
  * This program is free software: you can redistribute it and/or modify it under 
  * the terms of the GNU General Public License as published by the Free Software 
@@ -21,10 +21,12 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
 import javax.annotation.processing.AbstractProcessor;
+import javax.annotation.processing.Messager;
 import javax.annotation.processing.ProcessingEnvironment;
 import javax.annotation.processing.RoundEnvironment;
 import javax.annotation.processing.SupportedAnnotationTypes;
@@ -35,7 +37,13 @@ import javax.tools.Diagnostic.Kind;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
+import org.testframe.annotations.MockAnnotation;
+import org.testframe.annotations.MockAnnotationsProvider;
+import static org.testframe.annotations.processors.MessageRecordTest.RANDOM;
+import org.testframe.annotations.warnings.CustomWarning;
 import static org.testframe.api.Asserters.assertContainsSame;
+import org.testframe.model.MockElement;
+import org.testframe.model.MockTypeElement;
 
 /**
  * Tests of the WarningsProcessor class.
@@ -60,8 +68,31 @@ public class WarningsProcessorTest {
         assertContainsSame(expected, actual);
     }
     
+    private static WarningsProcessor makeInstance() {
+        Messager messager = new MockMessager();
+        ProcessingEnvironment env = new MockProcEnv(messager);
+        WarningsProcessor processor = new WarningsProcessor();
+        processor.init(env);
+        return processor;
+    }
+    
+    @Test
+    public void testNoProcessingIfRoundOver() {
+        Set<Element> elements = MockRoundEnvTest.makeElemSet();
+        MockRoundEnv roundEnv = new MockRoundEnv(elements);
+        roundEnv.endProcessing();
+        Set<TypeElement> set = new HashSet<>();
+        set.add(new MockTypeElement(CustomWarning.class));
+        WarningsProcessor instance = new WarningsProcessor();
+        Messager messager = new MockMessager();
+        instance.init(new MockProcEnv(messager));
+        instance.process(set, roundEnv);
+        String msg = "With round over, there should be no calls to roundEnv";
+        assertEquals(msg, 0, roundEnv.overriddenCallCount());
+    }
+    
     /**
-     * Test of process method, of class WarningsProcessor.
+     * Test of the process function, of the WarningsProcessor class.
      */
     @Test
     public void testProcess() {
@@ -74,6 +105,17 @@ public class WarningsProcessorTest {
 //        assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
+    }
+    
+    public void testProcessCustomWarning() {
+        CustomWarning warning = MockAnnotationsProvider.makeCustomWarning();
+        String expected = warning.value();
+        Annotation[] annotations = {warning};
+        Element element = new MockElement(annotations);
+        Set<Element> elemSet = new HashSet<>();
+        elemSet.add(element);
+        RoundEnvironment roundEnv = new MockRoundEnv(elemSet);
+        fail("RESUME WORK HERE");
     }
     
 }
