@@ -41,6 +41,8 @@ import org.testframe.annotations.MockAnnotation;
 import org.testframe.annotations.MockAnnotationsProvider;
 import static org.testframe.annotations.processors.MessageRecordTest.RANDOM;
 import org.testframe.annotations.warnings.CustomWarning;
+import org.testframe.annotations.warnings.NarrowingConversionWarning;
+import org.testframe.annotations.warnings.Untested;
 import static org.testframe.api.Asserters.assertContainsSame;
 import org.testframe.model.MockElement;
 import org.testframe.model.MockTypeElement;
@@ -78,17 +80,23 @@ public class WarningsProcessorTest {
     
     @Test
     public void testNoProcessingIfRoundOver() {
+        WarningsProcessor instance = makeInstance();
         Set<Element> elements = MockRoundEnvTest.makeElemSet();
         MockRoundEnv roundEnv = new MockRoundEnv(elements);
         roundEnv.endProcessing();
         Set<TypeElement> set = new HashSet<>();
         set.add(new MockTypeElement(CustomWarning.class));
-        WarningsProcessor instance = new WarningsProcessor();
-        Messager messager = new MockMessager();
-        instance.init(new MockProcEnv(messager));
         instance.process(set, roundEnv);
         String msg = "With round over, there should be no calls to roundEnv";
         assertEquals(msg, 0, roundEnv.overriddenCallCount());
+    }
+    
+    public Set<? extends TypeElement> wrapUpAnnotations() {
+        Set<TypeElement> set = new HashSet<>();
+        set.add(new MockTypeElement(CustomWarning.class));
+        set.add(new MockTypeElement(NarrowingConversionWarning.class));
+        set.add(new MockTypeElement(Untested.class));
+        return set;
     }
     
     /**
@@ -97,14 +105,13 @@ public class WarningsProcessorTest {
     @Test
     public void testProcess() {
         System.out.println("process");
-//        Set<? extends TypeElement> annotations = null;
-//        RoundEnvironment roundEnv = null;
-//        WarningsProcessor instance = new WarningsProcessor();
-//        boolean expResult = false;
-//        boolean result = instance.process(annotations, roundEnv);
-//        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        WarningsProcessor instance = makeInstance();
+        Set<Element> elements = MockRoundEnvTest.makeElemSet();
+        MockRoundEnv roundEnv = new MockRoundEnv(elements);
+        Set<? extends TypeElement> annotations = wrapUpAnnotations();
+        boolean opResult = instance.process(annotations, roundEnv);
+        String msg = "Annotations should have been processed";
+        assert opResult : msg;
     }
     
     public void testProcessCustomWarning() {
