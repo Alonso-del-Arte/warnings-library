@@ -114,15 +114,29 @@ public class WarningsProcessorTest {
         assert opResult : msg;
     }
     
+    @Test
     public void testProcessCustomWarning() {
         CustomWarning warning = MockAnnotationsProvider.makeCustomWarning();
         String expected = warning.value();
-        Annotation[] annotations = {warning};
-        Element element = new MockElement(annotations);
+        Annotation[] anns = {warning};
+        Element element = new MockElement(anns);
         Set<Element> elemSet = new HashSet<>();
         elemSet.add(element);
         RoundEnvironment roundEnv = new MockRoundEnv(elemSet);
-        fail("RESUME WORK HERE");
+        TypeElement typeElem = new MockTypeElement(CustomWarning.class);
+        Set<TypeElement> annotations = new HashSet<>();
+        annotations.add(typeElem);
+        WarningsProcessor instance = new WarningsProcessor();
+        MockMessager messager = new MockMessager();
+        ProcessingEnvironment proc = new MockProcEnv(messager);
+        instance.init(proc);
+        instance.process(annotations, roundEnv);
+        MessageRecord record = messager.getLatestMessage();
+        assert record != null : "Latest message should not be null";
+        String kindMsg = "Message should be of type " + Kind.WARNING.toString();
+        assertEquals(kindMsg, Kind.WARNING, record.getDiagnosticKind());
+        CharSequence actual = record.getMessage();
+        assertEquals(expected, actual);
     }
     
 }
