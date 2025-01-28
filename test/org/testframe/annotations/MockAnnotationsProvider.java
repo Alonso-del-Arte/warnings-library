@@ -70,9 +70,11 @@ public class MockAnnotationsProvider {
     public static CustomWarning makeCustomWarning() {
         return new CustomWarning() {
             
+            private final int exampleNumber = RANDOM.nextInt();
+            
             @Override
             public String value() {
-                return "EXAMPLE FOR TESTING PURPOSES " + RANDOM.nextInt();
+                return "EXAMPLE FOR TESTING PURPOSES " + this.exampleNumber;
             }
 
             @Override
