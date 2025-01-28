@@ -80,6 +80,8 @@ public class MockAnnotationsProviderTest {
         assert value != null : "Custom warning value should not be null";
         System.out.println("\"" + value + "\"");
         assertEquals(CustomWarning.class, actual.annotationType());
+        String message = "Value should not change on subsequent call";
+        assertEquals(message, value, actual.value());
     }
     
     @Test
