@@ -17,7 +17,6 @@
 package org.testframe.annotations.processors;
 
 import java.lang.annotation.Annotation;
-import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -39,7 +38,6 @@ import static org.junit.Assert.*;
 
 import org.testframe.annotations.MockAnnotation;
 import org.testframe.annotations.MockAnnotationsProvider;
-import static org.testframe.annotations.processors.MessageRecordTest.RANDOM;
 import org.testframe.annotations.warnings.CustomWarning;
 import org.testframe.annotations.warnings.NarrowingConversionWarning;
 import org.testframe.annotations.warnings.Untested;
@@ -124,6 +122,35 @@ public class WarningsProcessorTest {
         elemSet.add(element);
         RoundEnvironment roundEnv = new MockRoundEnv(elemSet);
         TypeElement typeElem = new MockTypeElement(CustomWarning.class);
+        Set<TypeElement> annotations = new HashSet<>();
+        annotations.add(typeElem);
+        WarningsProcessor instance = new WarningsProcessor();
+        MockMessager messager = new MockMessager();
+        ProcessingEnvironment proc = new MockProcEnv(messager);
+        instance.init(proc);
+        instance.process(annotations, roundEnv);
+        MessageRecord record = messager.getLatestMessage();
+        assert record != null : "Latest message should not be null";
+        String kindMsg = "Message should be of type " + Kind.WARNING.toString();
+        assertEquals(kindMsg, Kind.WARNING, record.getDiagnosticKind());
+        CharSequence actual = record.getMessage();
+        assertEquals(expected, actual);
+    }
+    
+    @Test
+    public void testProcessNarrowingWarning() {
+        NarrowingConversionWarning warning 
+                = MockAnnotationsProvider.makeNarrowingWarning();
+        String expected = "Narrowing conversion from " 
+                + warning.sourceType().getSimpleName() + " to " 
+                + warning.targetType().getSimpleName();
+        Annotation[] anns = {warning};
+        Element element = new MockElement(anns);
+        Set<Element> elemSet = new HashSet<>();
+        elemSet.add(element);
+        RoundEnvironment roundEnv = new MockRoundEnv(elemSet);
+        TypeElement typeElem 
+                = new MockTypeElement(NarrowingConversionWarning.class);
         Set<TypeElement> annotations = new HashSet<>();
         annotations.add(typeElem);
         WarningsProcessor instance = new WarningsProcessor();
