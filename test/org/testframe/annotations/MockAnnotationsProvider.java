@@ -102,16 +102,33 @@ public class MockAnnotationsProvider {
     }
     
     public static NarrowingConversionWarning makeNarrowingWarning() {
+        Class<?> narrow, wide;
+        int selector = RANDOM.nextInt();
+        switch (selector % 3) {
+            case -2:
+            case 1:
+                wide = WideTypeA.class;
+                narrow = NarrowTypeA.class;
+                break;
+            case -1:
+            case 2:
+                wide = WideTypeB.class;
+                narrow = NarrowTypeB.class;
+                break;
+            default:
+                wide = WideType.class;
+                narrow = NarrowType.class;
+        }
         return new NarrowingConversionWarning() {
             
             @Override
             public Class<?> sourceType() {
-                return WideType.class;
+                return wide;
             }
             
             @Override
             public Class<?> targetType() {
-                return NarrowType.class;
+                return narrow;
             }
             
             @Override
