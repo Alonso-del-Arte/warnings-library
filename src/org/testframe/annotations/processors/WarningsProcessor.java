@@ -23,6 +23,7 @@ import javax.annotation.processing.SupportedAnnotationTypes;
 import javax.lang.model.element.TypeElement;
 import javax.tools.Diagnostic.Kind;
 import org.testframe.annotations.warnings.CustomWarning;
+import org.testframe.annotations.warnings.NarrowingConversionWarning;
 
 /**
  * Processes warnings from the {@code org.testframe.warnings} package.
@@ -33,8 +34,7 @@ import org.testframe.annotations.warnings.CustomWarning;
     "org.testframe.warnings.Untested"})
 public class WarningsProcessor extends AbstractProcessor {
     
-    // TODO: Write tests for this
-    @org.testframe.annotations.warnings.Untested
+    // TODO: Write test multiple annotations on one element are acknowledged
     @Override
     public boolean process(Set<? extends TypeElement> annotations, 
             RoundEnvironment roundEnv) {
@@ -49,6 +49,18 @@ public class WarningsProcessor extends AbstractProcessor {
                         String msg = custom.value();
                         this.processingEnv.getMessager()
                                 .printMessage(Kind.WARNING, msg, element);
+                    } else {
+                        NarrowingConversionWarning narrowing = element
+                                .getAnnotation(NarrowingConversionWarning
+                                        .class);
+                        if (narrowing != null) {
+                            String msg = "Narrowing conversion from " 
+                                    + narrowing.sourceType().getSimpleName() 
+                                    + " to " + narrowing.targetType()
+                                            .getSimpleName();
+                            this.processingEnv.getMessager()
+                                    .printMessage(Kind.WARNING, msg, element);
+                        }
                     }
                 });
             });
