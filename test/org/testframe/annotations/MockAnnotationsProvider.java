@@ -281,4 +281,36 @@ public class MockAnnotationsProvider {
         
     }
     
+    public static class NarrowTypeA {
+        
+        private NarrowTypeA() {
+            //
+        }
+        
+    }
+    
+    public static class WideTypeA {
+        
+        private WideTypeA() {
+            //
+        }
+        
+    }
+    
+    public static class NarrowTypeB {
+        
+        private NarrowTypeB() {
+            //
+        }
+        
+    }
+    
+    public static class WideTypeB {
+        
+        private WideTypeB() {
+            //
+        }
+        
+    }
+    
 }
