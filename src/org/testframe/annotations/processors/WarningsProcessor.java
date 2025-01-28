@@ -18,12 +18,11 @@ package org.testframe.annotations.processors;
 
 import java.util.Set;
 import javax.annotation.processing.AbstractProcessor;
-import javax.annotation.processing.ProcessingEnvironment;
 import javax.annotation.processing.RoundEnvironment;
 import javax.annotation.processing.SupportedAnnotationTypes;
-import javax.lang.model.element.Element;
 import javax.lang.model.element.TypeElement;
 import javax.tools.Diagnostic.Kind;
+import org.testframe.annotations.warnings.CustomWarning;
 
 /**
  * Processes warnings from the {@code org.testframe.warnings} package.
@@ -44,10 +43,13 @@ public class WarningsProcessor extends AbstractProcessor {
                     -> roundEnv.getElementsAnnotatedWith(typeElem))
                     .forEachOrdered((elements) -> {
                 elements.forEach((element) -> {
-                    this.processingEnv.getMessager().printMessage(Kind.NOTE,
-                            String.format("%s : HAVEN'T WRITTEN TESTS YET %s",
-                                    roundEnv.getRootElements(), element), 
-                            element);
+                    CustomWarning custom 
+                            = element.getAnnotation(CustomWarning.class);
+                    if (custom != null) {
+                        String msg = custom.value();
+                        this.processingEnv.getMessager()
+                                .printMessage(Kind.WARNING, msg, element);
+                    }
                 });
             });
         }
