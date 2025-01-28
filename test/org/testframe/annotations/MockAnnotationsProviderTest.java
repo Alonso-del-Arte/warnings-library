@@ -98,14 +98,26 @@ public class MockAnnotationsProviderTest {
     @Test
     public void testMakeNarrowingWarning() {
         System.out.println("makeNarrowingWarning");
-        NarrowingConversionWarning actual 
-                = MockAnnotationsProvider.makeNarrowingWarning();
-        assert actual != null : "Returned object should not be null";
-        assertEquals("Querying source type", 
-                MockAnnotationsProvider.WideType.class, actual.sourceType());
-        assertEquals("Querying target type", 
-                MockAnnotationsProvider.NarrowType.class, actual.targetType());
-        assertEquals(NarrowingConversionWarning.class, actual.annotationType());
+        Set<Class<?>> expectedWides = new HashSet<>();
+        expectedWides.add(MockAnnotationsProvider.WideType.class);
+        expectedWides.add(MockAnnotationsProvider.WideTypeA.class);
+        expectedWides.add(MockAnnotationsProvider.WideTypeB.class);
+        Set<Class<?>> expectedNarrows = new HashSet<>();
+        expectedNarrows.add(MockAnnotationsProvider.NarrowType.class);
+        expectedNarrows.add(MockAnnotationsProvider.NarrowTypeA.class);
+        expectedNarrows.add(MockAnnotationsProvider.NarrowTypeB.class);
+        int numberOfCalls = 4 * expectedWides.size() * expectedNarrows.size();
+        Set<Class<?>> actualWides = new HashSet<>();
+        Set<Class<?>> actualNarrows = new HashSet<>();
+        for (int i = 0; i < numberOfCalls; i++) {
+            NarrowingConversionWarning instance 
+                    = MockAnnotationsProvider.makeNarrowingWarning();
+            assert instance != null : "Returned object should not be null";
+            actualWides.add(instance.sourceType());
+            actualNarrows.add(instance.targetType());
+        }
+        assertEquals(expectedWides, actualWides);
+        assertEquals(expectedNarrows, actualNarrows);
     }
     
     @Test
