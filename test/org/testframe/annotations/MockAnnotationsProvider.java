@@ -122,6 +122,7 @@ public class MockAnnotationsProvider {
         };
     }
     
+    @SuppressWarnings("Convert2Lambda")
     public static Untested makeUntestedWarning() {
         return new Untested() {
             
@@ -133,6 +134,7 @@ public class MockAnnotationsProvider {
         };
     }
     
+    @SuppressWarnings("Convert2Lambda")
     static Deprecated makeDeprecatedWarning() {
         return new Deprecated() {
             
@@ -144,6 +146,7 @@ public class MockAnnotationsProvider {
         };
     }
     
+    @SuppressWarnings("Convert2Lambda")
     static FunctionalInterface makeFunctionalInterfaceAnnotation() {
         return new FunctionalInterface() {
             
@@ -155,6 +158,7 @@ public class MockAnnotationsProvider {
         };
     }
     
+    @SuppressWarnings("Convert2Lambda")
     static Override makeOverrideAnnotation() {
         return new Override() {
             
@@ -166,6 +170,7 @@ public class MockAnnotationsProvider {
         };
     }
     
+    @SuppressWarnings("Convert2Lambda")
     static SafeVarargs makeSafeVarargsAnnotation() {
         return new SafeVarargs() {
             
