@@ -36,7 +36,7 @@ public class MockMessager implements Messager {
     private MessageRecord mostRecentMessage = null;
     
     MessageRecord getLatestMessage() {
-        return this.mostRecentMessage;
+        return null;// this.mostRecentMessage;
     }
     
     // TODO: Write tests for this
