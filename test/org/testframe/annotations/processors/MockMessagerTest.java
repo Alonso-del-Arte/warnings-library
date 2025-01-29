@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2024 Alonso del Arte
+ * Copyright (C) 2025 Alonso del Arte
  *
  * This program is free software: you can redistribute it and/or modify it under 
  * the terms of the GNU General Public License as published by the Free Software 
@@ -56,6 +56,7 @@ public class MockMessagerTest {
         MockMessager messager = new MockMessager();
         messager.printMessage(kind, msg);
         MessageRecord actual = messager.getLatestMessage();
+        assert actual != null : "Latest message should not be null";
         String message = "Printed message \"" + msg + "\" of kind " 
                 + kind.toString();
         assertEquals(message, expected, actual);
@@ -70,6 +71,7 @@ public class MockMessagerTest {
         MockMessager messager = new MockMessager();
         messager.printMessage(kind, msg, elem);
         MessageRecord actual = messager.getLatestMessage();
+        assert actual != null : "Latest message should not be null";
         String message = "Printed message \"" + msg + "\" of kind " 
                 + kind.toString() + " for element " + elem.toString();
         assertEquals(message, expected, actual);
@@ -85,6 +87,7 @@ public class MockMessagerTest {
         MockMessager messager = new MockMessager();
         messager.printMessage(kind, msg, elem, mirror);
         MessageRecord actual = messager.getLatestMessage();
+        assert actual != null : "Latest message should not be null";
         String message = "Printed message \"" + msg + "\" of kind " 
                 + kind.toString() + " for element " + elem.toString() 
                 + " with mirror " + mirror.toString();
@@ -103,6 +106,7 @@ public class MockMessagerTest {
         MockMessager messager = new MockMessager();
         messager.printMessage(kind, msg, elem, mirror, value);
         MessageRecord actual = messager.getLatestMessage();
+        assert actual != null : "Latest message should not be null";
         String message = "Printed message \"" + msg + "\" of kind " 
                 + kind.toString() + " for element " + elem.toString() 
                 + " with mirror " + mirror.toString() + " and value " 
