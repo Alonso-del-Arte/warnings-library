@@ -18,6 +18,7 @@ package org.testframe.annotations.processors;
 
 import java.util.Set;
 import javax.annotation.processing.AbstractProcessor;
+import javax.annotation.processing.Messager;
 import javax.annotation.processing.RoundEnvironment;
 import javax.annotation.processing.SupportedAnnotationTypes;
 import javax.lang.model.element.TypeElement;
@@ -40,6 +41,7 @@ public class WarningsProcessor extends AbstractProcessor {
     public boolean process(Set<? extends TypeElement> annotations, 
             RoundEnvironment roundEnv) {
         if (!roundEnv.processingOver()) {
+            Messager messager = this.processingEnv.getMessager();
             annotations.stream().map((typeElem) 
                     -> roundEnv.getElementsAnnotatedWith(typeElem))
                     .forEachOrdered((elements) -> {
@@ -48,8 +50,7 @@ public class WarningsProcessor extends AbstractProcessor {
                             = element.getAnnotation(CustomWarning.class);
                     if (custom != null) {
                         String msg = custom.value();
-                        this.processingEnv.getMessager()
-                                .printMessage(Kind.WARNING, msg, element);
+                        messager.printMessage(Kind.WARNING, msg, element);
                     } else {
                         NarrowingConversionWarning narrowing = element
                                 .getAnnotation(NarrowingConversionWarning
@@ -59,17 +60,15 @@ public class WarningsProcessor extends AbstractProcessor {
                                     + narrowing.sourceType().getSimpleName() 
                                     + " to " + narrowing.targetType()
                                             .getSimpleName();
-                            this.processingEnv.getMessager()
-                                    .printMessage(Kind.WARNING, msg, element);
+                            messager.printMessage(Kind.WARNING, msg, element);
                         } else {
                             Untested untested 
                                     = element.getAnnotation(Untested.class);
                             if (untested != null) {
                                 String msg 
                                         = "The called function has not been tested";
-                                this.processingEnv.getMessager()
-                                        .printMessage(Kind.WARNING, msg, 
-                                                element);
+                                messager.printMessage(Kind.WARNING, msg, 
+                                        element);
                             }
                         }
                     }
