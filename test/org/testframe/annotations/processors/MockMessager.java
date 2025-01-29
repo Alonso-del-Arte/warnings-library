@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2024 Alonso del Arte
+ * Copyright (C) 2025 Alonso del Arte
  *
  * This program is free software: you can redistribute it and/or modify it under 
  * the terms of the GNU General Public License as published by the Free Software 
@@ -15,6 +15,9 @@
  * this program. If not, see <http://www.gnu.org/licenses/>.
  */
 package org.testframe.annotations.processors;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.annotation.processing.Messager;
 import javax.lang.model.element.AnnotationMirror;
@@ -34,6 +37,12 @@ public class MockMessager implements Messager {
     
     MessageRecord getLatestMessage() {
         return this.mostRecentMessage;
+    }
+    
+    // TODO: Write tests for this
+    List<MessageRecord> getMessages() {
+        List<MessageRecord> list = new ArrayList<>();
+        return list;
     }
 
     @Override
