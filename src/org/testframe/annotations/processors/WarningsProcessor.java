@@ -24,6 +24,7 @@ import javax.lang.model.element.TypeElement;
 import javax.tools.Diagnostic.Kind;
 import org.testframe.annotations.warnings.CustomWarning;
 import org.testframe.annotations.warnings.NarrowingConversionWarning;
+import org.testframe.annotations.warnings.Untested;
 
 /**
  * Processes warnings from the {@code org.testframe.warnings} package.
@@ -60,6 +61,16 @@ public class WarningsProcessor extends AbstractProcessor {
                                             .getSimpleName();
                             this.processingEnv.getMessager()
                                     .printMessage(Kind.WARNING, msg, element);
+                        } else {
+                            Untested untested 
+                                    = element.getAnnotation(Untested.class);
+                            if (untested != null) {
+                                String msg 
+                                        = "The called function has not been tested";
+                                this.processingEnv.getMessager()
+                                        .printMessage(Kind.WARNING, msg, 
+                                                element);
+                            }
                         }
                     }
                 });
