@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2024 Alonso del Arte
+ * Copyright (C) 2025 Alonso del Arte
  *
  * This program is free software: you can redistribute it and/or modify it under 
  * the terms of the GNU General Public License as published by the Free Software 
@@ -35,16 +35,18 @@ public @interface NarrowingConversionWarning {
     /**
      * The source type, which ought to be the wider type. The annotation 
      * processor will not check whether or not this type is in fact wider.
-     * @return The source type. For example, {@code Float128}, a hypothetical 
-     * 128-bit floating point type.
+     * @return The source type. Ideally it has a superclass in common with 
+     * {@link #targetType()} besides {@code java.lang.Object}. For example, 
+     * {@code Float128}, a hypothetical 128-bit floating point type.
      */
     Class<?> sourceType();
     
     /**
      * The target type, which ought to be the narrower type. The annotation 
      * processor will not check whether or not this type is in fact narrower.
-     * @return The target type. For example, {@code Float8}, a hypothetical 
-     * 8-bit floating point type.
+     * @return The target type. Ideally it has a superclass in common with 
+     * {@link #sourceType()} besides {@code java.lang.Object}. For example, 
+     * {@code Float8}, a hypothetical 8-bit floating point type.
      */
     Class<?> targetType();
     
