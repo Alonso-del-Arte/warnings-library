@@ -41,9 +41,8 @@ public class MockMessager implements Messager {
         return this.mostRecentMessage;
     }
     
-    // TODO: Write tests for this
     List<MessageRecord> getMessages() {
-        return this.messages;
+        return new ArrayList<>(this.messages);
     }
 
     @Override
