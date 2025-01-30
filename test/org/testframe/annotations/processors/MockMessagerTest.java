@@ -16,7 +16,6 @@
  */
 package org.testframe.annotations.processors;
 
-import com.sun.javafx.scene.control.skin.VirtualFlow;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -155,6 +154,21 @@ public class MockMessagerTest {
         }
         List<MessageRecord> intermediate = instance.getMessages();
         List<MessageRecord> actual = new ArrayList<>(intermediate);
+        assertEquals(expected, actual);
+    }
+    
+    @Test
+    public void testGetMessagesDoesNotLeakFieldReference() {
+        int numberOfCalls = RANDOM.nextInt(8) + 2;
+        MockMessager instance = new MockMessager();
+        for (int i = 0; i < numberOfCalls; i++) {
+            printRandomMessage(instance);
+        }
+        List<MessageRecord> initial = instance.getMessages();
+        List<MessageRecord> expected = new ArrayList<>(initial);
+        int index = RANDOM.nextInt(numberOfCalls);
+        initial.remove(index);
+        List<MessageRecord> actual = instance.getMessages();
         assertEquals(expected, actual);
     }
     
