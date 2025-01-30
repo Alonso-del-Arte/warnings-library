@@ -16,6 +16,11 @@
  */
 package org.testframe.annotations.processors;
 
+import com.sun.javafx.scene.control.skin.VirtualFlow;
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.annotation.processing.Messager;
 import javax.lang.model.element.AnnotationMirror;
 import javax.lang.model.element.AnnotationValue;
 import javax.lang.model.element.Element;
@@ -112,6 +117,45 @@ public class MockMessagerTest {
                 + " with mirror " + mirror.toString() + " and value " 
                 + value.toString();
         assertEquals(message, expected, actual);
+    }
+    
+    private static void printRandomMessage(Messager messager) {
+        Kind kind = chooseKind();
+        String msg = makeMessageText();
+        int selector = RANDOM.nextInt();
+        switch (selector % 4) {
+            case -3:
+            case 1:
+                messager.printMessage(kind, msg);
+                break;
+            case -2:
+            case 2:
+                messager.printMessage(kind, msg, new MockElement());
+                break;
+            case -1:
+            case 3:
+                messager.printMessage(kind, msg, new MockElement(), 
+                        new MockMirror());
+                break;
+            default:
+                messager.printMessage(kind, msg, new MockElement(), 
+                        new MockMirror(), new MockValue());
+        }
+    }
+    
+    @Test
+    public void testGetMessages() {
+        System.out.println("getMessages");
+        int numberOfCalls = RANDOM.nextInt(16) + 4;
+        List<MessageRecord> expected = new ArrayList<>(numberOfCalls);
+        MockMessager instance = new MockMessager();
+        for (int i = 0; i < numberOfCalls; i++) {
+            printRandomMessage(instance);
+            expected.add(instance.getLatestMessage());
+        }
+        List<MessageRecord> intermediate = instance.getMessages();
+        List<MessageRecord> actual = new ArrayList<>(intermediate);
+        assertEquals(expected, actual);
     }
     
 }
