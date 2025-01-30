@@ -35,14 +35,15 @@ public class MockMessager implements Messager {
     
     private MessageRecord mostRecentMessage = null;
     
+    private final List<MessageRecord> messages = new ArrayList<>();
+    
     MessageRecord getLatestMessage() {
         return this.mostRecentMessage;
     }
     
     // TODO: Write tests for this
     List<MessageRecord> getMessages() {
-        List<MessageRecord> list = new ArrayList<>();
-        return list;
+        return this.messages;
     }
 
     @Override
@@ -67,6 +68,7 @@ public class MockMessager implements Messager {
         MessageRecord record = new MessageRecord(kind, msg, elem, mirror, 
                 value);
         this.mostRecentMessage = record;
+        this.messages.add(this.mostRecentMessage);
     }
     
 }
