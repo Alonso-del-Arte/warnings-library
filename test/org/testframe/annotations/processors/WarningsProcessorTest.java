@@ -32,7 +32,6 @@ import javax.tools.Diagnostic.Kind;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
-import org.testframe.annotations.MockAnnotation;
 import org.testframe.annotations.MockAnnotationsProvider;
 import org.testframe.annotations.warnings.CustomWarning;
 import org.testframe.annotations.warnings.NarrowingConversionWarning;
