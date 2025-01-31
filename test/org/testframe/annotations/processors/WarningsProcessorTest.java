@@ -17,14 +17,10 @@
 package org.testframe.annotations.processors;
 
 import java.lang.annotation.Annotation;
-import java.lang.reflect.Method;
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import javax.annotation.processing.AbstractProcessor;
 import javax.annotation.processing.Messager;
 import javax.annotation.processing.ProcessingEnvironment;
 import javax.annotation.processing.RoundEnvironment;
@@ -189,6 +185,47 @@ public class WarningsProcessorTest {
         assertEquals(kindMsg, Kind.WARNING, record.getDiagnosticKind());
         CharSequence actual = record.getMessage();
         assertEquals(expected, actual);
+    }
+    
+    @Test
+    public void testProcessProcessesMultipleAnnotationsForOneElement() {
+        CustomWarning custom = MockAnnotationsProvider.makeCustomWarning();
+        NarrowingConversionWarning narrowing 
+                = MockAnnotationsProvider.makeNarrowingWarning();
+        Untested untested = MockAnnotationsProvider.makeUntestedWarning();
+        Annotation[] anns = {custom, narrowing, untested};
+        Element element = new MockElement(anns);
+        Set<Element> elemSet = new HashSet<>();
+        elemSet.add(element);
+        RoundEnvironment roundEnv = new MockRoundEnv(elemSet);
+        TypeElement typeElem = new MockTypeElement(CustomWarning.class);
+        Set<TypeElement> annotations = new HashSet<>();
+        annotations.add(typeElem);
+        Set<Kind> expectedKinds = new HashSet<>();
+        expectedKinds.add(Kind.WARNING);
+        String messageFromCustom = custom.value();
+        String messageFromNarrowing = "Narrowing conversion from " 
+                + narrowing.sourceType().getSimpleName() + " to " 
+                + narrowing.targetType().getSimpleName();
+        String messageFromUntested = "The called function has not been tested";
+        Set<CharSequence> expectedMessages = new HashSet<>();
+        expectedMessages.add(messageFromCustom);
+        expectedMessages.add(messageFromNarrowing);
+        expectedMessages.add(messageFromUntested);
+        Set<Kind> actualKinds = new HashSet<>();
+        Set<CharSequence> actualMessages = new HashSet<>();
+        WarningsProcessor instance = new WarningsProcessor();
+        MockMessager messager = new MockMessager();
+        ProcessingEnvironment proc = new MockProcEnv(messager);
+        instance.init(proc);
+        instance.process(annotations, roundEnv);
+        List<MessageRecord> records = messager.getMessages();
+        for (MessageRecord record : records) {
+            actualKinds.add(record.getDiagnosticKind());
+            actualMessages.add(record.getMessage());
+        }
+        assertEquals(expectedKinds, actualKinds);
+        assertEquals(expectedMessages, actualMessages);
     }
     
 }
