@@ -28,7 +28,17 @@ import org.testframe.annotations.warnings.NarrowingConversionWarning;
 import org.testframe.annotations.warnings.Untested;
 
 /**
- * Processes warnings from the {@code org.testframe.warnings} package.
+ * Processes warnings from the {@code org.testframe.warnings} package. The 
+ * following annotations are processed:
+ * <ul>
+ * <li>{@link CustomWarning} &mdash; Gives a custom message provided through the 
+ * annotation.</li>
+ * <li>{@link NarrowingConversionWarning} &mdash; Gives a message warning of a 
+ * narrowing conversion from a specified wide type to a specified narrow 
+ * type.</li>
+ * <li>{@link Untested} &mdash; Gives the message "The called function has not 
+ * been tested".</li>
+ * </ul>
  * @author Alonso del Arte
  */
 @SupportedAnnotationTypes({"org.testframe.warnings.CustomWarning", 
@@ -36,7 +46,15 @@ import org.testframe.annotations.warnings.Untested;
     "org.testframe.warnings.Untested"})
 public class WarningsProcessor extends AbstractProcessor {
     
-    // TODO: Write test multiple annotations on one element are acknowledged
+    /**
+     * Processes annotations. Messages are written to the messager of the 
+     * supplied processing environment.
+     * @param annotations The annotations to process. For example, {@link 
+     * CustomWarning} and {@link NarrowingConversionWarning}.
+     * @param roundEnv The round environment.
+     * @return True because presumably this is only called with supported 
+     * annotations.
+     */
     @Override
     public boolean process(Set<? extends TypeElement> annotations, 
             RoundEnvironment roundEnv) {
@@ -51,26 +69,20 @@ public class WarningsProcessor extends AbstractProcessor {
                     if (custom != null) {
                         String msg = custom.value();
                         messager.printMessage(Kind.WARNING, msg, element);
-                    } else {
-                        NarrowingConversionWarning narrowing = element
-                                .getAnnotation(NarrowingConversionWarning
-                                        .class);
-                        if (narrowing != null) {
-                            String msg = "Narrowing conversion from " 
-                                    + narrowing.sourceType().getSimpleName() 
-                                    + " to " + narrowing.targetType()
-                                            .getSimpleName();
-                            messager.printMessage(Kind.WARNING, msg, element);
-                        } else {
-                            Untested untested 
-                                    = element.getAnnotation(Untested.class);
-                            if (untested != null) {
-                                String msg 
-                                        = "The called function has not been tested";
-                                messager.printMessage(Kind.WARNING, msg, 
-                                        element);
-                            }
-                        }
+                    } 
+                    NarrowingConversionWarning narrowing = element
+                            .getAnnotation(NarrowingConversionWarning.class);
+                    if (narrowing != null) {
+                        String msg = "Narrowing conversion from " 
+                                + narrowing.sourceType().getSimpleName() 
+                                + " to " + narrowing.targetType()
+                                        .getSimpleName();
+                        messager.printMessage(Kind.WARNING, msg, element);
+                    }
+                    Untested untested = element.getAnnotation(Untested.class);
+                    if (untested != null) {
+                        String msg = "The called function has not been tested";
+                        messager.printMessage(Kind.WARNING, msg, element);
                     }
                 });
             });
