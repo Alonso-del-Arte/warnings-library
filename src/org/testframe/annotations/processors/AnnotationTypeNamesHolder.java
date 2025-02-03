@@ -17,10 +17,16 @@
 package org.testframe.annotations.processors;
 
 /**
- *
+ * Holds the names for the annotations supported by the processor.
  * @author Alonso del Arte
  */
 public class AnnotationTypeNamesHolder {
+    
+    public static final String CUSTOM_WARNING_NAME = "PLACEHOLDER";
+    
+    public static final String NARROWING_WARNING_NAME = "PLACEHOLDER";
+    
+    public static final String UNTESTED_WARNING_NAME = "PLACEHOLDER";
     
     private AnnotationTypeNamesHolder() {
     }
