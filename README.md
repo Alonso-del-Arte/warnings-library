@@ -54,6 +54,14 @@ for removal is up to you.
 I thought about an annotation for `String` literals that are not supposed to be 
 internationalized, but that's really more for an IDE to deal with.
 
+Although the `@SupportedAnnotationTypes` annotation strongly assures us that the 
+processor will only be given annotations it has declared it can process, this is 
+not a mathematical certainty.
+
+For that reason, I have programmed the processor to issue a diagnostic note in 
+case it receives an annotation it has not been programmed for. Though I expect 
+it will only be in the one unit test where this actually happens.
+
 ## Instructions for enabling annotation processing
 
 ### Eclipse
