@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2024 Alonso del Arte
+ * Copyright (C) 2025 Alonso del Arte
  *
  * This program is free software: you can redistribute it and/or modify it under 
  * the terms of the GNU General Public License as published by the Free Software 
@@ -28,6 +28,7 @@ import javax.lang.model.element.TypeElement;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
+import org.testframe.annotations.MockAnnotation;
 import org.testframe.annotations.warnings.CustomWarning;
 import org.testframe.annotations.warnings.NarrowingConversionWarning;
 import org.testframe.annotations.warnings.Untested;
@@ -42,7 +43,7 @@ public class MockTypeElementTest {
     @Test
     public void testToString() {
         System.out.println("toString");
-        Class<?>[] types = {Object.class, this.getClass(), 
+        Class<?>[] types = {Object.class, this.getClass(), MockAnnotation.class, 
             MockTypeElement.class, CustomWarning.class, 
             NarrowingConversionWarning.class, Untested.class};
         for (Class<?> type : types) {

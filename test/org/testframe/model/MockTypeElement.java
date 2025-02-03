@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2024 Alonso del Arte
+ * Copyright (C) 2025 Alonso del Arte
  *
  * This program is free software: you can redistribute it and/or modify it under 
  * the terms of the GNU General Public License as published by the Free Software 
@@ -17,15 +17,8 @@
 package org.testframe.model;
 
 import java.lang.annotation.Annotation;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 
-import javax.lang.model.element.AnnotationMirror;
-import javax.lang.model.element.Element;
-import javax.lang.model.element.ElementKind;
-import javax.lang.model.element.ElementVisitor;
-import javax.lang.model.element.Modifier;
 import javax.lang.model.element.Name;
 import javax.lang.model.element.NestingKind;
 import javax.lang.model.element.TypeElement;
@@ -66,6 +59,12 @@ public class MockTypeElement extends MockElement implements TypeElement {
         throw new UnsupportedOperationException("FOR TESTING PURPOSES ONLY");
     }
     
+    /**
+     * Simply returns the fully qualified name of the class this instance was 
+     * initialized with.
+     * @return The fully qualified name of the class passed to the constructor. 
+     * For example, "{@code java.util.ArrayList}".
+     */
     @Override
     public String toString() {
         return this.name;
