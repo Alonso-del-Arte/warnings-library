@@ -92,6 +92,12 @@ public class WarningsProcessor extends AbstractProcessor {
                                     elem);
                             break;
                         default:
+                            String unknownTypeMsg = "Annotation " 
+                                    + typeElem.getQualifiedName().toString() 
+                                    + " was not expected by " 
+                                    + WarningsProcessor.class.getName();
+                            messager.printMessage(Kind.NOTE, unknownTypeMsg, 
+                                    elem);
                     }
                 }
             }
