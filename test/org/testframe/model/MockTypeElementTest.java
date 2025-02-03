@@ -16,27 +16,21 @@
  */
 package org.testframe.model;
 
-import java.lang.annotation.Annotation;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import javax.lang.model.element.AnnotationMirror;
-import javax.lang.model.element.Element;
-import javax.lang.model.element.ElementKind;
-import javax.lang.model.element.ElementVisitor;
-import javax.lang.model.element.Modifier;
 import javax.lang.model.element.Name;
-import javax.lang.model.element.NestingKind;
 import javax.lang.model.element.TypeElement;
-import javax.lang.model.element.TypeParameterElement;
-import javax.lang.model.type.TypeMirror;
 
 import org.junit.Test;
 import static org.junit.Assert.*;
 
+import org.testframe.annotations.warnings.CustomWarning;
+import org.testframe.annotations.warnings.NarrowingConversionWarning;
+import org.testframe.annotations.warnings.Untested;
 import static org.testframe.model.MockElementTest.RANDOM;
 
 /**
@@ -44,6 +38,20 @@ import static org.testframe.model.MockElementTest.RANDOM;
  * @author Alonso del Arte
  */
 public class MockTypeElementTest {
+    
+    @Test
+    public void testToString() {
+        System.out.println("toString");
+        Class<?>[] types = {Object.class, this.getClass(), 
+            MockTypeElement.class, CustomWarning.class, 
+            NarrowingConversionWarning.class, Untested.class};
+        for (Class<?> type : types) {
+            TypeElement elem = new MockTypeElement(type);
+            String expected = type.getName();
+            String actual = elem.toString();
+            assertEquals(expected, actual);
+        }
+    }
     
     private static List<Object> makeList() {
         int size = RANDOM.nextInt(64) + 16;
