@@ -199,9 +199,14 @@ public class WarningsProcessorTest {
         Set<Element> elemSet = new HashSet<>();
         elemSet.add(element);
         RoundEnvironment roundEnv = new MockRoundEnv(elemSet);
-        TypeElement typeElem = new MockTypeElement(CustomWarning.class);
+        TypeElement typeElemCustom = new MockTypeElement(CustomWarning.class);
+        TypeElement typeElemNarrow 
+                = new MockTypeElement(NarrowingConversionWarning.class);
+        TypeElement typeElemUntested = new MockTypeElement(Untested.class);
         Set<TypeElement> annotations = new HashSet<>();
-        annotations.add(typeElem);
+        annotations.add(typeElemCustom);
+        annotations.add(typeElemNarrow);
+        annotations.add(typeElemUntested);
         Set<Kind> expectedKinds = new HashSet<>();
         expectedKinds.add(Kind.WARNING);
         String messageFromCustom = custom.value();
