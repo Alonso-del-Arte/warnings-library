@@ -17,12 +17,14 @@
 package org.testframe.annotations.processors;
 
 import java.util.Set;
+
 import javax.annotation.processing.AbstractProcessor;
 import javax.annotation.processing.Messager;
 import javax.annotation.processing.RoundEnvironment;
 import javax.annotation.processing.SupportedAnnotationTypes;
 import javax.lang.model.element.TypeElement;
 import javax.tools.Diagnostic.Kind;
+
 import org.testframe.annotations.warnings.CustomWarning;
 import org.testframe.annotations.warnings.NarrowingConversionWarning;
 import org.testframe.annotations.warnings.Untested;
@@ -41,9 +43,9 @@ import org.testframe.annotations.warnings.Untested;
  * </ul>
  * @author Alonso del Arte
  */
-@SupportedAnnotationTypes({"org.testframe.warnings.CustomWarning", 
-    "org.testframe.warnings.NarrowingConversionWarning", 
-    "org.testframe.warnings.Untested"})
+@SupportedAnnotationTypes({"org.testframe.annotations.warnings.CustomWarning", 
+    "org.testframe.annotations.warnings.NarrowingConversionWarning", 
+    "org.testframe.annotations.warnings.Untested"})
 public class WarningsProcessor extends AbstractProcessor {
     
     /**
