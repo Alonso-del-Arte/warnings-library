@@ -245,6 +245,7 @@ public class WarningsProcessorTest {
         RoundEnvironment roundEnv = new MockRoundEnv(elemSet);
         TypeElement typeElem = new MockTypeElement(MockAnnotation.class);
         Set<TypeElement> annotations = new HashSet<>();
+        annotations.add(typeElem);
         WarningsProcessor instance = new WarningsProcessor();
         MockMessager messager = new MockMessager();
         ProcessingEnvironment proc = new MockProcEnv(messager);
