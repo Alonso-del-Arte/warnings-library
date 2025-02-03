@@ -32,6 +32,7 @@ import javax.tools.Diagnostic.Kind;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
+import org.testframe.annotations.MockAnnotation;
 import org.testframe.annotations.MockAnnotationsProvider;
 import org.testframe.annotations.warnings.CustomWarning;
 import org.testframe.annotations.warnings.NarrowingConversionWarning;
@@ -232,6 +233,31 @@ public class WarningsProcessorTest {
         }
         assertEquals(expectedKinds, actualKinds);
         assertEquals(expectedMessages, actualMessages);
+    }
+    
+    @Test
+    public void testProcessNotesUnknownAnnotation() {
+        MockAnnotation mock = MockAnnotationsProvider.makeMockAnnotation();
+        Annotation[] anns = {mock};
+        Element element = new MockElement(anns);
+        Set<Element> elemSet = new HashSet<>();
+        elemSet.add(element);
+        RoundEnvironment roundEnv = new MockRoundEnv(elemSet);
+        TypeElement typeElem = new MockTypeElement(MockAnnotation.class);
+        Set<TypeElement> annotations = new HashSet<>();
+        WarningsProcessor instance = new WarningsProcessor();
+        MockMessager messager = new MockMessager();
+        ProcessingEnvironment proc = new MockProcEnv(messager);
+        instance.init(proc);
+        instance.process(annotations, roundEnv);
+        MessageRecord record = messager.getLatestMessage();
+        assert record != null : "Message record should not be null";
+        String kindMsg = "Message kind should be " + Kind.NOTE.toString();
+        assertEquals(kindMsg, Kind.NOTE, record.getDiagnosticKind());
+        String expected = "Annotation " + typeElem.getQualifiedName().toString() 
+                + " was not expected by " + WarningsProcessor.class.getName();
+        CharSequence actual = record.getMessage();
+        assertEquals(expected, actual);
     }
     
 }
