@@ -54,10 +54,12 @@ public class WarningsProcessorTest {
         SupportedAnnotationTypes annotation 
                 = type.getAnnotation(SupportedAnnotationTypes.class);
         assert annotation != null : "Annotation should not be null";
-        String customWarnName = "org.testframe.warnings.CustomWarning";
+        String customWarnName 
+                = "org.testframe.annotations.warnings.CustomWarning";
         String narConvWarnName 
-                = "org.testframe.warnings.NarrowingConversionWarning";
-        String untestedWarnName = "org.testframe.warnings.Untested";
+                = "org.testframe.annotations.warnings." 
+                + "NarrowingConversionWarning";
+        String untestedWarnName = "org.testframe.annotations.warnings.Untested";
         String[] expected = {customWarnName, narConvWarnName, untestedWarnName};
         String[] actual = annotation.value();
         assertContainsSame(expected, actual);
