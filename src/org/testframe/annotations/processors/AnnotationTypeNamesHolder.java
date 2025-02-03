@@ -22,11 +22,14 @@ package org.testframe.annotations.processors;
  */
 public class AnnotationTypeNamesHolder {
     
-    public static final String CUSTOM_WARNING_NAME = "PLACEHOLDER";
+    public static final String CUSTOM_WARNING_NAME 
+            = "org.testframe.annotations.warnings.CustomWarning";
     
-    public static final String NARROWING_WARNING_NAME = "PLACEHOLDER";
+    public static final String NARROWING_WARNING_NAME 
+            = "org.testframe.annotations.warnings.NarrowingConversionWarning";
     
-    public static final String UNTESTED_WARNING_NAME = "PLACEHOLDER";
+    public static final String UNTESTED_WARNING_NAME 
+            = "org.testframe.annotations.warnings.Untested";
     
     private AnnotationTypeNamesHolder() {
     }
