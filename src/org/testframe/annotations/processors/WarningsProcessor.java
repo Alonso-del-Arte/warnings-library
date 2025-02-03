@@ -22,6 +22,7 @@ import javax.annotation.processing.AbstractProcessor;
 import javax.annotation.processing.Messager;
 import javax.annotation.processing.RoundEnvironment;
 import javax.annotation.processing.SupportedAnnotationTypes;
+import javax.lang.model.element.Element;
 import javax.lang.model.element.TypeElement;
 import javax.tools.Diagnostic.Kind;
 
@@ -62,32 +63,6 @@ public class WarningsProcessor extends AbstractProcessor {
             RoundEnvironment roundEnv) {
         if (!roundEnv.processingOver()) {
             Messager messager = this.processingEnv.getMessager();
-            annotations.stream().map((typeElem) 
-                    -> roundEnv.getElementsAnnotatedWith(typeElem))
-                    .forEachOrdered((elements) -> {
-                elements.forEach((element) -> {
-                    CustomWarning custom 
-                            = element.getAnnotation(CustomWarning.class);
-                    if (custom != null) {
-                        String msg = custom.value();
-                        messager.printMessage(Kind.WARNING, msg, element);
-                    } 
-                    NarrowingConversionWarning narrowing = element
-                            .getAnnotation(NarrowingConversionWarning.class);
-                    if (narrowing != null) {
-                        String msg = "Narrowing conversion from " 
-                                + narrowing.sourceType().getSimpleName() 
-                                + " to " + narrowing.targetType()
-                                        .getSimpleName();
-                        messager.printMessage(Kind.WARNING, msg, element);
-                    }
-                    Untested untested = element.getAnnotation(Untested.class);
-                    if (untested != null) {
-                        String msg = "The called function has not been tested";
-                        messager.printMessage(Kind.WARNING, msg, element);
-                    }
-                });
-            });
         }
         return true;
     }
