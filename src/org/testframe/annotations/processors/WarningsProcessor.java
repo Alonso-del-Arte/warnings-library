@@ -85,9 +85,7 @@ public class WarningsProcessor extends AbstractProcessor {
                                     + narrowing.targetType().getSimpleName();
                             messager.printMessage(Kind.WARNING, msg, elem);
                             break;
-                        case "org.testframe.annotations.warnings.Untested":
-                            Untested untested 
-                                    = elem.getAnnotation(Untested.class);
+                        case UNTESTED_WARNING_NAME:
                             String untestedMsg 
                                     = "The called function has not been tested";
                             messager.printMessage(Kind.WARNING, untestedMsg, 
