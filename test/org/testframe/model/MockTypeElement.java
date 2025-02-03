@@ -66,6 +66,11 @@ public class MockTypeElement extends MockElement implements TypeElement {
         throw new UnsupportedOperationException("FOR TESTING PURPOSES ONLY");
     }
     
+    @Override
+    public String toString() {
+        return this.name;
+    }
+    
     public MockTypeElement(Class<?> type) {
         this.name = type.getName();
     }
