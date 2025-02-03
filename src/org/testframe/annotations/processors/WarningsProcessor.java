@@ -25,6 +25,7 @@ import javax.annotation.processing.SupportedAnnotationTypes;
 import javax.lang.model.element.TypeElement;
 import javax.tools.Diagnostic.Kind;
 
+import static org.testframe.annotations.processors.AnnotationTypeNamesHolder.*;
 import org.testframe.annotations.warnings.CustomWarning;
 import org.testframe.annotations.warnings.NarrowingConversionWarning;
 import org.testframe.annotations.warnings.Untested;
@@ -43,9 +44,8 @@ import org.testframe.annotations.warnings.Untested;
  * </ul>
  * @author Alonso del Arte
  */
-@SupportedAnnotationTypes({"org.testframe.annotations.warnings.CustomWarning", 
-    "org.testframe.annotations.warnings.NarrowingConversionWarning", 
-    "org.testframe.annotations.warnings.Untested"})
+@SupportedAnnotationTypes({CUSTOM_WARNING_NAME, NARROWING_WARNING_NAME, 
+    UNTESTED_WARNING_NAME})
 public class WarningsProcessor extends AbstractProcessor {
     
     /**
