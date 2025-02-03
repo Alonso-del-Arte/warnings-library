@@ -63,6 +63,40 @@ public class WarningsProcessor extends AbstractProcessor {
             RoundEnvironment roundEnv) {
         if (!roundEnv.processingOver()) {
             Messager messager = this.processingEnv.getMessager();
+            for (TypeElement typeElem : annotations) {
+                final Set<? extends Element> elements 
+                        = roundEnv.getElementsAnnotatedWith(typeElem);
+                for (Element elem : elements) {
+                    switch (typeElem.getQualifiedName().toString()) {
+                        case CUSTOM_WARNING_NAME:
+                            CustomWarning custom 
+                                    = elem.getAnnotation(CustomWarning.class);
+                            String customMsg = custom.value();
+                            messager.printMessage(Kind.WARNING, customMsg, 
+                                    elem);
+                            break;
+                        case NARROWING_WARNING_NAME:
+                            NarrowingConversionWarning narrowing = elem
+                                    .getAnnotation(NarrowingConversionWarning
+                                            .class);
+                            String msg = "Narrowing conversion from " 
+                                    + narrowing.sourceType().getSimpleName() 
+                                    + " to " 
+                                    + narrowing.targetType().getSimpleName();
+                            messager.printMessage(Kind.WARNING, msg, elem);
+                            break;
+                        case "org.testframe.annotations.warnings.Untested":
+                            Untested untested 
+                                    = elem.getAnnotation(Untested.class);
+                            String untestedMsg 
+                                    = "The called function has not been tested";
+                            messager.printMessage(Kind.WARNING, untestedMsg, 
+                                    elem);
+                            break;
+                        default:
+                    }
+                }
+            }
         }
         return true;
     }
