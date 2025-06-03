@@ -32,6 +32,12 @@ chew with this project. Getting the annotation processor to work like I want it
 will require a lot of understanding of how each IDE works internally. The 
 project is on hold indefinitely.
 
+Even with revised expectations, this project is not quite working. I have not 
+been able to get the one warning that motivated this whole project to show up in 
+any way, shape or form in the demo. I seem to have made a mistake which causes 
+even the other warnings to not show up in a source file with that motivating 
+annotation.
+
 ## Available warnings
 
 These warnings will be provided as annotations. It will not be enough to import 
