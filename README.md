@@ -27,6 +27,11 @@ instructions on how to do that for the three major IDEs (Eclipse, Apache
 NetBeans, JetBrains IntelliJ IDEA and though maybe starting with Eclipse and 
 then the other two later on).
 
+However, in February 2025, I realized I had bitten off a lot more than I could 
+chew with this project. Getting the annotation processor to work like I want it 
+will require a lot of understanding of how each IDE works internally. The 
+project is on hold indefinitely.
+
 ## Available warnings
 
 These warnings will be provided as annotations. It will not be enough to import 
