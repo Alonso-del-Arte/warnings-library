@@ -47,7 +47,7 @@ public class MockMessagerTest {
         return DIAGNOSTIC_KINDS[RANDOM.nextInt(NUMBER_OF_KINDS)];
     }
     
-    private static String makeMessageText() {
+    static String makeMessageText() {
         return "FOR TESTING PURPOSES ONLY " + RANDOM.nextInt();
     }
     
