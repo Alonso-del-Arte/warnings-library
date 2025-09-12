@@ -38,6 +38,9 @@ any way, shape or form in the demo. I seem to have made a mistake which causes
 even the other warnings to not show up in a source file with that motivating 
 annotation.
 
+I'm thinking of adding Google's Error Prone to this project's dependencies. It 
+will also be necessary to upgrade to Java 21 or maybe even Java 25.
+
 ## Available warnings
 
 These warnings will be provided as annotations. It will not be enough to import 
